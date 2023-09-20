@@ -1,5 +1,6 @@
 import './App.css'
-import { NavigationBar, Spinner, TopBar } from './component'
+import { HeaderCarousel, NavigationBar, Spinner, TopBar } from './component'
+
 
 function App() {
 
@@ -7,6 +8,7 @@ function App() {
     <>
       <TopBar />
       <NavigationBar />
+      <HeaderCarousel />
     </>
   )
 }
