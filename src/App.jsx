@@ -1,10 +1,11 @@
 import './App.css'
-import { NavigationBar } from './component'
+import { NavigationBar, Spinner, TopBar } from './component'
 
 function App() {
 
   return (
     <>
+      <TopBar />
       <NavigationBar />
     </>
   )
