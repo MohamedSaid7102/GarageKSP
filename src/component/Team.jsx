@@ -3,6 +3,10 @@ import teamMember2Image from '../assets/img/team-2.jpg'
 import teamMember3Image from '../assets/img/team-3.jpg'
 import teamMember4Image from '../assets/img/team-4.jpg'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebookF, faInstagram, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-icons'
+
+
 // TeamMember component
 const TeamMember = ({ imgSrc, name, role }) => {
   return (
@@ -12,10 +16,10 @@ const TeamMember = ({ imgSrc, name, role }) => {
         <h5>{name}</h5>
         <span className="text-primary">{role}</span>
         <ul className="team-social">
-          <li><a className="btn btn-square" href=""><i className="fab fa-facebook-f"></i></a></li>
-          <li><a className="btn btn-square" href=""><i className="fab fa-twitter"></i></a></li>
-          <li><a className="btn btn-square" href=""><i className="fab fa-instagram"></i></a></li>
-          <li><a className="btn btn-square" href=""><i className="fab fa-linkedin-in"></i></a></li>
+          <li><a className="btn btn-square" href=""><FontAwesomeIcon icon={faFacebookF} aria-hidden="true" style={{ marginRight: '10px' }} /></a></li>
+          <li><a className="btn btn-square" href=""><FontAwesomeIcon icon={faTwitter} aria-hidden="true" style={{ marginRight: '10px' }} /></a></li>
+          <li><a className="btn btn-square" href=""><FontAwesomeIcon icon={faInstagram} aria-hidden="true" style={{ marginRight: '10px' }} /></a></li>
+          <li><a className="btn btn-square" href=""><FontAwesomeIcon icon={faLinkedinIn} aria-hidden="true" style={{ marginRight: '10px' }} /></a></li>
         </ul>
       </div>
     </div>
