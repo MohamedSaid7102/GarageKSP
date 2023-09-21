@@ -10,5 +10,6 @@ import { Services } from './Services'
 import { Projects } from './Projects'
 import { Quote } from './Quote'
 import { Team } from './Team'
+import { Footer } from './Footer'
 
-export { TopBar, NavigationBar, Spinner, HeaderCarousel, Features, Feature, About, Services, Projects, Quote, Team };
+export { TopBar, NavigationBar, Spinner, HeaderCarousel, Features, Feature, About, Services, Projects, Quote, Team, Footer };
