@@ -1,5 +1,5 @@
 import './App.css'
-import { About, Features, Footer, HeaderCarousel, NavigationBar, Projects, Quote, Services, Spinner, Team, TopBar } from './component'
+import { About, Features, Footer, HeaderCarousel, NavigationBar, Projects, Quote, Services, Spinner, Team, Testimonial, TopBar } from './component'
 
 
 function App() {
@@ -15,7 +15,9 @@ function App() {
       <Projects />
       <Quote />
       <Team />
+      <Testimonial />
       <Footer />
+
 
     </>
   )
