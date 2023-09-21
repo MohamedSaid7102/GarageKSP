@@ -356,6 +356,20 @@
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 0 45px rgba(0, 0, 0, .07);
+    max-width: 350px;
+    overflow: hidden;
+    max-height: 400px; /* Adjust the maximum height as needed */
+}
+
+.project-item .project-item__img{
+  height: 250px;
+  overflow: hidden;
+}
+
+.project-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .project-item .project-overlay {
