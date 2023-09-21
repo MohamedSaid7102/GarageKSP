@@ -9,5 +9,6 @@ import { About } from './About'
 import { Services } from './Services'
 import { Projects } from './Projects'
 import { Quote } from './Quote'
+import { Team } from './Team'
 
-export { TopBar, NavigationBar, Spinner, HeaderCarousel, Features, Feature, About, Services, Projects, Quote };
+export { TopBar, NavigationBar, Spinner, HeaderCarousel, Features, Feature, About, Services, Projects, Quote, Team };
