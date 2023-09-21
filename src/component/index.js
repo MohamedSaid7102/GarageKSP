@@ -8,5 +8,6 @@ import { Feature } from './Feature'
 import { About } from './About'
 import { Services } from './Services'
 import { Projects } from './Projects'
+import { Quote } from './Quote'
 
-export { TopBar, NavigationBar, Spinner, HeaderCarousel, Features, Feature, About, Services, Projects };
+export { TopBar, NavigationBar, Spinner, HeaderCarousel, Features, Feature, About, Services, Projects, Quote };
