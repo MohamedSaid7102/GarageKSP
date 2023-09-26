@@ -5,7 +5,6 @@ import { About, Features, Footer, HeaderCarousel, NavigationBar, Projects, Quote
 export const Home = () => {
   return (
     <>
-      <TopBar />
       <NavigationBar />
       <HeaderCarousel />
       <Features />
@@ -15,8 +14,6 @@ export const Home = () => {
       <Quote />
       <Team />
       <Testimonial />
-      <Footer />
-
     </>
   )
 }

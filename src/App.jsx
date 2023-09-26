@@ -1,23 +1,14 @@
 import './App.css'
-import { About, Features, Footer, HeaderCarousel, NavigationBar, Projects, Quote, Services, Spinner, Team, Testimonial, TopBar } from './component'
+import { Footer, TopBar } from './component'
+import { Outlet } from "react-router-dom";
 
 function App() {
 
   return (
     <>
       <TopBar />
-      <NavigationBar />
-      <HeaderCarousel />
-      <Features />
-      <About />
-      <Services />
-      <Projects />
-      <Quote />
-      <Team />
-      <Testimonial />
+      <Outlet />
       <Footer />
-
-
     </>
   )
 }

@@ -15,8 +15,14 @@ import 'font-awesome/css/font-awesome.min.css';
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <App />,
     errorElement: <NotFound />,
+    children: [
+      {
+        path: "",
+        element: <Home />
+      },
+    ],
   },
 ]);
 
