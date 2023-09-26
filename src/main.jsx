@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { Home, NotFound } from './routes';
+import { About, Home, NotFound } from './routes';
 import App from './App.jsx'
 
 import {
@@ -22,6 +22,11 @@ const router = createBrowserRouter([
         path: "",
         element: <Home />
       },
+      {
+        path: "about",
+        element: <About />
+      },
+
     ],
   },
 ]);
