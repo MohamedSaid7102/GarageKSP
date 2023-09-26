@@ -1,8 +1,8 @@
-import './App.css'
-import { About, Features, Footer, HeaderCarousel, NavigationBar, Projects, Quote, Services, Spinner, Team, Testimonial, TopBar } from './component'
+import React from 'react'
 
-function App() {
+import { About, Features, Footer, HeaderCarousel, NavigationBar, Projects, Quote, Services, Spinner, Team, Testimonial, TopBar } from '../component'
 
+export const Home = () => {
   return (
     <>
       <TopBar />
@@ -17,9 +17,6 @@ function App() {
       <Testimonial />
       <Footer />
 
-
     </>
   )
 }
-
-export default App
