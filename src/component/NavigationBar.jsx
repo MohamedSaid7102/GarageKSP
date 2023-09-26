@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export const NavigationBar = () => {
   const burgerButton = useRef();
@@ -55,16 +55,85 @@ export const NavigationBar = () => {
             <div className="collapse navbar-collapse" id="navbarCollapse" ref={navbarCollapse}>
 
               <div className="navbar-nav">
-                <Link to="/" className="nav-item nav-link active">Home</Link>
-                <Link to="/about" className="nav-item nav-link">About</Link>
-                <Link to="/services" className="nav-item nav-link">Services</Link>
-                <Link to="projects" className="nav-item nav-link">Projects</Link>
-                <Link to="/contacts" className="nav-item nav-link">Contact</Link>
+                <NavLink
+                  onClick={closeMobileNavigation}
+                  to={'/'}
+                  className={`nav-item nav-link ${({ isActive, isPending }) =>
+                    isActive
+                      ? "active"
+                      : isPending
+                        ? "pending"
+                        : ""
+                    }`
+                  }
+                >
+                  Home
+                </NavLink>
+
+                <NavLink
+                  onClick={closeMobileNavigation}
+                  to={'/about'}
+                  className={`nav-item nav-link ${({ isActive, isPending }) =>
+                    isActive
+                      ? "active"
+                      : isPending
+                        ? "pending"
+                        : ""
+                    }`
+                  }
+                >
+                  About
+                </NavLink>
+
+                <NavLink
+                  onClick={closeMobileNavigation}
+                  to={'/services'}
+                  className={`nav-item nav-link ${({ isActive, isPending }) =>
+                    isActive
+                      ? "active"
+                      : isPending
+                        ? "pending"
+                        : ""
+                    }`
+                  }
+                >
+                  Services
+                </NavLink>
+
+                <NavLink
+                  onClick={closeMobileNavigation}
+                  to={'/projects'}
+                  className={`nav-item nav-link ${({ isActive, isPending }) =>
+                    isActive
+                      ? "active"
+                      : isPending
+                        ? "pending"
+                        : ""
+                    }`
+                  }
+                >
+                  Projects
+                </NavLink>
+
+                <NavLink
+                  onClick={closeMobileNavigation}
+                  to={'/contacts'}
+                  className={`nav-item nav-link ${({ isActive, isPending }) =>
+                    isActive
+                      ? "active"
+                      : isPending
+                        ? "pending"
+                        : ""
+                    }`
+                  }
+                >
+                  Contacts
+                </NavLink>
 
               </div>
 
               <div className="ms-auto d-none d-lg-block">
-                <Link to="/contact" className="btn btn-primary rounded-pill py-2 px-3">Get A Car</Link>
+                <Link to="/contacts" className="btn btn-primary rounded-pill py-2 px-3">Get A Car</Link>
               </div>
 
             </div>
