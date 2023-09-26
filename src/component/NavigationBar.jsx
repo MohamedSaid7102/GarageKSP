@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 
 export const NavigationBar = () => {
   const burgerButton = useRef();
@@ -34,10 +35,10 @@ export const NavigationBar = () => {
         <div className="container">
           <nav className="navbar navbar-expand-lg bg-white navbar-light p-lg-0">
 
-            <a href="index.html" className="navbar-brand d-lg-none">
-              <span className="sr-only">GrowMark</span>
-              <h1 className="fw-bold m-0">GrowMark</h1>
-            </a>
+            <Link to={'/'} className="navbar-brand d-lg-none">
+              <span className="sr-only">Garag KSP</span>
+              <h1 className="fw-bold m-0">Garag KSP</h1>
+            </Link>
 
             {/* Toggle menu button */}
             <button
@@ -54,17 +55,16 @@ export const NavigationBar = () => {
             <div className="collapse navbar-collapse" id="navbarCollapse" ref={navbarCollapse}>
 
               <div className="navbar-nav">
-                <a href="index.html" className="nav-item nav-link active">Home</a>
-                <a href="about.html" className="nav-item nav-link">About</a>
-                <a href="service.html" className="nav-item nav-link">Services</a>
-                <a href="project.html" className="nav-item nav-link">Projects</a>
-
-                <a href="contact.html" className="nav-item nav-link">Contact</a>
+                <Link to="/" className="nav-item nav-link active">Home</Link>
+                <Link to="/about" className="nav-item nav-link">About</Link>
+                <Link to="/services" className="nav-item nav-link">Services</Link>
+                <Link to="projects" className="nav-item nav-link">Projects</Link>
+                <Link to="/contacts" className="nav-item nav-link">Contact</Link>
 
               </div>
 
               <div className="ms-auto d-none d-lg-block">
-                <a href="" className="btn btn-primary rounded-pill py-2 px-3">Get A Quote</a>
+                <Link to="/contact" className="btn btn-primary rounded-pill py-2 px-3">Get A Car</Link>
               </div>
 
             </div>
