@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faPhoneVolume, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faFacebookF, faInstagram, faLinkedinIn, faTiktok, faTwitter, faWhatsapp, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
 // Footer component
 export const Footer = () => {
@@ -73,6 +74,30 @@ const FooterNewsletter = () => {
       <div className="position-relative w-100">
         <input className="form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email" />
         <button type="button" className="btn btn-light py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+      </div>
+      <div className="mt-4 d-flex flex-wrap gap-3">
+        <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href="#!" aria-label="Facebook">
+          <FontAwesomeIcon icon={faFacebookF} style={{ color: "#4761ff", }} aria-hidden="true" />
+        </a>
+        <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href="#!" aria-label="Twitter">
+          <FontAwesomeIcon icon={faInstagram} style={{ color: "#4761ff", }} aria-hidden="true" />
+        </a>
+        <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href="#!" aria-label="Twitter">
+          <FontAwesomeIcon icon={faTwitter} style={{ color: "#4761ff", }} aria-hidden="true" />
+        </a>
+        <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href="#!" aria-label="Twitter">
+          <FontAwesomeIcon icon={faLinkedinIn} style={{ color: "#4761ff", }} aria-hidden="true" />
+        </a>
+        <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href="#!" aria-label="Twitter">
+          <FontAwesomeIcon icon={faWhatsapp} style={{ color: "#4761ff", }} aria-hidden="true" />
+        </a>
+        <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href="#!" aria-label="Twitter">
+          <FontAwesomeIcon icon={faTiktok} style={{ color: "#4761ff", }} aria-hidden="true" />
+        </a>
+        <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href="#!" aria-label="Twitter">
+          <FontAwesomeIcon icon={faYoutube} style={{ color: "#4761ff", }} aria-hidden="true" />
+        </a>
+
       </div>
     </div>
   );

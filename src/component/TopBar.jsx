@@ -1,7 +1,7 @@
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faPhoneVolume, faEnvelope } from '@fortawesome/free-solid-svg-icons'
-import { faFacebookF, faTwitter, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import { faFacebookF, faTwitter, faLinkedinIn, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { ThemeContext } from '../ThemeContext';
@@ -43,12 +43,14 @@ export const TopBar = () => {
                 <FontAwesomeIcon icon={faFacebookF} style={{ color: "#4761ff", }} aria-hidden="true" />
               </a>
               <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href="#!" aria-label="Twitter">
+                <FontAwesomeIcon icon={faInstagram} style={{ color: "#4761ff", }} aria-hidden="true" />
+              </a>
+              <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href="#!" aria-label="Twitter">
                 <FontAwesomeIcon icon={faTwitter} style={{ color: "#4761ff", }} aria-hidden="true" />
               </a>
               <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href="#!" aria-label="Twitter">
                 <FontAwesomeIcon icon={faLinkedinIn} style={{ color: "#4761ff", }} aria-hidden="true" />
               </a>
-
             </div>
           </div>
         </div>
