@@ -93,13 +93,12 @@ export const NavigationBar = () => {
 
             <div className={`collapse navbar-collapse`} id="navbarCollapse" ref={navbarCollapse}>
 
-              <div className={`navbar-nav`}>
+              <div className={`navbar-nav mx-lg-2`}>
 
                 <NavLink
                   onClick={closeMobileNavigation}
                   to={'/'}
                   className={`${navLinkStatus('/')}`}
-                  style={{ marginLeft: '20px' }}
                 >
                   Home
                 </NavLink>
