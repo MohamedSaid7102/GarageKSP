@@ -135,6 +135,13 @@ export const NavigationBar = () => {
                   Contacts
                 </NavLink>
 
+                <NavLink
+                  onClick={closeMobileNavigation}
+                  to={'/sendcv'}
+                  className={`${navLinkStatus('/sendcv')}`}
+                >
+                  Send CV
+                </NavLink>
               </div>
 
               <div className={`ms-auto d-none d-lg-block`}>

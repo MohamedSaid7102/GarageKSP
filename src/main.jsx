@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { About, Contacts, Home, NotFound, Projects, Services } from './routes';
+import { About, Contacts, Home, NotFound, Projects, SendCV, Services } from './routes';
 import App from './App.jsx'
 
 import {
@@ -40,6 +40,10 @@ const router = createBrowserRouter([
         path: "contacts",
         element: <Contacts />
       },
+      {
+        path: 'sendcv',
+        element: <SendCV />
+      }
     ],
   },
 ]);
