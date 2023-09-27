@@ -12,5 +12,6 @@ import { Quote } from './Quote'
 import { Team } from './Team'
 import { Footer } from './Footer'
 import { Testimonial } from './Testimonial'
+import { Copyright } from './Copyright'
 
-export { TopBar, NavigationBar, Spinner, HeaderCarousel, Features, Feature, About, Services, Projects, Quote, Team, Footer, Testimonial };
+export { TopBar, NavigationBar, Spinner, HeaderCarousel, Features, Feature, About, Services, Projects, Quote, Team, Footer, Testimonial, Copyright };

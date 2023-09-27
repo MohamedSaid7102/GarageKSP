@@ -1,5 +1,5 @@
 import './App.css'
-import { Footer, TopBar, NavigationBar } from './component'
+import { Footer, TopBar, NavigationBar, Copyright } from './component'
 import { Outlet } from "react-router-dom";
 
 function App() {
@@ -9,6 +9,7 @@ function App() {
       <NavigationBar />
       <Outlet />
       <Footer />
+      <Copyright />
     </>
   )
 }
