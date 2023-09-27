@@ -7,6 +7,24 @@
     --secondary: #555555;
     --light: #F1F3FA;
     --dark: #1C2035;
+
+    --primary-bg-color: #eee;
+    --primary-elevation-color: #fff;
+    --primary-text-color: #333333;
+    --consentrated-text-color: #111;
+}
+
+/* Dark Theme */
+html.dark-mode {
+  --primary-bg-color: #333;
+  --primary-elevation-color: #111;
+  --primary-text-color: #eee;
+  --consentrated-text-color: #fff;
+
+}
+
+body {
+  background-color: var(--primary-bg-color) !important;
 }
 
 .back-to-top {

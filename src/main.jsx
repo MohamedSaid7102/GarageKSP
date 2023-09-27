@@ -8,6 +8,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+import { ThemeProvider } from './ThemeContext'; // Import your ThemeProvider
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import 'font-awesome/css/font-awesome.min.css';
@@ -44,7 +46,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    {/*<App />*/}
-    <RouterProvider router={router} />
+    <ThemeProvider>
+      {/*<App />*/}
+      <RouterProvider router={router} />
+    </ThemeProvider>
   </React.StrictMode>,
 )
