@@ -8,6 +8,10 @@ export const Features = () => {
   return (
     <div className="container-xxl py-5">
       <div className="container">
+        <div className={`text-center mx-auto wow fadeInUp`} data-wow-delay="0.1s" style={{ maxWidth: '500px' }}>
+          <p className={`fs-2 fw-medium text-primary`}>Brands</p>
+        </div>
+
         <div className="row g-0 feature-row">
           <Feature
             icon={icon1}

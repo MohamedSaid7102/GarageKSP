@@ -1,7 +1,16 @@
-import React, { useEffect, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { ThemeContext } from "../ThemeContext";
+import { useLocation } from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 
 export const NavigationBar = () => {
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
+
+  const location = useLocation();
+  const currentURL = location.pathname;
+
   const burgerButton = useRef();
   const navbarCollapse = useRef();
 
@@ -16,6 +25,7 @@ export const NavigationBar = () => {
   const closeMobileNavigation = () => {
     navbarCollapse.current.classList.remove("show");
   }
+
   useEffect(() => {
     // Add event listener for window resize
     window.addEventListener('resize', closeMobileNavigation);
@@ -26,46 +36,70 @@ export const NavigationBar = () => {
     };
   }, []); // Empty dependency array to run only once on component mount
 
+  const navLinkStatus = (path) => {
+    if (currentURL == path) return 'nav-item nav-link active';
+    return darkMode ? 'nav-item nav-link text-white' : 'nav-item nav-link text-dark';
+  }
+
+
+  const [_, setBodyDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark-mode');
+      document.documentElement.setAttribute("data-bs-theme", "dark");
+    } else {
+      document.documentElement.classList.remove('dark-mode');
+      document.documentElement.setAttribute("data-bs-theme", "light");
+    }
+  }, [darkMode]);
+
+  const toggleTheme = () => {
+    toggleDarkMode();
+    setBodyDarkMode(!darkMode);
+  }
+
   return (
     <div>
-      <a href="#main-content" className="sr-only sr-only-focusable">
+      <a href="#main-content" className={`sr-only sr-only-focusable`}>
         Skip to content
       </a>
-      <div className="container-fluid bg-white sticky-top">
-        <div className="container">
-          <nav className="navbar navbar-expand-lg bg-white navbar-light p-lg-0">
+      <div className={`container-fluid sticky-top`}>
+        <div className={`container`}>
+          <nav className={`navbar navbar-expand-lg navbar-light p-lg-0`}>
 
-            <Link to={'/'} className="navbar-brand d-lg-none">
-              <span className="sr-only">Garag KSP</span>
-              <h1 className="fw-bold m-0">Garag KSP</h1>
+            {/* Logo */}
+            <Link to={'/'} className={`navbar-brand d-lg-none text-decoration-none`}>
+              <span className={`sr-only`}>Garag KSB</span>
+              <p className={`fw-bold m-0`}>Garag KSB</p>
             </Link>
+
+            {/* Darkmode button */}
+            <button onClick={toggleTheme} style={{ borderRadius: '100%', border: '1px solid #eee', width: '40px', height: '40px' }}>
+              {darkMode ? <FontAwesomeIcon icon={faSun} size="lg" /> : <FontAwesomeIcon icon={faMoon} />}
+            </button>
 
             {/* Toggle menu button */}
             <button
               type="button"
-              className="navbar-toggler me-0"
+              className={`navbar-toggler me-0`}
               data-bs-toggle="collapse"
               data-bs-target="#navbarCollapse"
               onClick={toggleNavbar}
               ref={burgerButton}
             >
-              <span className="navbar-toggler-icon"></span>
+              <span>☰</span>
             </button>
 
-            <div className="collapse navbar-collapse" id="navbarCollapse" ref={navbarCollapse}>
+            <div className={`collapse navbar-collapse`} id="navbarCollapse" ref={navbarCollapse}>
 
-              <div className="navbar-nav">
+              <div className={`navbar-nav`}>
+
                 <NavLink
                   onClick={closeMobileNavigation}
                   to={'/'}
-                  className={`nav-item nav-link ${({ isActive, isPending }) =>
-                    isActive
-                      ? "active"
-                      : isPending
-                        ? "pending"
-                        : ""
-                    }`
-                  }
+                  className={`${navLinkStatus('/')}`}
+                  style={{ marginLeft: '20px' }}
                 >
                   Home
                 </NavLink>
@@ -73,14 +107,7 @@ export const NavigationBar = () => {
                 <NavLink
                   onClick={closeMobileNavigation}
                   to={'/about'}
-                  className={`nav-item nav-link ${({ isActive, isPending }) =>
-                    isActive
-                      ? "active"
-                      : isPending
-                        ? "pending"
-                        : ""
-                    }`
-                  }
+                  className={`${navLinkStatus('/about')}`}
                 >
                   About
                 </NavLink>
@@ -88,14 +115,7 @@ export const NavigationBar = () => {
                 <NavLink
                   onClick={closeMobileNavigation}
                   to={'/services'}
-                  className={`nav-item nav-link ${({ isActive, isPending }) =>
-                    isActive
-                      ? "active"
-                      : isPending
-                        ? "pending"
-                        : ""
-                    }`
-                  }
+                  className={`${navLinkStatus('/services')}`}
                 >
                   Services
                 </NavLink>
@@ -103,14 +123,7 @@ export const NavigationBar = () => {
                 <NavLink
                   onClick={closeMobileNavigation}
                   to={'/projects'}
-                  className={`nav-item nav-link ${({ isActive, isPending }) =>
-                    isActive
-                      ? "active"
-                      : isPending
-                        ? "pending"
-                        : ""
-                    }`
-                  }
+                  className={`${navLinkStatus('/projects')}`}
                 >
                   Projects
                 </NavLink>
@@ -118,29 +131,22 @@ export const NavigationBar = () => {
                 <NavLink
                   onClick={closeMobileNavigation}
                   to={'/contacts'}
-                  className={`nav-item nav-link ${({ isActive, isPending }) =>
-                    isActive
-                      ? "active"
-                      : isPending
-                        ? "pending"
-                        : ""
-                    }`
-                  }
+                  className={`${navLinkStatus('/contacts')}`}
                 >
                   Contacts
                 </NavLink>
 
               </div>
 
-              <div className="ms-auto d-none d-lg-block">
-                <Link to="/contacts" className="btn btn-primary rounded-pill py-2 px-3">Get A Car</Link>
+              <div className={`ms-auto d-none d-lg-block`}>
+                <Link to="/contacts" className={`btn btn-primary rounded-pill py-2 px-3`}>Get A Car</Link>
               </div>
 
             </div>
 
           </nav>
         </div>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 };

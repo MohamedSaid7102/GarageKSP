@@ -3,15 +3,36 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faPhoneVolume, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookF, faTwitter, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { ThemeContext } from '../ThemeContext';
 
 
 export const TopBar = () => {
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
+
+  const [_, setBodyDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (darkMode) {
+      document.documentElement.classList.add('dark-mode');
+      document.documentElement.setAttribute("data-bs-theme", "dark");
+    } else {
+      document.documentElement.classList.remove('dark-mode');
+      document.documentElement.setAttribute("data-bs-theme", "light");
+    }
+  }, [darkMode]);
+
+  const toggleTheme = () => {
+    toggleDarkMode();
+    setBodyDarkMode(!darkMode);
+  }
+
   return (
     <header className="container-fluid bg-primary text-white d-none d-lg-flex">
       <div className="container py-3">
         <div className="d-flex align-items-center">
           <Link to="/" aria-label="Home Page">
-            <h2 className="text-white fw-bold m-0">Garag KSP</h2>
+            <h2 className="text-white fw-bold m-0">Garag KSB</h2>
           </Link>
           <div className="ms-auto d-flex align-items-center">
             <small className="ms-4"><FontAwesomeIcon icon={faLocationDot} aria-hidden="true" /> 123 Street, New York, USA</small>

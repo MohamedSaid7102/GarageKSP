@@ -16,12 +16,26 @@
 
 /* Dark Theme */
 html.dark-mode {
-  --primary-bg-color: #333;
+  --primary-bg-color: #212529;
   --primary-elevation-color: #111;
   --primary-text-color: #eee;
   --consentrated-text-color: #fff;
 
 }
+
+
+/* Dark mode active link */
+.dark-mode-active {
+  color: white; /* Change this to your desired text color in dark mode */
+  /* Add any other styles you want for dark mode active links */
+}
+
+/* Light mode active link */
+.light-mode-active {
+  color: black; /* Change this to your desired text color in light mode */
+  /* Add any other styles you want for light mode active links */
+}
+
 
 body {
   background-color: var(--primary-bg-color) !important;
@@ -220,9 +234,22 @@ body {
     box-shadow: 0 0 45px rgba(0, 0, 0, .08);
 }
 
+/* YourComponent.css */
 .feature-item {
-    border-color: rgba(0, 0, 0, .03) !important;
+  border-color: rgba(0, 0, 0, .03) !important;
+  transition: transform 0.5s, box-shadow 0.3s; /* Add a smooth transition effect */
+
+  /* Add a shadow to create an elevation effect */
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  margin-right: 10px;
 }
+
+.feature-item:hover {
+  border-radius: 15px; /* Adjust the border radius as needed */
+  transform: translateY(-5px); /* Adjust the vertical translation as needed */
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Increase the shadow size on hover */
+}
+
 
 
 /*** About ***/

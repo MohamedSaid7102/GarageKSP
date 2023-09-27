@@ -4,34 +4,40 @@ import icon7 from '../assets/img/icon/icon-7.png'
 import icon8 from '../assets/img/icon/icon-8.png'
 import icon9 from '../assets/img/icon/icon-9.png'
 import icon10 from '../assets/img/icon/icon-10.png'
+import { useContext } from 'react'
+import { ThemeContext } from '../ThemeContext'
 
 // Service Item Component
-const ServiceItem = ({ iconSrc, title, description }) => (
-  <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-    <div className="service-item position-relative h-100">
-      <div className="service-text rounded p-5">
-        <div className="btn-square bg-light rounded-circle mx-auto mb-4" style={{ width: '64px', height: '64px' }}>
-          <img className="img-fluid" src={iconSrc} alt={`${title} Icon`} />
+const ServiceItem = ({ iconSrc, title, description }) => {
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
+
+  return (
+    <div className={`col-lg-4 col-md-6 wow fadeInUp`} data-wow-delay="0.1s">
+      <div className={`service-item position-relative h-100`}>
+        <div className={`service-text rounded p-5`} style={darkMode ? { backgroundColor: '#222' } : {}}>
+          <div className={`btn-square ${darkMode ? 'bg-dark' : 'bg-light'} rounded-circle mx-auto mb-4`} style={{ width: '64px', height: '64px' }}>
+            <img className={`img-fluid`} src={iconSrc} alt={`${title} Icon`} />
+          </div>
+          <h5 className={`mb-3`}>{title}</h5>
+          <p className={`mb-0`}>{description}</p>
         </div>
-        <h5 className="mb-3">{title}</h5>
-        <p className="mb-0">{description}</p>
+        <div className={`service-btn rounded-0 rounded-bottom`} style={darkMode ? { backgroundColor: '#555' } : {}}>
+          <a className={` fw-medium`} href={`#${title.replace(' ', '-')}`} style={darkMode ? { color: '#eee' } : {}}>Read More<i className={`bi bi-chevron-double-right ms-2`}></i></a>
+        </div>
       </div>
-      <div className="service-btn rounded-0 rounded-bottom">
-        <a className="text-primary fw-medium" href={`#${title.replace(' ', '-')}`}>Read More<i className="bi bi-chevron-double-right ms-2"></i></a>
-      </div>
-    </div>
-  </div>
-);
+    </div >
+  )
+};
 
 // Service Component
 export const Services = () => (
-  <div className="container-xxl py-5">
-    <div className="container">
-      <div className="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style={{ maxWidth: '500px' }}>
-        <p className="fs-5 fw-medium text-primary">Our Services</p>
-        <h1 className="display-5 mb-5">Digital Marketing Services that We Offer</h1>
+  <div className={`container-xxl py-5`}>
+    <div className={`container`}>
+      <div className={`text-center mx-auto wow fadeInUp`} data-wow-delay="0.1s" style={{ maxWidth: '500px' }}>
+        <p className={`fs-5 fw-medium text-primary`}>Our Services</p>
+        <h1 className={`display-5 mb-5`}>Digital Marketing Services that We Offer</h1>
       </div>
-      <div className="row g-4">
+      <div className={`row g-4`}>
         <ServiceItem
           iconSrc={icon5}
           title="Digital Marketing"
