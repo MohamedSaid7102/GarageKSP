@@ -11,7 +11,7 @@ import { faFacebookF, faInstagram, faLinkedinIn, faTwitter } from '@fortawesome/
 const TeamMember = ({ imgSrc, name, role }) => {
   return (
     <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-      <div className="team-item rounded overflow-hidden pb-4">
+      <div className="card-item-transition-effect team-item rounded overflow-hidden pb-4">
         <img className="img-fluid mb-4" src={imgSrc} alt={name} />
         <h5>{name}</h5>
         <span className="text-primary">{role}</span>
@@ -33,8 +33,14 @@ export const Team = () => {
       <div className="container">
         <div className="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style={{ maxWidth: '500px' }}>
           <p className="fs-5 fw-medium text-primary">Our Team</p>
-          <h1 className="display-5 mb-5">Our Expert People Ready to Help You</h1>
+          <p className="fs-1 mb-5">Our Expert People Ready to Help You</p>
         </div>
+        {/*
+        <div className="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style={{ maxWidth: '500px' }}>
+          <h2 className="fs-1 fw-medium text-primary">Our Team</h2>
+          <p className="fs-4 mb-5 text-nowrap">Our Expert People Ready to Help You</p>
+        </div>
+          */}
         <div className="row g-4">
           <TeamMember imgSrc={teamMember1Image} name="Alex Robin" role="Founder & CEO" />
           <TeamMember imgSrc={teamMember2Image} name="Adam Crew" role="Co Founder" />

@@ -5,7 +5,7 @@ import project4Image from '../assets/img/project-4.jpg'
 
 const ProjectItem = ({ imgSrc, title, description }) => {
   return (
-    <div className="project-item m-1 mb-3 m-sm-3 border">
+    <div className="project-item card-item-transition-effect m-1 mb-3 m-sm-3 border">
       <div className="position-relative">
         <div className="project-item__img">
           <img className="img-fluid" src={imgSrc} alt={title} />

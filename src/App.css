@@ -234,7 +234,9 @@ body {
 
 /*** Features ***/
 .feature-row {
-    box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+  display: flex;
+  gap: 10px;
+  background-color: #eee;
 }
 
 /* YourComponent.css */
@@ -244,7 +246,6 @@ body {
 
   /* Add a shadow to create an elevation effect */
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
-  margin-right: 10px;
 }
 
 .feature-item:hover {
@@ -396,6 +397,23 @@ body {
 
 .service-item:hover .service-btn {
     bottom: -1.5rem;
+}
+
+.card-item-transition-effect {
+  transition: all 200ms ease-in-out !important;
+}
+
+.card-item-transition-effect img {
+  transition: all 340ms ease-in-out !important;
+}
+
+
+.card-item-transition-effect:hover {
+  box-shadow: 0 0 15px 15px lightgray;
+}
+
+.card-item-transition-effect:hover img{
+    transform: scale(1.1);
 }
 
 
