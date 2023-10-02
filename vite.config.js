@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import replace from '@rollup/plugin-replace';
 import path from 'path'
 
 // https://vitejs.dev/config/
@@ -13,5 +14,16 @@ export default defineConfig({
   server: {
     port: 8080,
     hot: true
-  }
+  },
+  // build: {
+  //   rollupOptions: {
+  //     plugins: [
+  //       replace({
+  //         'process.env.API_URL': JSON.stringify(import.meta.env.API_URL),
+  //       }),
+  //     ],
+  //   },
+  // },
 })
+
+

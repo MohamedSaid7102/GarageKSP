@@ -5,7 +5,7 @@ import { faFacebookF, faTwitter, faLinkedinIn, faInstagram } from '@fortawesome/
 import { Link } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { ThemeContext } from '../ThemeContext';
-
+import LOGO from '../assets/KSB_LOGO.png';
 
 export const TopBar = () => {
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
@@ -31,8 +31,9 @@ export const TopBar = () => {
     <header className="container-fluid bg-primary text-white d-none d-lg-flex">
       <div className="container py-3">
         <div className="d-flex align-items-center">
-          <Link to="/" aria-label="Home Page">
+          <Link to="/" aria-label="Home Page" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <h2 className="text-white fw-bold m-0">Garag KSB</h2>
+            <img className="d-block w-100" src={LOGO} style={{ maxWidth: '60px' }} alt="Image" />
           </Link>
           <div className="ms-auto d-flex align-items-center">
             <small className="ms-4"><FontAwesomeIcon icon={faLocationDot} aria-hidden="true" /> 123 Street, New York, USA</small>
