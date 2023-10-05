@@ -74,10 +74,6 @@ export const NavigationBar = () => {
               <p className={`fw-bold m-0`}>Garag KSB</p>
             </Link>
 
-            {/* Darkmode button */}
-            <button onClick={toggleTheme} style={{ borderRadius: '100%', border: '1px solid #eee', width: '40px', height: '40px' }}>
-              {darkMode ? <FontAwesomeIcon icon={faSun} size="lg" /> : <FontAwesomeIcon icon={faMoon} />}
-            </button>
 
             {/* Toggle menu button */}
             <button
@@ -144,10 +140,19 @@ export const NavigationBar = () => {
                 </NavLink>
               </div>
 
-              <div className={`ms-auto d-none d-lg-block`}>
+              <div className={`ms-auto d-none d-lg-block`} style={{ marginRight: '20px' }}>
                 <Link to="/contacts" className={`btn btn-primary rounded-pill py-2 px-3`}>Get A Car</Link>
               </div>
 
+              {/* Darkmode button */}
+              <button onClick={toggleTheme} style={{ borderRadius: '100%', border: '1px solid #eee', width: '40px', height: '40px' }}>
+                {darkMode ? <FontAwesomeIcon icon={faSun} size="lg" /> : <FontAwesomeIcon icon={faMoon} />}
+              </button>
+
+
+              <div>
+                <p>Ln</p>
+              </div>
             </div>
 
           </nav>
