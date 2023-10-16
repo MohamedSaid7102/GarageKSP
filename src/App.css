@@ -1,4 +1,7 @@
 /********** Template CSS **********/
+html, body {
+  scroll-behavior: smooth;
+}
 :root {
   margin: 0 auto;
   text-align: center;
@@ -714,44 +717,68 @@ body {
 /* Progress indecator Start */
 
 .progress-indicator {
-  display: none
+  display: none;
 }
 
 @media (min-width: 1400px) {
-  .progress-indicator {
-    position: fixed;
-    right: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 1000;
-  }
+.progress-indicator {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: space-evenly;
+  background: transparent;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 40px;
+  z-index: 999;
 }
 
-.progress-section {
-  background-color: lightblue;
-  color: white;
-  font-size: 24px;
-  border-radius: 50%;
+.progress-bar-item {
+  text-decoration: none;
+  color: #333;
+  margin: 0 10px;
+  text-align: center;
+  position: relative;
+}
+
+.circle {
   width: 30px;
   height: 30px;
-  margin: 10px 0;
-  cursor: pointer;
+  border-radius: 50%;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s ease-in-out;
+  font-weight: bold;
+  transition: all 0.3s;
+  font-size: 18px;
+  border: 0.7px solid lightgray;
 }
 
-.progress-section.active {
-  background-color: blue;
-  font-size: 28px;
-  width: 36px;
-  height: 36px;
+.circle:hover {
+  background-color: #007bff;
+  color: white;
 }
 
+.circle.active {
+  background: #007bff; /* Blue color for active circle */
+  color: #fff; /* White text color for active circle */
+  transform: scale(1.7); /* Grow the active circle */
+  border: none;
+}
+
+.line {
+  height: 4px;
+  background: #007bff; /* Blue color for the connecting line */
+  position: absolute;
+  top: 50%;
+  right: 40px;
+  transition: width 0.3s;
+}
+
+}
 /* Progress indecator End */
 
 @media (min-width: 1400px) {
@@ -814,4 +841,9 @@ body {
 }
 ::-webkit-scrollbar-thumb:window-inactive {
 	  background: rgba(255,0,0,0.4); 
+}
+
+.navbar button.btn.btn-dark.dropdown-toggle::after,
+.navbar button.btn.btn-light.dropdown-toggle::after{
+  display: none !important;
 }

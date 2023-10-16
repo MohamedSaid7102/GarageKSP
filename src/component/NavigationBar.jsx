@@ -4,6 +4,7 @@ import { ThemeContext } from "../ThemeContext";
 import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import { LanguageSelector } from "./LanguageSelector";
 
 export const NavigationBar = () => {
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
@@ -149,10 +150,8 @@ export const NavigationBar = () => {
                 {darkMode ? <FontAwesomeIcon icon={faSun} size="lg" /> : <FontAwesomeIcon icon={faMoon} />}
               </button>
 
+              <LanguageSelector />
 
-              <div>
-                <p>Ln</p>
-              </div>
             </div>
 
           </nav>
