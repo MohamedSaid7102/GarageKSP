@@ -245,19 +245,42 @@ body {
 /* YourComponent.css */
 .feature-item {
   border-color: rgba(0, 0, 0, .03) !important;
-  transition: transform 0.5s, box-shadow 0.3s; /* Add a smooth transition effect */
+  transition: all 0.3s, translate 1s, box-shadow 0.3s; /* Add a smooth transition effect */
 
   /* Add a shadow to create an elevation effect */
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+@media (min-width: 1400px) {
+  .feature-item {
+    max-height: 250px !important;
+  }
 }
 
 .feature-item:hover {
   border-radius: 15px; /* Adjust the border radius as needed */
-  transform: translateY(-5px); /* Adjust the vertical translation as needed */
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Increase the shadow size on hover */
+  background-color: #0D6EFD;
+  color: white;
 }
 
+.feature-item__title, .feature-item__img {
+  transition: all 0.5s ease-in-out;
+}
 
+.feature-item:hover .feature-item__img {
+  transform: translate(70px, 50px) rotate(360deg);
+}
+
+.feature-item:hover .feature-item__title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  white-space: nowrap;
+  transform: translate(-50px, -100px) rotate(-10deg);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
 
 /*** About ***/
 .about {
@@ -847,3 +870,5 @@ body {
 .navbar button.btn.btn-light.dropdown-toggle::after{
   display: none !important;
 }
+
+
