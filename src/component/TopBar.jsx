@@ -28,7 +28,7 @@ export const TopBar = () => {
   }
 
   return (
-    <header className="container-fluid bg-primary text-white d-none d-lg-flex">
+    <header className="container-fluid bg-primary text-white d-none d-lg-flex top-bar-add" style={{ zIndex: 2000 }} >
       <div className="container py-3">
         <div className="d-flex align-items-center">
           <Link to="/" aria-label="Home Page" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

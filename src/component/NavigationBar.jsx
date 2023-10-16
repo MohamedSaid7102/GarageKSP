@@ -60,7 +60,7 @@ export const NavigationBar = () => {
   }
 
   return (
-    <div>
+    <div className="sticky-top navigation-bar" >
       <a href="#main-content" className={`sr-only sr-only-focusable`}>
         Skip to content
       </a>

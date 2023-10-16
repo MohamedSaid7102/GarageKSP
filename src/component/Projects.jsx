@@ -5,7 +5,7 @@ import project4Image from '../assets/img/project-4.jpg'
 
 const ProjectItem = ({ imgSrc, title, description }) => {
   return (
-    <div className="project-item card-item-transition-effect m-1 mb-3 m-sm-3 border">
+    <div className="project-item card-item-transition-effect m-1 m-sm-3 border">
       <div className="position-relative">
         <div className="project-item__img">
           <img className="img-fluid" src={imgSrc} alt={title} />
@@ -31,12 +31,7 @@ const ProjectItem = ({ imgSrc, title, description }) => {
 
 const ProjectWrapper = () => {
   return (
-    <div className="d-flex flex-row flex-wrap justify-content-md-start justify-content-center" >
-      <ProjectItem
-        imgSrc={project1Image}
-        title="Data Analytics & Insights"
-        description="Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem"
-      />
+    <div className="projects-wrapper d-flex flex-row flex-wrap justify-content-md-start justify-content-center">
       <ProjectItem
         imgSrc={project2Image}
         title="Marketing Content Strategy"
@@ -58,7 +53,7 @@ const ProjectWrapper = () => {
 
 export const Projects = () => {
   return (
-    <div className="container-xxl pt-5">
+    <div className="container-xxl  p-0">
       <div className="container">
         <div className="text-center text-md-start pb-5 pb-md-0 wow fadeInUp" data-wow-delay="0.1s" style={{ maxWidth: '500px' }}>
           <p className="fs-5 fw-medium text-primary">Our Projects</p>

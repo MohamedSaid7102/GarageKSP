@@ -423,9 +423,10 @@ body {
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 0 45px rgba(0, 0, 0, .07);
-    max-width: 350px;
     overflow: hidden;
-    max-height: 400px; /* Adjust the maximum height as needed */
+    max-width: 320px;
+    width: 100%;
+    min-height: 450px;
 }
 
 .project-item .project-item__img{
@@ -709,3 +710,108 @@ body {
 }
 
 /* Swiper End */
+
+/* Progress indecator Start */
+
+.progress-indicator {
+  display: none
+}
+
+@media (min-width: 1400px) {
+  .progress-indicator {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+  }
+}
+
+.progress-section {
+  background-color: lightblue;
+  color: white;
+  font-size: 24px;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  margin: 10px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.progress-section.active {
+  background-color: blue;
+  font-size: 28px;
+  width: 36px;
+  height: 36px;
+}
+
+/* Progress indecator End */
+
+@media (min-width: 1400px) {
+  .snap-section {
+    height: 100vh;
+    scroll-snap-align: start;
+  }
+}
+
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Snap End */
+
+.remove-scrollbar {
+  overflow-y: scroll; /* Allow vertical scrolling */
+  scrollbar-width: none; /* Hide the scrollbar for Firefox */
+  -ms-overflow-style: none; /* Hide the scrollbar for Internet Explorer */
+}
+
+.remove-scrollbar::-webkit-scrollbar {
+  width: 0; /* Hide the scrollbar for WebKit-based browsers (Chrome, Safari) */
+}
+
+
+.top-bar-add {
+  height: 85px !important;
+  position: relative;
+}
+
+.navigation-bar {
+  position: sticky;
+  top: 85px;
+  position: fixed !important;
+  background-color: white;
+  width: 99vw; /* Because the scroll track width is 1vw ::-webkit-scrollbar */
+}
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 1vw;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #0D6EFD; 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	  background: rgba(255,0,0,0.4); 
+}
