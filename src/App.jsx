@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css'
 import { Footer, TopBar, NavigationBar, Copyright, HeaderCarousel, Features, About, Services, Projects, Quote, Team, Testimonial, ProgressBar } from './component'
-import { Outlet } from "react-router-dom";
-import { InView, useInView } from 'react-intersection-observer';
+import { Outlet, useLocation } from "react-router-dom";
 
 // TODO: make a plugin for todo <leader>t
 // TODO: implement redux toolkit
@@ -15,6 +14,7 @@ import { InView, useInView } from 'react-intersection-observer';
 function App() {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [isWideScreen, setIsWideScreen] = useState(screenWidth > 1400);
+  const location = useLocation().pathname;
 
   const updateWindowDimensions = () => {
     const newWidth = window.innerWidth;
@@ -31,18 +31,18 @@ function App() {
   }, []);
 
 
-  return (
+  if (location !== '/') return (
     <>
-
-      {/*
-      <TopBar />
+      < TopBar />
       <NavigationBar />
       <Outlet />
       <Footer />
       <Copyright />
-      */}
+    </>
+  )
 
-
+  return (
+    <>
 
       <ProgressBar />
 
@@ -88,7 +88,6 @@ function App() {
           <Footer />
           <Copyright />
         </div>
-
 
       </div>
 
