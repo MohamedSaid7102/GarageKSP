@@ -43,7 +43,7 @@ export const SendCV = () => {
 
   return (
     <>
-      <Form onSubmit={handleSubmit} style={{ maxWidth: '1000px', margin: 'auto', display: 'flex', flexDirection: 'column', gap: '18px', paddingInline: '10px' }}>
+      <Form onSubmit={handleSubmit} style={{ maxWidth: '1000px', margin: '5rem auto', display: 'flex', flexDirection: 'column', gap: '18px', paddingInline: '10px' }}>
         <Row style={{ display: 'fex', justifyContent: 'flex-end' }}>
           <Col md={4}>
             <Form.Group controlId="name">
@@ -232,7 +232,7 @@ export const SendCV = () => {
             </Form.Group>
           </Col>
         </Row>
-        <Button variant="primary" type="submit" style={{ width: '250px', margin: 'auto' }}>
+        <Button variant="primary" type="submit" style={{ width: '100%', margin: 'auto' }}>
           Send
         </Button>
       </Form>

@@ -53,7 +53,7 @@ const ProjectWrapper = () => {
 
 export const Projects = () => {
   return (
-    <div className="container-xxl  p-0">
+    <div className="container-xxl  p-0" style={{ marginTop: '5rem' }}>
       <div className="container">
         <div className="text-center text-md-start pb-5 pb-md-0 wow fadeInUp" data-wow-delay="0.1s" style={{ maxWidth: '500px' }}>
           <p className="fs-5 fw-medium text-primary">Our Projects</p>
