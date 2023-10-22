@@ -10,15 +10,22 @@ import { EffectCards } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/effect-cards';
 
+import { useContext } from 'react';
+import { ThemeContext } from '../ThemeContext';
+
 // TestimonialItem component
-const TestimonialItem = ({ imageSrc, altText, content, clientName, profession }) => (
-  <div className="testimonial-item rounded p-4 p-lg-5 mb-5 d-flex flex-column justify-content-center justify-content-lg-start bg-white">
-    <img className="mb-4" src={imageSrc} alt={altText} />
-    <p className="mb-4 text-lg-start text-primary fw-light">{content}</p>
-    <h5 className="text-lg-start text-dark">{clientName}</h5>
-    <span className="text-primary text-lg-start text-purple">{profession}</span>
-  </div>
-);
+const TestimonialItem = ({ imageSrc, altText, content, clientName, profession }) => {
+
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
+  return (
+    <div className={`testimonial-item rounded p-4 p-lg-5 mb-5 d-flex flex-column justify-content-center justify-content-lg-start bg-white ${darkMode && 'bg-secondary'}`}>
+      <img className="mb-4" src={imageSrc} alt={altText} />
+      <p className="mb-4 text-lg-start text-primary fw-light">{content}</p>
+      <h5 className="text-lg-start text-dark">{clientName}</h5>
+      <span className="text-primary text-lg-start text-purple">{profession}</span>
+    </div>
+  )
+};
 
 // Testimonial section component
 export const Testimonial = () => (

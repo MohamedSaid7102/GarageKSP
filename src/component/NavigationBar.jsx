@@ -39,7 +39,7 @@ export const NavigationBar = () => {
 
   const navLinkStatus = (path) => {
     if (currentURL == path) return 'nav-item nav-link active';
-    return darkMode ? 'nav-item nav-link text-white' : 'nav-item nav-link text-dark';
+    return darkMode ? 'nav-item nav-link text-white font-weight-bold' : 'nav-item nav-link text-dark';
   }
 
 
@@ -61,7 +61,7 @@ export const NavigationBar = () => {
   }
 
   return (
-    <div className="sticky-top navigation-bar" >
+    <div className={`sticky-top navigation-bar ${darkMode && 'bg-secondary'}`}>
       <a href="#main-content" className={`sr-only sr-only-focusable`}>
         Skip to content
       </a>

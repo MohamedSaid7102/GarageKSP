@@ -40,7 +40,7 @@ export const ProgressBar = () => {
         sections.map((section) => (
           <a
             key={section.id}
-            className={`progress-bar-item circle ${section.id === activeSection ? 'active' : ''}`}
+            className={`text-primary progress-bar-item circle ${section.id === activeSection ? 'active text-white' : ''}`}
             href={`#${section.sectionID}`}
           >
             {section.label}
