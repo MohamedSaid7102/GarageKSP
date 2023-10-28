@@ -1,14 +1,11 @@
-import teamMember1Image from '../assets/img/team-1.jpg'
-import teamMember2Image from '../assets/img/team-2.jpg'
-import teamMember3Image from '../assets/img/team-3.jpg'
-import teamMember4Image from '../assets/img/team-4.jpg'
-
+import { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebookF, faInstagram, faLinkedinIn, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faFacebookF, faInstagram, faLinkedinIn, faTiktok, faWhatsapp, faYoutube } from '@fortawesome/free-brands-svg-icons'
+import instance from '../../axiosConfig'
 
 
 // TeamMember component
-const TeamMember = ({ imgSrc, name, role }) => {
+const TeamMember = ({ imgSrc, name, role, facebook, instagram, linkedin, whatsApp, youtube, tiktok }) => {
   return (
     <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
       <div className="card-item-transition-effect team-item rounded overflow-hidden pb-4">
@@ -16,18 +13,70 @@ const TeamMember = ({ imgSrc, name, role }) => {
         <h5>{name}</h5>
         <span className="text-primary">{role}</span>
         <ul className="team-social">
-          <li><a className="btn btn-square" href=""><FontAwesomeIcon icon={faFacebookF} aria-hidden="true" style={{ marginRight: '10px' }} /></a></li>
-          <li><a className="btn btn-square" href=""><FontAwesomeIcon icon={faTwitter} aria-hidden="true" style={{ marginRight: '10px' }} /></a></li>
-          <li><a className="btn btn-square" href=""><FontAwesomeIcon icon={faInstagram} aria-hidden="true" style={{ marginRight: '10px' }} /></a></li>
-          <li><a className="btn btn-square" href=""><FontAwesomeIcon icon={faLinkedinIn} aria-hidden="true" style={{ marginRight: '10px' }} /></a></li>
-        </ul>
-      </div>
-    </div>
+          {facebook && (
+            <li>
+              <a className="btn btn-square" href={facebook}>
+                <FontAwesomeIcon icon={faFacebookF} aria-hidden="true" style={{ marginRight: '10px' }} />
+              </a>
+            </li>
+          )}
+          {instagram && (
+            <li>
+              <a className="btn btn-square" href={instagram}>
+                <FontAwesomeIcon icon={faInstagram} aria-hidden="true" style={{ marginRight: '10px' }} />
+              </a>
+            </li>
+          )}
+          {linkedin && (
+            <li>
+              <a className="btn btn-square" href={linkedin}>
+                <FontAwesomeIcon icon={faLinkedinIn} aria-hidden="true" style={{ marginRight: '10px' }} />
+              </a>
+            </li>
+          )}
+          {whatsApp && (
+            <li>
+              <a className="btn btn-square" href={whatsApp}>
+                <FontAwesomeIcon icon={faWhatsapp} aria-hidden="true" style={{ marginRight: '10px' }} />
+              </a>
+            </li>
+          )}
+          {youtube && (
+            <li>
+              <a className="btn btn-square" href={youtube}>
+                <FontAwesomeIcon icon={faYoutube} aria-hidden="true" style={{ marginRight: '10px' }} />
+              </a>
+            </li>
+          )}
+          {tiktok && (
+            <li>
+              <a className="btn btn-square" href={tiktok}>
+                <FontAwesomeIcon icon={faTiktok} aria-hidden="true" style={{ marginRight: '10px' }} />
+              </a>
+            </li>
+          )}
+        </ul >
+      </div >
+    </div >
   );
 };
 
 // Team component
 export const Team = () => {
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // Fetch data when the component mounts
+    instance.get('/users/our_team')
+      .then(response => {
+        setData(response.data.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
   return (
     <div className="container-xxl py-5">
       <div className="container">
@@ -42,10 +91,22 @@ export const Team = () => {
         </div>
           */}
         <div className="row g-4">
-          <TeamMember imgSrc={teamMember1Image} name="Alex Robin" role="Founder & CEO" />
-          <TeamMember imgSrc={teamMember2Image} name="Adam Crew" role="Co Founder" />
-          <TeamMember imgSrc={teamMember3Image} name="Boris Johnson" role="Executive Manager" />
-          <TeamMember imgSrc={teamMember4Image} name="Robert Jordan" role="Digital Marketer" />
+          {
+            data.map(item => (
+              <TeamMember
+                key={item.id}
+                imgSrc={item.teamMemberPhoto}
+                name={item.name}
+                facebook={item.facebook}
+                instagram={item.instagram}
+                linkedin={item.linkedin}
+                whatsApp={item.whatsApp}
+                youtube={item.youtube}
+                tiktok={item.tiktok}
+                role={null}
+              />
+            ))
+          }
         </div>
       </div>
     </div>
