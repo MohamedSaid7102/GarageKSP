@@ -4,8 +4,9 @@ import icon7 from '../assets/img/icon/icon-7.png'
 import icon8 from '../assets/img/icon/icon-8.png'
 import icon9 from '../assets/img/icon/icon-9.png'
 import icon10 from '../assets/img/icon/icon-10.png'
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../ThemeContext'
+import instance from '../../axiosConfig'
 
 // Service Item Component
 const ServiceItem = ({ iconSrc, title, description }) => {
@@ -21,55 +22,50 @@ const ServiceItem = ({ iconSrc, title, description }) => {
           <h5 className={`mb-3`}>{title}</h5>
           <p className={`mb-0`}>{description}</p>
         </div>
-        <div className={`service-btn rounded-0 rounded-bottom`} style={darkMode ? { backgroundColor: '#555' } : {}}>
+        {/*<div className={`service-btn rounded-0 rounded-bottom`} style={darkMode ? { backgroundColor: '#555' } : {}}>
           <a className={` fw-medium`} href={`#${title.replace(' ', '-')}`} style={darkMode ? { color: '#eee' } : {}}>Read More<i className={`bi bi-chevron-double-right ms-2`}></i></a>
-        </div>
+        </div>*/}
       </div>
     </div >
   )
 };
 
 // Service Component
-export const Services = () => (
-  <div className={`container-xxl py-5`}>
-    <div className={`container`}>
-      <div className={`text-center mx-auto wow fadeInUp`} data-wow-delay="0.1s" style={{ maxWidth: '500px' }}>
-        <p className={`fs-5 fw-medium text-primary`}>Our Services</p>
-        <h1 className={`display-5 mb-5`}>Digital Marketing Services that We Offer</h1>
-      </div>
-      <div className={`row g-4`}>
-        <ServiceItem
-          iconSrc={icon5}
-          title="Digital Marketing"
-          description="Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet"
-        />
-        <ServiceItem
-          iconSrc={icon6}
-          title="Internet Marketing"
-          description="Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet"
-        />
-        <ServiceItem
-          iconSrc={icon7}
-          title="Content Marketing"
-          description="Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet"
-        />
-        <ServiceItem
-          iconSrc={icon8}
-          title="Social Marketing"
-          description="Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet"
-        />
-        <ServiceItem
-          iconSrc={icon9}
-          title="B2B Marketing"
-          description="Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet"
-        />
-        <ServiceItem
-          iconSrc={icon10}
-          title="E-mail Marketing"
-          description="Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet"
-        />
+export const Services = () => {
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // Fetch data when the component mounts
+    instance.get('/users/services')
+      .then(response => {
+        setData(response.data.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  return (
+    <div className={`container-xxl py-5`}>
+      <div className={`container`}>
+        <div className={`text-center mx-auto wow fadeInUp`} data-wow-delay="0.1s" style={{ maxWidth: '500px' }}>
+          <p className={`fs-5 fw-medium text-primary`}>Our Services</p>
+          <h1 className={`display-5 mb-5`}>Digital Marketing Services that We Offer</h1>
+        </div>
+        <div className={`row g-4`}>
+          {
+            data.map(item => (
+              <ServiceItem
+                iconSrc={item.servicePhoto}
+                title={item.title}
+                description={item.description}
+              />
+            ))
+          }
+        </div>
       </div>
     </div>
-  </div>
-);
+  )
+};
 
