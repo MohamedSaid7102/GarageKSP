@@ -866,9 +866,8 @@ body {
 	  background: rgba(255,0,0,0.4); 
 }
 
-.navbar button.btn.btn-dark.dropdown-toggle::after,
-.navbar button.btn.btn-light.dropdown-toggle::after{
+.navbar button.btn.dropdown-toggle::after,
+.navbar button.btn.dropdown-toggle::after{
   display: none !important;
 }
-
 

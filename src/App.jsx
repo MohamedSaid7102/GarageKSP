@@ -3,14 +3,6 @@ import './App.css'
 import { Footer, TopBar, NavigationBar, Copyright, HeaderCarousel, Features, About, Services, Projects, Quote, Team, Testimonial, ProgressBar } from './component'
 import { Outlet, useLocation } from "react-router-dom";
 
-// TODO: make a plugin for todo <leader>t
-// TODO: implement redux toolkit
-// TODO: make the language selector dark and light according to global ligth or dark variable from redux
-//
-//
-//
-
-
 function App() {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [isWideScreen, setIsWideScreen] = useState(screenWidth > 1400);
