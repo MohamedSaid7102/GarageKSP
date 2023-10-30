@@ -1,13 +1,26 @@
-import { useContext } from 'react'
-import icon1 from '../assets/img/icon/icon-1.png'
-import icon2 from '../assets/img/icon/icon-2.png'
-import icon3 from '../assets/img/icon/icon-3.png'
-import icon4 from '../assets/img/icon/icon-4.png'
+import { useContext, useEffect, useState } from 'react'
 import { Feature } from '../component'
 import { ThemeContext } from '../ThemeContext'
+import instance from '../../axiosConfig'
 
 export const Features = () => {
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
+
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // Fetch data when the component mounts
+    instance.get('/public/brands')
+      .then(response => {
+        setData(response.data.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  console.log(data)
 
   return (
     <div className="container-xxl py-5">
@@ -17,26 +30,15 @@ export const Features = () => {
         </div>
 
         <div className={`${darkMode && 'bg-dark'} row g-0 d-flex gap-4 justify-content-center`}>
-          <Feature
-            icon={icon1}
-            title="Award Winning"
-            description="Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam"
-          />
-          <Feature
-            icon={icon2}
-            title="Professional Staff"
-            description="Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam"
-          />
-          <Feature
-            icon={icon3}
-            title="Fair Prices"
-            description="Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam"
-          />
-          <Feature
-            icon={icon4}
-            title="24/7 Support"
-            description="Stet stet justo dolor sed duo. Ut clita sea sit ipsum diam"
-          />
+          {
+            data.map(item => (
+              <Feature
+                key={item.id}
+                icon={item.image}
+                title={item.name}
+              />
+            ))
+          }
         </div>
       </div>
     </div >
