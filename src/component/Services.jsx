@@ -15,7 +15,7 @@ const ServiceItem = ({ iconSrc, title, description }) => {
   return (
     <div className={`col-lg-4 col-md-6 wow fadeInUp`} data-wow-delay="0.1s">
       <div className={`service-item position-relative h-100`}>
-        <div className={`service-text rounded p-5`} style={darkMode ? { backgroundColor: '#222' } : {}}>
+        <div className={`service-text rounded p-3`} style={darkMode ? { backgroundColor: '#222' } : {}}>
           <div className={`btn-square ${darkMode ? 'bg-dark' : 'bg-light'} rounded-circle mx-auto mb-4`} style={{ width: '64px', height: '64px' }}>
             <img className={`img-fluid`} src={iconSrc} alt={`${title} Icon`} />
           </div>
@@ -33,7 +33,7 @@ const ServiceItem = ({ iconSrc, title, description }) => {
 // Service Component
 export const Services = () => {
 
-  const [data, setData] = useState([]);
+  let [data, setData] = useState([]);
 
   useEffect(() => {
     // Fetch data when the component mounts
@@ -45,6 +45,8 @@ export const Services = () => {
         console.error('Error fetching data:', error);
       });
   }, []);
+
+  // data = data.reverse().slice(0, 3);
 
   return (
     <div className={`container-xxl py-5`}>
