@@ -20,8 +20,6 @@ export const Features = () => {
       });
   }, []);
 
-  console.log(data)
-
   return (
     <div className="container-xxl py-5">
       <div className="container">

@@ -59,6 +59,7 @@ export const Services = () => {
           {
             data.map(item => (
               <ServiceItem
+                key={item.id}
                 iconSrc={item.servicePhoto}
                 title={item.title}
                 description={item.description}

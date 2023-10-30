@@ -22,7 +22,7 @@ export const About = () => {
 
   return (
     <>
-      <div className={`container-xxl my-5`} style={{ background: `linear-gradient(rgba(0, 0, 0, .1), rgba(0, 0, 0, .1)), url(${data.image}) center no-repeat`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+      <div className={`container-xxl my-5`} style={{ background: `linear-gradient(rgba(0, 0, 0, .1), rgba(0, 0, 0, .1)), url(${data.image}) center no-repeat`, }}>
         <div className={`container`}>
           <div className={`row g-0`}>
 
@@ -77,8 +77,8 @@ export const About = () => {
             <div className={`modal-body`}>
               {/* 16:9 aspect ratio */}
               <div className={`ratio ratio-16x9`}>
-                <iframe className={`embed-responsive-item`} id="video" allowFullScreen
-                  allowScriptAccess="always" width="1550" height="696" src={data.youtube_video_url} title={data.name} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                <iframe className={`embed-responsive-item`} id="video"
+                  width="1550" height="696" src={data.youtube_video_url} title={data.name} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
               </div>
 
               {/*
