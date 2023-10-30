@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { About, Features, Footer, HeaderCarousel, NavigationBar, Projects, Quote, Services, Spinner, Team, Testimonial, TopBar } from '../component'
+import { About, Features, HeaderCarousel, Projects, Quote, Services, Team, Testimonial } from '../component'
 
 export const Home = () => {
   return (
