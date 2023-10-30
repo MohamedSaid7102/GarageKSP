@@ -1,19 +1,34 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ThemeContext } from '../ThemeContext';
 import icon5 from '../assets/img/icon/icon-5.png'
 import icon6 from '../assets/img/icon/icon-6.png'
+import instance from '../../axiosConfig';
 
 export const About = () => {
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
+
+  let [data, setData] = useState([]);
+
+  useEffect(() => {
+    // Fetch data when the component mounts
+    instance.get('/users/about_us')
+      .then(response => {
+        setData(response.data.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
   return (
     <>
-      <div className={`container-xxl about my-5`}>
+      <div className={`container-xxl my-5`} style={{ background: `linear-gradient(rgba(0, 0, 0, .1), rgba(0, 0, 0, .1)), url(${data.image}) center no-repeat`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className={`container`}>
           <div className={`row g-0`}>
 
             <div className={`col-lg-6`}>
               <div className={`h-100 d-flex align-items-center justify-content-center`} style={{ minHeight: '300px' }}>
-                <button type="button" className={`btn-play`} data-bs-toggle="modal" data-src="https://www.youtube.com/embed/vKa6-4oQz9A" data-bs-target="#videoModal">
+                <button type="button" className={`btn-play`} data-bs-toggle="modal" data-src={data.youtube_video_url} data-bs-target="#videoModal">
                   <span></span>
                 </button>
               </div>
@@ -22,8 +37,8 @@ export const About = () => {
             <div className={`col-lg-6 pt-lg-5 wow fadeIn`} data-wow-delay="0.5s">
               <div className={`${darkMode ? 'bg-dark' : 'bg-white'} rounded-top p-5 mt-lg-5`}>
                 <p className={`fs-5 fw-medium text-primary`}>About Us</p>
-                <h1 className={`display-6 mb-4 text-lg-start`}>The Best Marketing Agency to Improve Your Business</h1>
-                <p className={`mb-4 text-lg-start`}>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo</p>
+                <h1 className={`display-6 mb-4`}>{data.name}</h1>
+                <p className={`mb-4`}>{data.description}</p>
                 <div className={`row g-5 pt-2 mb-5`}>
 
                   <div className={`col-sm-6 d-flex flex-column align-items-center align-items-lg-start`}>
@@ -63,8 +78,17 @@ export const About = () => {
               {/* 16:9 aspect ratio */}
               <div className={`ratio ratio-16x9`}>
                 <iframe className={`embed-responsive-item`} id="video" allowFullScreen
-                  allowScriptAccess="always" width="1550" height="696" src="https://www.youtube.com/embed/vKa6-4oQz9A" title="ويوم يحشر أعداء الله إلى النار فهم يوزعون _ تلاوة بأداء وهدوء وترنم _ عبدالله الجهني" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                  allowScriptAccess="always" width="1550" height="696" src={data.youtube_video_url} title={data.name} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
               </div>
+
+              {/*
+
+              <div className={`ratio ratio-16x9`}>
+                <iframe className={`embed-responsive-item`} id="video" allowFullScreen
+                  allowScriptAccess="always" width="1550" height="696" src={data.youtube_video_url} title={data.name} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              </div>
+              */}
+
             </div>
           </div>
         </div>
