@@ -823,3 +823,17 @@ body {
 .navbar button.btn.dropdown-toggle::after{
   display: none !important;
 }
+
+.desktop-logo {
+  display: none !important;
+}
+
+@media (min-width: 1400px) {
+  .desktop-logo {
+    display: flex !important;
+  }
+}
+
+.content-wrapper {
+  margin-top: 4rem !important;
+}

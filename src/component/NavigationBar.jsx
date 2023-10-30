@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { LanguageSelector } from "./LanguageSelector";
+import LOGO from '../assets/KSB_LOGO.png';
 
 export const NavigationBar = () => {
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
@@ -61,7 +62,7 @@ export const NavigationBar = () => {
   }
 
   return (
-    <div className={`sticky-top navigation-bar ${darkMode && 'bg-secondary'}`}>
+    <div className={`sticky-top navigation-bar ${darkMode && 'bg-secondary'}`} style={{ marginBottom: '4rem' }}>
       <a href="#main-content" className={`sr-only sr-only-focusable`}>
         Skip to content
       </a>
@@ -69,12 +70,17 @@ export const NavigationBar = () => {
         <div className={`container`}>
           <nav className={`navbar navbar-expand-lg navbar-light p-lg-0`}>
 
-            {/* Logo */}
+            {/* Mobile Logo */}
             <Link to={'/'} className={`navbar-brand d-lg-none text-decoration-none`}>
               <span className={`sr-only`}>Garag KSB</span>
               <p className={`fw-bold m-0`}>Garag KSB</p>
             </Link>
 
+            {/* Desktop Logo */}
+            <Link to="/" aria-label="Home Page" className="desktop-logo" style={{ textDecoration: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              <h2 className={`${darkMode ? 'text-white' : 'text-dark'} m-0`} style={{ fontSize: '1.5rem', }}>Garag KSB</h2>
+              <img className="d-block w-100" src={LOGO} style={{ maxWidth: '60px' }} alt="Image" />
+            </Link>
 
             {/* Toggle menu button */}
             <button
@@ -91,6 +97,7 @@ export const NavigationBar = () => {
             <div className={`collapse navbar-collapse`} id="navbarCollapse" ref={navbarCollapse}>
 
               <div className={`navbar-nav mx-lg-2`}>
+
 
                 <NavLink
                   onClick={closeMobileNavigation}

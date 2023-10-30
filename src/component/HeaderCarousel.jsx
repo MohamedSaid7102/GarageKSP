@@ -9,11 +9,11 @@ export const HeaderCarousel = () => {
 
       {/* https://getbootstrap.com/docs/5.2/components/carousel/#how-it-works */}
       {/* Carousel Start */}
-      <div className="container-fluid px-0 mb-5" style={{ height: '95vh', overflow: 'hidden' }}>
+      <div className="container-fluid px-0" style={{ height: '100vh', overflow: 'hidden' }}>
         <div id="header-carousel" className="carousel slide carousel-fade" data-bs-ride="carousel">
           <div className="carousel-inner">
 
-            <div className="carousel-item active">
+            <div className="carousel-item active" style={{ height: '100vh' }}>
               <img className="d-block w-100" src={carouselImage1} alt="Image" />
               <div className="carousel-caption">
                 <div className="container">
@@ -32,7 +32,7 @@ export const HeaderCarousel = () => {
               </div>
             </div>
 
-            <div className="carousel-item">
+            <div className="carousel-item" style={{ height: '100vh' }}>
               <img className="d-block w-100" src={carouselImage2} alt="Image" />
               <div className="carousel-caption">
                 <div className="container">

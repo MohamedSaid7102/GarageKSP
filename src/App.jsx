@@ -24,13 +24,14 @@ function App() {
 
 
   if (location !== '/') return (
-    <>
-      < TopBar />
+    <div className="content-wrapper">
+      {/*< TopBar />*/}
       <NavigationBar />
+      <hr />
       <Outlet />
       <Footer />
       <Copyright />
-    </>
+    </div>
   )
 
   return (
@@ -41,7 +42,7 @@ function App() {
       <div id="snapping-wrapper" style={{ scrollSnapType: 'y mandatory', overflowY: 'scroll', overflowX: 'hidden', height: '100vh', position: 'relative', scrollBehavior: 'smooth' }}>
 
         <div className={`snap-section`} id="section-1">
-          <TopBar />
+          {/*< TopBar />*/}
           <NavigationBar />
           <HeaderCarousel />
         </div>
