@@ -1,8 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faPhoneVolume, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import instance from '../../axiosConfig';
 
 export const Contacts = () => {
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  });
+
+  const { name, email, phone, message } = formData;
+
+  const resetFormData = () => {
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      message: '',
+    })
+  }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (formData.name == '' || formData.email == '' || formData.phone == '' || formData.message == '')
+      return;
+
+    try {
+      const response = await instance.post('/users/contact_us', formData);
+      console.log('Message submitted:', response.data);
+      resetFormData();
+    } catch (error) {
+      console.error('Error submitting message:', error);
+    }
+
+  };
+
   return (
     <div className="container-xxl py-5">
       <div className="container">
@@ -12,30 +56,48 @@ export const Contacts = () => {
         </div>
         <div className="row g-5">
           <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-            <h3 className="mb-4 text-md-start">Need a functional contact form?</h3>
-            <p className="mb-4 text-md-start">
-              The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few
-              minutes. Just copy and paste the files, add a little code, and you're done.{' '}
-              <a href="https://htmlcodex.com/contact-form">Download Now</a>.
-            </p>
             <form>
               <div className="row g-3">
                 <div className="col-md-6">
                   <div className="form-floating">
-                    <input type="text" className="form-control" id="name" placeholder="Your Name" />
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="name"
+                      name="name"
+                      value={name}
+                      onChange={handleInputChange}
+                      placeholder="Your Name"
+                    />
                     <label htmlFor="name">Your Name</label>
                   </div>
                 </div>
                 <div className="col-md-6">
                   <div className="form-floating">
-                    <input type="email" className="form-control" id="email" placeholder="Your Email" />
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="email"
+                      name="email"
+                      value={email}
+                      onChange={handleInputChange}
+                      placeholder="Your Email"
+                    />
                     <label htmlFor="email">Your Email</label>
                   </div>
                 </div>
                 <div className="col-12">
                   <div className="form-floating">
-                    <input type="text" className="form-control" id="subject" placeholder="Subject" />
-                    <label htmlFor="subject">Subject</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      id="phone"
+                      name="phone"
+                      value={phone}
+                      onChange={handleInputChange}
+                      placeholder="Phone"
+                    />
+                    <label htmlFor="phone">Phone</label>
                   </div>
                 </div>
                 <div className="col-12">
@@ -44,13 +106,16 @@ export const Contacts = () => {
                       className="form-control"
                       placeholder="Leave a message here"
                       id="message"
+                      name="message"
                       style={{ height: '200px' }}
+                      value={message}
+                      onChange={handleInputChange}
                     ></textarea>
                     <label htmlFor="message">Message</label>
                   </div>
                 </div>
                 <div className="col-12">
-                  <button className="btn btn-primary rounded-pill py-3 px-5" type="submit">
+                  <button className="btn btn-primary rounded-pill py-3 px-5" type="submit" onClick={handleSubmit}>
                     Send Message
                   </button>
                 </div>
