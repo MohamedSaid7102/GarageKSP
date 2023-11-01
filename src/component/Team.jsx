@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF, faInstagram, faLinkedinIn, faTiktok, faWhatsapp, faYoutube } from '@fortawesome/free-brands-svg-icons'
 import instance from '../../axiosConfig'
+import Carousel from 'react-multi-carousel';
 
 
 const FilterSection = ({ selectedFilters, setSelectedFilters }) => {
@@ -43,9 +44,9 @@ const FilterSection = ({ selectedFilters, setSelectedFilters }) => {
 };
 
 // TeamMember component
-const TeamMember = ({ imgSrc, name, role, facebook, instagram, linkedin, whatsApp, youtube, tiktok }) => {
+const TeamMember = ({ imgSrc, name, role, facebook, instagram, linkedin, whatsApp, youtube, tiktok, style }) => {
   return (
-    <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+    <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s" style={{ ...style }}>
       <div className="card-item-transition-effect team-item rounded overflow-hidden pb-4">
         <img className="img-fluid mb-4" src={imgSrc} alt={name} />
         <h5>{name}</h5>
@@ -123,6 +124,26 @@ export const Team = () => {
     setFilteredData(newData);
   }, [selectedFilters])
 
+
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 4,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
+
   return (
     <div className="container-xxl py-5">
       <div className="container">
@@ -130,31 +151,48 @@ export const Team = () => {
           <p className="fs-5 fw-medium text-primary">Our Team</p>
           <p className="fs-1 mb-5">Our Expert People Ready to Help You</p>
         </div>
-        {/*
-        <div className="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style={{ maxWidth: '500px' }}>
-          <h2 className="fs-1 fw-medium text-primary">Our Team</h2>
-          <p className="fs-4 mb-5 text-nowrap">Our Expert People Ready to Help You</p>
-        </div>
-          */}
 
         <FilterSection selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} />
 
-        <div className="row g-4">
+        <div className="row g-4" style={{ height: '400px' }}>
           {
-            filteredData.map(item => (
-              <TeamMember
-                key={item.id}
-                imgSrc={item.teamMemberPhoto}
-                name={item.name}
-                facebook={item.facebook}
-                instagram={item.instagram}
-                linkedin={item.linkedin}
-                whatsApp={item.whatsApp}
-                youtube={item.youtube}
-                tiktok={item.tiktok}
-                role={null}
-              />
-            ))
+            filteredData.length > 8 ?
+              (
+                <Carousel responsive={responsive} infinite={true} showDots={true} autoPlaySpeed={4000} autoPlay={true} keyBoardControl={true} sliderClass="gap-4">
+                  {
+                    filteredData.map(item => (
+                      <TeamMember
+                        key={item.id}
+                        imgSrc={item.teamMemberPhoto}
+                        name={item.name}
+                        facebook={item.facebook}
+                        instagram={item.instagram}
+                        linkedin={item.linkedin}
+                        whatsApp={item.whatsApp}
+                        youtube={item.youtube}
+                        tiktok={item.tiktok}
+                        role={null}
+                        style={{ width: '100%', maxWidth: '400px' }}
+                      />
+                    ))
+
+                  }
+                </Carousel>
+              ) :
+              filteredData.map(item => (
+                <TeamMember
+                  key={item.id}
+                  imgSrc={item.teamMemberPhoto}
+                  name={item.name}
+                  facebook={item.facebook}
+                  instagram={item.instagram}
+                  linkedin={item.linkedin}
+                  whatsApp={item.whatsApp}
+                  youtube={item.youtube}
+                  tiktok={item.tiktok}
+                  role={null}
+                />
+              ))
           }
         </div>
       </div>
