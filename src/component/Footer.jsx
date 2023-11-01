@@ -1,47 +1,94 @@
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot, faPhoneVolume, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookF, faInstagram, faLinkedinIn, faTiktok, faTwitter, faWhatsapp, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { DownloadButton } from './common/DownloadButton';
+import { Button, Modal } from 'react-bootstrap';
+import instance from '../../axiosConfig';
 
 // Footer component
 export const Footer = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [termsConditions, setTermsConditions] = useState(null);
+
+  useEffect(() => {
+    instance.get('/users/terms_and_conditions')
+      .then(response => {
+        setTermsConditions(response.data.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
   return (
-    <div className="container-fluid  footer mt-5 py-5 wow fadeIn" style={{ backgroundColor: '#222' }} data-wow-delay="0.1s">
-      <div className="container py-5">
-        <div className="row g-5">
-          <FooterSection
-            title="Our Office"
-            items={[
-              { icon: <FontAwesomeIcon icon={faLocationDot} aria-hidden="true" style={{ marginRight: '10px' }} />, text: '123 Street, New York, USA' },
-              { icon: <FontAwesomeIcon icon={faEnvelope} aria-hidden="true" style={{ marginRight: '10px' }} />, text: '+012 345 67890' },
-              { icon: <FontAwesomeIcon icon={faPhoneVolume} aria-hidden="true" style={{ marginRight: '10px' }} />, text: 'info@example.com' },
-            ]}
-          />
-          <FooterSection
-            title="Quick Links"
-            items={[
-              { text: 'About Us', link: '/about' },
-              { text: 'Contact Us', link: '/contacts' },
-              { text: 'Our Services', link: '/services' },
-            ]}
-          />
-          <FooterSection
-            title="Business Hours"
-            items={[
-              { text: 'Monday - Friday', time: '09:00 am - 07:00 pm' },
-              { text: 'Saturday', time: '09:00 am - 12:00 pm' },
-              { text: 'Sunday', time: 'Closed' },
-            ]}
-          />
-          <FooterNewsletter />
+    <>
+      <div className="container-fluid  footer mt-5 py-5 wow fadeIn" style={{ backgroundColor: '#222' }} data-wow-delay="0.1s">
+        <div className="container py-5">
+          <div className="row g-5">
+            <FooterSection
+              title="Our Office"
+              items={[
+                { icon: <FontAwesomeIcon icon={faLocationDot} aria-hidden="true" style={{ marginRight: '10px' }} />, text: '123 Street, New York, USA' },
+                { icon: <FontAwesomeIcon icon={faEnvelope} aria-hidden="true" style={{ marginRight: '10px' }} />, text: '+012 345 67890' },
+                { icon: <FontAwesomeIcon icon={faPhoneVolume} aria-hidden="true" style={{ marginRight: '10px' }} />, text: 'info@example.com' },
+              ]}
+            />
+            <FooterSection
+              title="Quick Links"
+              items={[
+                { text: 'About Us', link: '/about' },
+                { text: 'Contact Us', link: '/contacts' },
+                { text: 'Our Services', link: '/services' },
+              ]}
+              openModal={openModal}
+            />
+            <FooterSection
+              title="Business Hours"
+              items={[
+                { text: 'Monday - Friday', time: '09:00 am - 07:00 pm' },
+                { text: 'Saturday', time: '09:00 am - 12:00 pm' },
+                { text: 'Sunday', time: 'Closed' },
+              ]}
+            />
+            <FooterNewsletter />
+          </div>
         </div>
       </div>
-    </div>
+
+      <Modal show={showModal} onHide={closeModal} size="lg">
+        <Modal.Header closeButton>
+          <Modal.Title>Terms & Conditions</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ height: 'max-content', maxHeight: '80vh' }}>
+          {termsConditions && (
+            <>
+              <p style={{ fontWeight: 'lighter', fontSize: '17px', textAlign: 'start' }}><span style={{ fontWeight: 'bold', fontSize: '25px' }}>Employee Terms: </span>{termsConditions.employee_terms}</p>
+              <p style={{ fontWeight: 'lighter', fontSize: '17px', textAlign: 'start' }}><span style={{ fontWeight: 'bold', fontSize: '25px' }}>Clients Terms: </span>{termsConditions.client_terms}</p>
+            </>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={closeModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+    </>
   );
 };
 
 // FooterSection component
-const FooterSection = ({ title, items }) => {
+const FooterSection = ({ title, items, openModal }) => {
   return (
     <div className="col-lg-3 col-md-6 text-lg-start">
       <h4 className="text-white mb-4">{title}</h4>
@@ -60,6 +107,13 @@ const FooterSection = ({ title, items }) => {
           </li>
         ))}
       </ul>
+      {
+        title == 'Quick Links' && (
+          <a href={`#`} onClick={openModal} className="btn btn-link text-decoration-none text-center text-lg-start">
+            Terms & Conditions
+          </a>
+        )
+      }
     </div>
   );
 };

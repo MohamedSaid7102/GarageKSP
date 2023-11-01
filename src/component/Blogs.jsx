@@ -75,7 +75,7 @@ export const Blogs = () => {
             <Card.Body>
               <Card.Title>{blog.title}</Card.Title>
               <Card.Text>{getFirstWords(blog.description, 9)}</Card.Text>
-              <Button variant="primary" onClick={() => openModal(blog.id)}>Read More</Button>
+              <Button variant="primary" onClick={() => openModal(blog.id)} style={{ width: '100%' }}>Read More</Button>
             </Card.Body>
           </Card>
         ))}
