@@ -692,6 +692,27 @@ body {
 
 /* Progress indecator Start */
 
+
+.to-top-btns {
+  display: none;
+}
+
+@media (min-width: 1400px) {
+.to-top-btns{
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+  justify-content: space-evenly;
+  background: transparent;
+  position: absolute;
+  bottom: 0;
+  transform: translateY(-50%);
+  left: 40px;
+  z-index: 999;
+}
+}
+
 .progress-indicator {
   display: none;
 }
