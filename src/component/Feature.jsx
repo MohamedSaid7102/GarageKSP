@@ -1,7 +1,7 @@
 
-export const Feature = ({ icon, title, description }) => {
+export const Feature = ({ icon, title, description, style }) => {
   return (
-    <div className="feature-brand col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s">
+    <div className="col-md-6 col-lg-3 wow fadeIn" data-wow-delay="0.1s" style={{ ...style }}>
       <div className="feature-item border h-100 p-5">
         {icon && <div className="btn-square bg-light rounded-circle mb-4 feature-item__img" style={{ width: '64px', height: '64px', borderRadius: '100%', overflow: 'hidden' }}>
           <img className="img-fluid" src={icon} alt={`${title} Icon`} style={{ objectFit: 'cover' }} />
