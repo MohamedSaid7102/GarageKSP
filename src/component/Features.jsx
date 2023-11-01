@@ -51,7 +51,7 @@ export const Features = () => {
           {
             data.length > 3 ?
               (
-                <Carousel responsive={responsive}>
+                <Carousel responsive={responsive} infinite={true} showDots={true} autoPlaySpeed={4000} autoPlay={true} keyBoardControl={true}>
                   {
                     data.map(item => (
                       item && <Feature
