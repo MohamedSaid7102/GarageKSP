@@ -68,7 +68,7 @@ export const Blogs = () => {
         <p className={`fs-2 fw-medium text-primary`}>Blogs</p>
       </div>
 
-      <Carousel responsive={responsive}>
+      <Carousel responsive={responsive} infinite={true} showDots={true} autoPlaySpeed={4000} autoPlay={true} keyBoardControl={true}>
         {blogs.map(blog => (
           <Card key={blog.id} style={{ width: '18rem' }}>
             <Card.Img variant="top" src={blog.blogImage} />
