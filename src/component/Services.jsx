@@ -1,19 +1,14 @@
-import icon5 from '../assets/img/icon/icon-5.png'
-import icon6 from '../assets/img/icon/icon-6.png'
-import icon7 from '../assets/img/icon/icon-7.png'
-import icon8 from '../assets/img/icon/icon-8.png'
-import icon9 from '../assets/img/icon/icon-9.png'
-import icon10 from '../assets/img/icon/icon-10.png'
 import { useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../ThemeContext'
 import instance from '../../axiosConfig'
+import Carousel from 'react-multi-carousel'
 
 // Service Item Component
-const ServiceItem = ({ iconSrc, title, description }) => {
+const ServiceItem = ({ iconSrc, title, description, style }) => {
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
 
   return (
-    <div className={`col-lg-4 col-md-6 wow fadeInUp`} data-wow-delay="0.1s">
+    <div className={`col-lg-4 col-md-6 wow fadeInUp`} data-wow-delay="0.1s" style={{ ...style }}>
       <div className={`service-item position-relative h-100`}>
         <div className={`service-text rounded p-3`} style={darkMode ? { backgroundColor: '#222' } : {}}>
           <div className={`btn-square ${darkMode ? 'bg-dark' : 'bg-light'} rounded-circle mx-auto mb-4`} style={{ width: '64px', height: '64px' }}>
@@ -46,7 +41,24 @@ export const Services = () => {
       });
   }, []);
 
-  // data = data.reverse().slice(0, 3);
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 4,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
 
   return (
     <div className={`container-xxl py-5`}>
@@ -55,16 +67,35 @@ export const Services = () => {
           <p className={`fs-5 fw-medium text-primary`}>Our Services</p>
           <h1 className={`display-5 mb-5`}>Digital Marketing Services that We Offer</h1>
         </div>
-        <div className={`row g-4`}>
+        <div className={`row g-4`} style={{ height: '400px' }}>
           {
-            data.map(item => (
-              <ServiceItem
-                key={item.id}
-                iconSrc={item.servicePhoto}
-                title={item.title}
-                description={item.description}
-              />
-            ))
+            data.length > 3 ?
+              (
+                <Carousel responsive={responsive} infinite={true} showDots={true} autoPlaySpeed={4000} autoPlay={true} keyBoardControl={true} sliderClass="gap-4">
+                  {
+                    data.map(item => (
+                      <ServiceItem
+                        key={item.id}
+                        iconSrc={item.servicePhoto}
+                        title={item.title}
+                        description={item.description}
+                        style={{
+                          width: '100%', maxWidth: '500px', marginRight: '1.5rem'
+                        }}
+                      />
+                    ))
+
+                  }
+                </Carousel>
+              ) :
+              data.map(item => (
+                <ServiceItem
+                  key={item.id}
+                  iconSrc={item.servicePhoto}
+                  title={item.title}
+                  description={item.description}
+                />
+              ))
           }
         </div>
       </div>
