@@ -16,5 +16,6 @@ import { Copyright } from './Copyright'
 import { LanguageSelector } from './LanguageSelector'
 import { ProgressBar } from './ProgressBar'
 import { DownloadButton } from './common/DownloadButton'
+import { Blogs } from './Blogs'
 
-export { TopBar, NavigationBar, Spinner, HeaderCarousel, Features, Feature, About, Services, Projects, Quote, Team, Footer, Testimonial, Copyright, LanguageSelector, ProgressBar, DownloadButton };
+export { TopBar, NavigationBar, Spinner, HeaderCarousel, Features, Feature, About, Services, Projects, Quote, Team, Footer, Testimonial, Copyright, LanguageSelector, ProgressBar, DownloadButton, Blogs };

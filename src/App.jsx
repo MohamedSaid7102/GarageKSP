@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import './App.css'
-import { Footer, NavigationBar, Copyright, HeaderCarousel, Features, About, Services, Projects, Quote, Team, Testimonial, ProgressBar } from './component'
+import { Footer, NavigationBar, Copyright, HeaderCarousel, Features, About, Services, Projects, Quote, Team, Testimonial, ProgressBar, Blogs } from './component'
 import { Outlet, useLocation } from "react-router-dom";
 
 function App() {
@@ -100,6 +100,11 @@ function App() {
         <div className={`snap-section  ${isWideScreen && 'center-content'}`} id="section-8">
           <Testimonial />
         </div>
+
+        <div className={`snap-section  ${isWideScreen && 'center-content'}`} id="section-9">
+          <Blogs />
+        </div>
+
 
         <div className={`snap-section`} style={{ height: 'max-content' }}>
           <Footer />

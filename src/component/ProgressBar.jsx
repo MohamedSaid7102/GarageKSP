@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faMessage, faPeopleGroup, faProjectDiagram, faShoppingBag, faUserMd } from "@fortawesome/free-solid-svg-icons";
+import { faBlog, faHome, faMessage, faPeopleGroup, faProjectDiagram, faShoppingBag, faUserMd } from "@fortawesome/free-solid-svg-icons";
 import { faServicestack, faTeamspeak } from "@fortawesome/free-brands-svg-icons";
 
 export const ProgressBar = () => {
@@ -16,6 +16,7 @@ export const ProgressBar = () => {
     { id: 5, label: '6', sectionID: 'section-6' },
     { id: 6, label: '7', sectionID: 'section-7' },
     { id: 7, label: '8', sectionID: 'section-8' },
+    { id: 8, label: '9', sectionID: 'section-9' },
   ];
 
   useEffect(() => {
@@ -42,19 +43,21 @@ export const ProgressBar = () => {
       case '1':
         return <FontAwesomeIcon icon={faHome} width={13} />;
       case '2':
-        return <FontAwesomeIcon icon={faShoppingBag}  width={13}/>;
+        return <FontAwesomeIcon icon={faShoppingBag} width={13} />;
       case '3':
-        return <FontAwesomeIcon icon={faUserMd}  width={13}/>;
+        return <FontAwesomeIcon icon={faUserMd} width={13} />;
       case '4':
-        return <FontAwesomeIcon icon={faServicestack}  width={13}/>;
+        return <FontAwesomeIcon icon={faServicestack} width={13} />;
       case '5':
-        return <FontAwesomeIcon icon={faProjectDiagram}  width={13}/>;
+        return <FontAwesomeIcon icon={faProjectDiagram} width={13} />;
       case '6':
-        return <FontAwesomeIcon icon={faMessage}  width={13}/>;
+        return <FontAwesomeIcon icon={faMessage} width={13} />;
       case '7':
-        return <FontAwesomeIcon icon={faPeopleGroup}  width={13}/>;
+        return <FontAwesomeIcon icon={faPeopleGroup} width={13} />;
       case '8':
-        return <FontAwesomeIcon icon={faTeamspeak}  width={13}/>;
+        return <FontAwesomeIcon icon={faTeamspeak} width={13} />;
+      case '9':
+        return <FontAwesomeIcon icon={faBlog} width={13} />;
       default:
         return label; // Default to the label itself if no icon is defined.
     }
@@ -78,6 +81,8 @@ export const ProgressBar = () => {
         return 'Our Team'
       case '8':
         return 'Testimonial'
+      case '9':
+        return 'Blogs'
       default:
         return label; // Default to the label itself if no icon is defined.
     }
