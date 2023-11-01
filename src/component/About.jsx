@@ -41,6 +41,7 @@ export const About = () => {
                 <p className={`mb-4`}>{data.description}</p>
                 <div className={`row g-5 pt-2 mb-5`}>
 
+                  {/*
                   <div className={`col-sm-6 d-flex flex-column align-items-center align-items-lg-start`}>
                     <img className={`img-fluid mb-4`} src={icon5} alt="Managed Services Icon" />
                     <h5 className={`mb-3 text-lg-start`}>Managed Services</h5>
@@ -52,10 +53,11 @@ export const About = () => {
                     <h5 className={`mb-3 text-lg-start`}>Dedicated Experts</h5>
                     <span className={`text-lg-start d-block`}>Clita erat ipsum et lorem et sit sed stet lorem</span>
                   </div>
+                  */}
 
                 </div>
 
-                <div className={`d-flex justify-content-center justify-content-lg-start`}>
+                <div className={`d-flex justify-content-center justify-content-center`}>
                   <a className={`btn btn-primary rounded-pill py-3 px-5`} href="#">Explore More</a>
                 </div>
 
