@@ -4,6 +4,44 @@ import { faFacebookF, faInstagram, faLinkedinIn, faTiktok, faWhatsapp, faYoutube
 import instance from '../../axiosConfig'
 
 
+const FilterSection = ({ selectedFilters, setSelectedFilters }) => {
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // Fetch data when the component mounts
+    instance.get('/users/sections')
+      .then(response => {
+        setData(response.data.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  const handleFilterClick = (filterId) => {
+    if (selectedFilters.includes(filterId)) {
+      setSelectedFilters(selectedFilters.filter((id) => id !== filterId));
+    } else {
+      setSelectedFilters([...selectedFilters, filterId]);
+    }
+  };
+
+  return (
+    <div className="filter-section">
+      {data.map((filter) => (
+        <button
+          key={filter.id}
+          className={`filter-button ${selectedFilters.includes(filter.id) ? 'selected' : ''}`}
+          onClick={() => handleFilterClick(filter.id)}
+        >
+          {filter.title}
+        </button>
+      ))}
+    </div>
+  );
+};
+
 // TeamMember component
 const TeamMember = ({ imgSrc, name, role, facebook, instagram, linkedin, whatsApp, youtube, tiktok }) => {
   return (
@@ -65,17 +103,25 @@ const TeamMember = ({ imgSrc, name, role, facebook, instagram, linkedin, whatsAp
 export const Team = () => {
 
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  const [selectedFilters, setSelectedFilters] = useState([]);
 
   useEffect(() => {
     // Fetch data when the component mounts
     instance.get('/users/our_team')
       .then(response => {
         setData(response.data.data);
+        setFilteredData(response.data.data);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
       });
   }, []);
+
+  useEffect(() => {
+    const newData = selectedFilters.length == 0 ? data : data.filter(item => selectedFilters.includes(item.id))
+    setFilteredData(newData);
+  }, [selectedFilters])
 
   return (
     <div className="container-xxl py-5">
@@ -90,9 +136,12 @@ export const Team = () => {
           <p className="fs-4 mb-5 text-nowrap">Our Expert People Ready to Help You</p>
         </div>
           */}
+
+        <FilterSection selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} />
+
         <div className="row g-4">
           {
-            data.map(item => (
+            filteredData.map(item => (
               <TeamMember
                 key={item.id}
                 imgSrc={item.teamMemberPhoto}

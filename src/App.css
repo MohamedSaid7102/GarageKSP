@@ -864,3 +864,32 @@ body {
   transition: 800ms all ease-in-out;
   transform: rotate(360deg) scale(0.9);
 }
+
+/* FilterSection.css */
+.filter-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  margin: 2rem 0;
+}
+
+.filter-button {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: all ease-in-out 0.3s;
+}
+
+.filter-button:hover {
+  border-radius: 15px;
+}
+
+.filter-button.selected {
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 30px;
+  border: 0;
+}
+
