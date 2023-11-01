@@ -1,17 +1,21 @@
+import { Button, Modal } from 'react-bootstrap';
 import project1Image from '../assets/img/project-1.jpg'
 import project2Image from '../assets/img/project-2.jpg'
 import project3Image from '../assets/img/project-3.jpg'
 import project4Image from '../assets/img/project-4.jpg'
+import Carousel from 'react-multi-carousel';
+import { useEffect, useState } from 'react';
+import instance from '../../axiosConfig';
 
-const ProjectItem = ({ imgSrc, title, description }) => {
+const ProjectItem = ({ quantity, sellingPrice, imgSrc, title, description, openModal, style }) => {
   return (
-    <div className="project-item card-item-transition-effect m-1 m-sm-3 border">
+    <div className="project-item card-item-transition-effect m-1 m-sm-3 border" style={{ ...style }}>
       <div className="position-relative">
         <div className="project-item__img">
           <img className="img-fluid" src={imgSrc} alt={title} />
         </div>
         <div className="project-overlay">
-          <a className="btn btn-lg-square btn-light rounded-circle m-1" href={imgSrc} data-lightbox="project">
+          <a className="btn btn-lg-square btn-light rounded-circle m-1" href={'#'} data-lightbox="project" onClick={openModal}>
             <i className="fa fa-eye" aria-hidden="true"></i>
           </a>
           <a className="btn btn-lg-square btn-light rounded-circle m-1" href="#">
@@ -20,44 +24,159 @@ const ProjectItem = ({ imgSrc, title, description }) => {
         </div>
       </div>
       <div className="p-4">
-        <a className="d-block h5 text-sm-start" href="#">
+        <a className="d-block h5 text-sm-start" href="#" style={{ textDecoration: 'none', fontSize: '25px', marginBottom: '1rem' }}>
           {title}
         </a>
-        <span className="d-block text-sm-start mb-3">{description}</span>
+        {description && <span className="d-block text-sm-start mb-3">{description}</span>}
+        {quantity && <span className="d-block text-sm-start mb-3" style={{ fontSize: '20px', fontWeight: 'lighter' }}><span style={{ fontSize: '25px', fontWeight: 'normal' }}>Quantity: </span>{quantity}</span>}
+        {sellingPrice && <span className="d-block text-sm-start mb-3" style={{ fontSize: '20px', fontWeight: 'lighter' }}><span style={{ fontSize: '25px', fontWeight: 'normal' }}>Selling Price: </span>{sellingPrice}</span>}
       </div>
     </div>
   );
 }
 
 const ProjectWrapper = () => {
+
+  const myProjects = [
+    { id: 1, imgSrc: project1Image, title: 'Marketing Content Strategy', description: 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem' },
+    { id: 2, imgSrc: project2Image, title: 'Marketing Content Strategy', description: 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem' },
+    { id: 3, imgSrc: project3Image, title: 'Business Target Market', description: 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem' },
+    { id: 4, imgSrc: project4Image, title: 'Hello world', description: 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem' },
+  ];
+
+  const [showModal, setShowModal] = useState(false);
+  const [projects, setProjects] = useState([]);
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [selectedProjectData, setSelectedProjectData] = useState(null);
+
+  useEffect(() => {
+    instance.get('/mobile/client/products')
+      .then(response => {
+        setProjects(response.data.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
+  useEffect(() => {
+    if (selectedProject !== null) {
+      instance.get(`/mobile/client/products/${selectedProject}`)
+        .then(response => {
+          setSelectedProjectData(response.data.data);
+          console.log(response.data.data)
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+        });
+    }
+  }, [selectedProject]);
+
+
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 4,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
+
+
+  const openModal = (projectId) => {
+    setSelectedProject(projectId);
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setSelectedProject(null);
+    setShowModal(false);
+  };
+
+
   return (
-    <div className="projects-wrapper d-flex flex-row flex-wrap justify-content-md-start justify-content-center">
-      <ProjectItem
-        imgSrc={project2Image}
-        title="Marketing Content Strategy"
-        description="Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem"
-      />
-      <ProjectItem
-        imgSrc={project3Image}
-        title="Business Target Market"
-        description="Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem"
-      />
-      <ProjectItem
-        imgSrc={project4Image}
-        title="Social Marketing Strategy"
-        description="Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem"
-      />
-    </div>
+    <>
+      <div className="projects-wrapper d-flex flex-row flex-wrap justify-content-md-start justify-content-center" style={{ height: '400px' }}>
+        {
+          projects.length > 3 ?
+            (
+              <Carousel responsive={responsive} infinite={true} showDots={true} autoPlaySpeed={4000} autoPlay={true} keyBoardControl={true}>
+                {
+                  projects.concat(projects[0], projects[0], projects[0]).map(item => (
+                    <ProjectItem
+                      key={item.id}
+                      imgSrc={item.images[0].url}
+                      title={item.name}
+                      quantity={item.quantity}
+                      sellingPrice={item.selling_price}
+                      openModal={() => openModal(item.id)}
+                    />
+                  ))
+                }
+              </Carousel>
+            ) :
+            projects.map(item => (
+              <ProjectItem
+                key={item.id}
+                imgSrc={item.images[0].url}
+                title={item.name}
+                quantity={item.quantity}
+                sellingPrice={item.selling_price}
+                openModal={() => openModal(item.id)}
+              />
+            ))
+        }
+      </div>
+
+      <Modal show={showModal} onHide={closeModal} size="lg">
+
+        <Modal.Header closeButton>
+          <Modal.Title>Project Details</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body style={{ height: '80vh' }}>
+          {selectedProjectData && (
+            <>
+              <img src={selectedProjectData.images[0].url} alt={selectedProjectData.title} style={{ width: '100%', height: '70%', objectFit: 'cover' }} />
+              <h1>{selectedProjectData.name}</h1>
+              <span className="d-block text-center mb-3" style={{ fontSize: '15px', fontWeight: 'lighter' }}><span style={{ fontSize: '20px', fontWeight: 'normal' }}>Quantity: </span>{selectedProjectData.quantity}</span>
+              <span className="d-block text-center mb-3" style={{ fontSize: '15px', fontWeight: 'lighter' }}><span style={{ fontSize: '20px', fontWeight: 'normal' }}>Selling Price: </span>{selectedProjectData.selling_price}</span>
+              <p>{selectedProjectData.description}</p>
+            </>
+          )}
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button variant="secondary" onClick={closeModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+    </>
   );
 }
 
 export const Projects = () => {
+
+
+
   return (
     <div className="container-xxl  p-0" style={{ marginTop: '5rem' }}>
       <div className="container">
         <div className="text-center text-md-start pb-5 pb-md-0 wow fadeInUp" data-wow-delay="0.1s" style={{ maxWidth: '500px' }}>
-          <p className="fs-5 fw-medium text-primary">Our Projects</p>
-          <h1 className="display-5 mb-5">We've Done Lot's of Awesome Projects</h1>
+          <p className="fs-5 fw-medium text-primary">Our Products</p>
+          <h1 className="display-5 mb-5">We've Done Lot's of Awesome Products</h1>
         </div>
         <ProjectWrapper />
       </div>
