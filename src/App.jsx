@@ -42,7 +42,7 @@ function App() {
       {/* To top button & Whatsapp & call*/}
       <div className="to-top-btns">
         {/* Whatsapp Icons Button */}
-        <a href="">
+        <a href="" className="whatsapp-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 1219.547 1225.016" id="whatsapp">
             <path fill="#E0E0E0" d="M1041.858 178.02C927.206 63.289 774.753.07 612.325 0 277.617 0 5.232 272.298 5.098 606.991c-.039 106.986 27.915 211.42 81.048 303.476L0 1225.016l321.898-84.406c88.689 48.368 188.547 73.855 290.166 73.896h.258.003c334.654 0 607.08-272.346 607.222-607.023.056-162.208-63.052-314.724-177.689-429.463zm-429.533 933.963h-.197c-90.578-.048-179.402-24.366-256.878-70.339l-18.438-10.93-191.021 50.083 51-186.176-12.013-19.087c-50.525-80.336-77.198-173.175-77.16-268.504.111-278.186 226.507-504.503 504.898-504.503 134.812.056 261.519 52.604 356.814 147.965 95.289 95.36 147.728 222.128 147.688 356.948-.118 278.195-226.522 504.543-504.693 504.543z"></path>
             <linearGradient id="a" x1="609.77" x2="609.77" y1="1190.114" y2="21.084" gradientUnits="userSpaceOnUse">
@@ -52,14 +52,14 @@ function App() {
           </svg>
         </a>
 
-        {/* Phone Icons Button */}
-        <a href="">
-          <svg xmlns="http://www.w3.org/2000/svg" xmlns: xlink="http://www.w3.org/1999/xlink" width="64" height="64" viewBox="0 0 64 64" id="phone"><defs><path id="a" d="M.06 64V.04H64V64z"></path></defs><g fill="none" fill-rule="evenodd"><g><g><mask id="b" fill="#fff"><use xlink: href="#a"></use></mask><path fill="#76ABC4" d="M64 32c0 17.673-14.327 32-32 32C14.327 64 0 49.673 0 32 0 14.327 14.327 0 32 0c17.673 0 32 14.327 32 32" mask="url(#b)"></path></g><path fill="#638DA0" d="M43.17 50a1.04 1.04 0 0 1-.336-.052c-.228-.075-.526-.155-.889-.256-4.704-1.302-19.016-5.263-25.903-26.629a1.081 1.081 0 0 1-.021-.589c.035-.14.903-3.5 6.677-4.458a1.064 1.064 0 0 1 .635.085c.211.096 5.212 2.448 5.629 7.242.029.306-.076.611-.283.836-1.639 1.776-3.064 3.96-2.988 4.582.131 1.106 3.603 6.939 9.82 9.979.927-.147 3.076-1.563 4.632-2.892a1.08 1.08 0 0 1 .7-.263c.088 0 .177.011.264.034 4.932 1.196 6.71 4.58 6.784 4.724.105.205.142.441.105.668-.831 5.224-4.231 6.825-4.375 6.891a1.087 1.087 0 0 1-.451.098"></path><path fill="#FFFFFE" d="M28.962 23.343c-.417-4.794-5.418-7.146-5.629-7.242a1.063 1.063 0 0 0-.635-.085c-5.774.958-6.642 4.318-6.677 4.458-.048.196-.04.399.021.589 6.887 21.366 21.199 25.327 25.903 26.629.363.101.661.181.889.256a1.087 1.087 0 0 0 .787-.046c.144-.066 3.544-1.667 4.375-6.891.037-.227 0-.463-.105-.668-.074-.144-1.852-3.528-6.784-4.724a1.066 1.066 0 0 0-.964.229c-1.556 1.329-3.705 2.745-4.632 2.891-6.217-3.039-9.689-8.872-9.82-9.978-.076-.622 1.349-2.806 2.988-4.582.207-.225.312-.53.283-.836"></path></g></g></svg>
+        {/* To Top Icons Button */}
+        <a href="tel:+201096787085" className="progress-bar-item circle" style={{ fontSize: '2.5rem', width: '50px', height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontWeight: 'lighter' }}>
+          ✆
         </a>
 
         {/* To Top Icons Button */}
-        <a href="#section-1" className="progress-bar-item circle" style={{ transform: 'rotate(-90deg)', fontSize: '3rem', width: '50px', height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', lineHeight: '20' }}>
-          ➾
+        <a href="#section-1" className="progress-bar-item circle" style={{ fontSize: '2.5rem', width: '50px', height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontWeight: 'lighter' }}>
+          ⤴
         </a>
       </div >
 

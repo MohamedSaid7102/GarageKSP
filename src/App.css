@@ -859,3 +859,8 @@ body {
 .content-wrapper {
   margin-top: 4rem !important;
 }
+
+.whatsapp-btn:hover {
+  transition: 800ms all ease-in-out;
+  transform: rotate(360deg) scale(0.9);
+}
