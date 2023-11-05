@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react'
 import { ThemeContext } from '../ThemeContext'
 import instance from '../../axiosConfig'
 import Carousel from 'react-multi-carousel'
+import { Button, Modal } from 'react-bootstrap';
 
 // Service Item Component
 const ServiceItem = ({ iconSrc, title, description, style }) => {
@@ -17,9 +18,6 @@ const ServiceItem = ({ iconSrc, title, description, style }) => {
           <h5 className={`mb-3`}>{title}</h5>
           <p className={`mb-0`}>{description}</p>
         </div>
-        {/*<div className={`service-btn rounded-0 rounded-bottom`} style={darkMode ? { backgroundColor: '#555' } : {}}>
-          <a className={` fw-medium`} href={`#${title.replace(' ', '-')}`} style={darkMode ? { color: '#eee' } : {}}>Read More<i className={`bi bi-chevron-double-right ms-2`}></i></a>
-        </div>*/}
       </div>
     </div >
   )
@@ -29,6 +27,19 @@ const ServiceItem = ({ iconSrc, title, description, style }) => {
 export const Services = () => {
 
   let [data, setData] = useState([]);
+
+
+  /* Modal Logic Start */
+  const [showModal, setShowModal] = useState(false);
+  const openModal = () => {
+    setShowModal(true);
+  };
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  const shouldPaginate = data.length > 3;
+  /* Modal Logic End */
 
   useEffect(() => {
     // Fetch data when the component mounts
@@ -66,10 +77,11 @@ export const Services = () => {
         <div className={`text-center mx-auto wow fadeInUp`} data-wow-delay="0.1s" style={{ maxWidth: '500px' }}>
           <p className={`fs-5 fw-medium text-primary`}>Our Services</p>
           <h1 className={`display-5 mb-5`}>Digital Marketing Services that We Offer</h1>
+          {shouldPaginate && <button className={`btn btn-outline-info btn-sm rounded border-0 fw-light`} onClick={openModal}>Show More</button>}
         </div>
         <div className={`row g-4`} style={{ height: '400px' }}>
           {
-            data.length > 3 ?
+            shouldPaginate ?
               (
                 <Carousel responsive={responsive} infinite={true} showDots={true} autoPlaySpeed={4000} autoPlay={true} keyBoardControl={true} sliderClass="gap-4">
                   {
@@ -99,6 +111,39 @@ export const Services = () => {
           }
         </div>
       </div>
+
+      {/* JSX Modal Start */}
+      <Modal show={showModal} onHide={closeModal} size="xl">
+        <Modal.Header closeButton>
+          <Modal.Title>Our Services</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ height: '80vh' }}>
+          {
+            <div className="d-flex justify-content-center align-items-center flex-wrap gap-3 mt-5">
+              {
+                data.map(item => (
+                  <ServiceItem
+                    key={item.id}
+                    iconSrc={item.servicePhoto}
+                    title={item.title}
+                    description={item.description}
+                    style={{
+                      width: '100%', maxWidth: '500px', marginRight: '1.5rem'
+                    }}
+                  />
+                ))
+              }
+            </div>
+          }
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={closeModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      {/* JSX Modal End */}
+
     </div>
   )
 };
