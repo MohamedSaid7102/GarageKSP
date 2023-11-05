@@ -149,7 +149,7 @@ export const NavigationBar = () => {
               </div>
 
               <div className={`ms-auto d-none d-lg-block`} style={{ marginRight: '20px' }}>
-                <Link to="/contacts" className={`btn btn-primary rounded-pill py-2 px-3`}>Get A Car</Link>
+                <a href="#section-6" className={`btn btn-primary rounded-pill py-2 px-3`}>Get A Car</a>
               </div>
 
               {/* Darkmode button */}
