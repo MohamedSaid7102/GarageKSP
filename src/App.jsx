@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import './App.css'
 import { Footer, NavigationBar, Copyright, HeaderCarousel, Features, About, Services, Projects, Quote, Team, Testimonial, ProgressBar, Blogs } from './component'
 import { Outlet, useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUpLong, faPhone } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
@@ -54,12 +56,12 @@ function App() {
 
         {/* To Top Icons Button */}
         <a href="tel:+201096787085" className="progress-bar-item circle" style={{ fontSize: '2.5rem', width: '50px', height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontWeight: 'lighter' }}>
-          ✆
+          <FontAwesomeIcon icon={faPhone} style={{ fontWeight: 'lighter', fontSize: '1.3rem' }} />
         </a>
 
         {/* To Top Icons Button */}
         <a href="#section-1" className="progress-bar-item circle" style={{ fontSize: '2.5rem', width: '50px', height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontWeight: 'lighter' }}>
-          ⤴
+          <FontAwesomeIcon icon={faArrowUpLong} style={{ fontWeight: 'lighter', fontSize: '1.5rem' }} />
         </a>
       </div >
 
