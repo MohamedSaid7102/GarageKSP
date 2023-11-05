@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF, faInstagram, faLinkedinIn, faTiktok, faWhatsapp, faYoutube } from '@fortawesome/free-brands-svg-icons'
 import instance from '../../axiosConfig'
 import Carousel from 'react-multi-carousel';
+import { Button, Modal } from 'react-bootstrap';
 
 
 const FilterSection = ({ selectedFilters, setSelectedFilters }) => {
@@ -107,6 +108,19 @@ export const Team = () => {
   const [filteredData, setFilteredData] = useState([]);
   const [selectedFilters, setSelectedFilters] = useState([]);
 
+  /* Modal Logic Start */
+  const [showModal, setShowModal] = useState(false);
+  const openModal = () => {
+    setShowModal(true);
+  };
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  const shouldPaginate = data.length > 8;
+  /* Modal Logic End */
+
+
   useEffect(() => {
     // Fetch data when the component mounts
     instance.get('/users/our_team')
@@ -150,6 +164,7 @@ export const Team = () => {
         <div className="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style={{ maxWidth: '500px' }}>
           <p className="fs-5 fw-medium text-primary">Our Team</p>
           <p className="fs-1 mb-5">Our Expert People Ready to Help You</p>
+          {shouldPaginate && <button className={`btn btn-outline-info btn-sm rounded border-0 fw-light`} onClick={openModal}>Show More</button>}
         </div>
 
         <FilterSection selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} />
@@ -195,6 +210,44 @@ export const Team = () => {
               ))
           }
         </div>
+
+
+        {/* JSX Modal Start */}
+        <Modal show={showModal} onHide={closeModal} size="xl">
+          <Modal.Header closeButton>
+            <Modal.Title>Our Team</Modal.Title>
+          </Modal.Header>
+          <Modal.Body style={{ height: '80vh' }}>
+            {
+              <div className="d-flex justify-content-center align-items-center flex-wrap gap-3 mt-5">
+                {
+                  data.map(item => (
+                    <TeamMember
+                      key={item.id}
+                      imgSrc={item.teamMemberPhoto}
+                      name={item.name}
+                      facebook={item.facebook}
+                      instagram={item.instagram}
+                      linkedin={item.linkedin}
+                      whatsApp={item.whatsApp}
+                      youtube={item.youtube}
+                      tiktok={item.tiktok}
+                      role={null}
+                      style={{ width: '100%', maxWidth: '400px' }}
+                    />
+                  ))
+                }
+              </div>
+            }
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={closeModal}>
+              Close
+            </Button>
+          </Modal.Footer>
+        </Modal>
+        {/* JSX Modal End */}
+
       </div>
     </div>
   );
