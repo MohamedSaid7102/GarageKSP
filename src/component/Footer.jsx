@@ -122,6 +122,17 @@ const FooterSection = ({ title, items, openModal }) => {
 const FooterNewsletter = () => {
   const iOSUrl = 'https://itunes.apple.com/us/app/all-of-the-lights/id959389722?mt=8';
   const androidUrl = '';
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    instance.get('/users/settings')
+      .then(response => {
+        setData(response.data.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
 
   return (
     <div className="col-lg-3 col-md-6">
@@ -132,27 +143,46 @@ const FooterNewsletter = () => {
         <button type="button" className="btn btn-light py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
       </div>
       <div className="mt-4 d-flex flex-wrap gap-3">
-        <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href="#!" aria-label="Facebook">
+
+        {data?.facebook && <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" target="_blank" href={data.facebook} aria-label="Facebook">
           <FontAwesomeIcon icon={faFacebookF} style={{ color: "#4761ff", }} aria-hidden="true" />
-        </a>
-        <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href="#!" aria-label="Instagram">
-          <FontAwesomeIcon icon={faInstagram} style={{ color: "#4761ff", }} aria-hidden="true" />
-        </a>
-        <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href="#!" aria-label="Twitter">
-          <FontAwesomeIcon icon={faTwitter} style={{ color: "#4761ff", }} aria-hidden="true" />
-        </a>
-        <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href="#!" aria-label="LinkedIn">
-          <FontAwesomeIcon icon={faLinkedinIn} style={{ color: "#4761ff", }} aria-hidden="true" />
-        </a>
-        <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href="#!" aria-label="Whatsapp">
-          <FontAwesomeIcon icon={faWhatsapp} style={{ color: "#4761ff", }} aria-hidden="true" />
-        </a>
-        <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href="#!" aria-label="TikTok">
-          <FontAwesomeIcon icon={faTiktok} style={{ color: "#4761ff", }} aria-hidden="true" />
-        </a>
-        <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href="#!" aria-label="Youtube">
-          <FontAwesomeIcon icon={faYoutube} style={{ color: "#4761ff", }} aria-hidden="true" />
-        </a>
+        </a>}
+
+        {data?.instagram && (
+          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.instagram} aria-label="Instagram">
+            <FontAwesomeIcon icon={faInstagram} style={{ color: "#4761ff" }} aria-hidden="true" />
+          </a>
+        )}
+
+        {data?.twitter && (
+          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.twitter} aria-label="Twitter">
+            <FontAwesomeIcon icon={faTwitter} style={{ color: "#4761ff" }} aria-hidden="true" />
+          </a>
+        )}
+
+        {data?.linkedin && (
+          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.linkedin} aria-label="LinkedIn">
+            <FontAwesomeIcon icon={faLinkedinIn} style={{ color: "#4761ff" }} aria-hidden="true" />
+          </a>
+        )}
+
+        {data?.whatsapp && (
+          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.whatsapp} aria-label="Whatsapp">
+            <FontAwesomeIcon icon={faWhatsapp} style={{ color: "#4761ff" }} aria-hidden="true" />
+          </a>
+        )}
+
+        {data?.tiktok && (
+          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.tiktok} aria-label="TikTok">
+            <FontAwesomeIcon icon={faTiktok} style={{ color: "#4761ff" }} aria-hidden="true" />
+          </a>
+        )}
+
+        {data?.youtube && (
+          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.youtube} aria-label="Youtube">
+            <FontAwesomeIcon icon={faYoutube} style={{ color: "#4761ff" }} aria-hidden="true" />
+          </a>
+        )}
 
       </div>
 
