@@ -7,6 +7,9 @@ import Carousel from 'react-multi-carousel';
 import { useEffect, useState } from 'react';
 import instance from '../../axiosConfig';
 
+
+// TODO: Problem in showing off projects in carsoule
+
 const ProjectItem = ({ quantity, sellingPrice, imgSrc, title, description, openModal, style }) => {
   return (
     <div className="project-item card-item-transition-effect m-1 m-sm-3 border" style={{ ...style }}>
@@ -35,14 +38,14 @@ const ProjectItem = ({ quantity, sellingPrice, imgSrc, title, description, openM
   );
 }
 
-const ProjectWrapper = () => {
+const ProjectWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsModal, shouldPaginate, setShouldPaginate }) => {
 
-  const myProjects = [
+  /*const myProjects = [
     { id: 1, imgSrc: project1Image, title: 'Marketing Content Strategy', description: 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem' },
     { id: 2, imgSrc: project2Image, title: 'Marketing Content Strategy', description: 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem' },
     { id: 3, imgSrc: project3Image, title: 'Business Target Market', description: 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem' },
     { id: 4, imgSrc: project4Image, title: 'Hello world', description: 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem' },
-  ];
+  ];*/
 
   const [showModal, setShowModal] = useState(false);
   const [projects, setProjects] = useState([]);
@@ -53,6 +56,9 @@ const ProjectWrapper = () => {
     instance.get('/mobile/client/products')
       .then(response => {
         setProjects(response.data.data);
+        // For testing the pagination
+        // setProjects(Array(5).fill(response.data.data[0]));
+        if (response.data.data.length > 3) setShouldPaginate(true);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
@@ -64,7 +70,6 @@ const ProjectWrapper = () => {
       instance.get(`/mobile/client/products/${selectedProject}`)
         .then(response => {
           setSelectedProjectData(response.data.data);
-          console.log(response.data.data)
         })
         .catch(error => {
           console.error('Error fetching data:', error);
@@ -103,16 +108,16 @@ const ProjectWrapper = () => {
     setShowModal(false);
   };
 
-
   return (
     <>
       <div className="projects-wrapper d-flex flex-row flex-wrap justify-content-md-start justify-content-center" style={{ height: '400px' }}>
-        {
-          projects.length > 3 ?
+        {/* TODO: We have a problem showing a Carousel, So we only reverse and show last 3 items from projects and see all by clicking show more */}
+        {/*
+          shouldPaginate ?
             (
-              <Carousel responsive={responsive} infinite={true} showDots={true} autoPlaySpeed={4000} autoPlay={true} keyBoardControl={true}>
+              <Carousel responsive={responsive} infinite={true} showDots={true} autoPlaySpeed={4000} autoPlay={true} keyBoardControl={true} sliderClass="gap-4">
                 {
-                  projects.concat(projects[0], projects[0], projects[0]).map(item => (
+                  projects.map(item => (
                     <ProjectItem
                       key={item.id}
                       imgSrc={item.images[0].url}
@@ -120,6 +125,9 @@ const ProjectWrapper = () => {
                       quantity={item.quantity}
                       sellingPrice={item.selling_price}
                       openModal={() => openModal(item.id)}
+                      style={{
+                        width: '100%', maxWidth: '500px', marginRight: '1.5rem'
+                      }}
                     />
                   ))
                 }
@@ -135,15 +143,59 @@ const ProjectWrapper = () => {
                 openModal={() => openModal(item.id)}
               />
             ))
+        */}
+
+        {/* slice only 3 cards if there is more than 3, and show only what is available if there are no more than 3 cards */}
+        {
+          projects.reverse().slice(0, projects.length > 3 ? 3 : projects.length).map(item => (
+            <ProjectItem
+              key={item.id}
+              imgSrc={item.images[0].url}
+              title={item.name}
+              quantity={item.quantity}
+              sellingPrice={item.selling_price}
+              openModal={() => openModal(item.id)}
+            />
+          ))
         }
       </div>
 
-      <Modal show={showModal} onHide={closeModal} size="lg">
 
+      {/* Projects List view Modal Start */}
+      <Modal show={showProjectsModal} onHide={closeProjectsModal} size="xl">
+        <Modal.Header closeButton>
+          <Modal.Title>Project List</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ height: '80vh' }}>
+          <div className="d-flex justify-content-center align-items-center flex-wrap gap-3 mt-5">
+            {
+              projects.map(item => (
+                <ProjectItem
+                  key={item.id}
+                  imgSrc={item.images[0].url}
+                  title={item.name}
+                  quantity={item.quantity}
+                  sellingPrice={item.selling_price}
+                  openModal={() => openModal(item.id)}
+                />
+              ))
+            }
+          </div>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button variant="secondary" onClick={closeProjectsModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      {/* Projects List view Modal End */}
+
+      {/* Single project view Modal Start */}
+      <Modal show={showModal} onHide={closeModal} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>Project Details</Modal.Title>
         </Modal.Header>
-
         <Modal.Body style={{ height: '80vh' }}>
           {selectedProjectData && (
             <>
@@ -162,12 +214,25 @@ const ProjectWrapper = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+      {/* Single project view Modal End */}
 
     </>
   );
 }
 
 export const Projects = () => {
+
+  /* Modal Logic Start */
+  const [showProjectsModal, setShowProjectsModal] = useState(false);
+  const openProjectsModal = () => {
+    setShowProjectsModal(true);
+  };
+  const closeProjectsModal = () => {
+    setShowProjectsModal(false);
+  };
+
+  const [shouldPaginate, setShouldPaginate] = useState(false);
+  /* Modal Logic End */
 
 
 
@@ -177,8 +242,15 @@ export const Projects = () => {
         <div className="text-center text-md-start pb-5 pb-md-0 wow fadeInUp" data-wow-delay="0.1s" style={{ maxWidth: '500px' }}>
           <p className="fs-5 fw-medium text-primary">Our Products</p>
           <h1 className="display-5 mb-5">We've Done Lot's of Awesome Products</h1>
+          {/*shouldPaginate && <button className={`btn btn-outline-info btn-sm rounded border-0 mb-3 fw-light`} onClick={openProjectsModal}>Show More</button>*/}
+          <button className={`btn btn-outline-info btn-sm rounded border-0 mb-3 fw-light`} onClick={openProjectsModal}>Show More</button>
         </div>
-        <ProjectWrapper />
+        <ProjectWrapper
+          showProjectsModal={showProjectsModal}
+          openProjectsModal={openProjectsModal}
+          closeProjectsModal={closeProjectsModal}
+          shouldPaginate={shouldPaginate}
+          setShouldPaginate={setShouldPaginate} />
       </div>
     </div>
   );
