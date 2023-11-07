@@ -49,7 +49,7 @@ const TeamMember = ({ imgSrc, name, role, facebook, instagram, linkedin, whatsAp
   return (
     <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s" style={{ ...style }}>
       <div className="card-item-transition-effect team-item rounded overflow-hidden pb-4">
-        <img className="img-fluid mb-4" src={imgSrc} alt={name} />
+        <img className="img-fluid mb-4" src={imgSrc} alt={name} style={{ height: '15rem', objectFit: 'cover' }} />
         <h5>{name}</h5>
         <span className="text-primary">{role}</span>
         <ul className="team-social">

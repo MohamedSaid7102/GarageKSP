@@ -85,7 +85,7 @@ export const Blogs = () => {
       <Carousel responsive={responsive} infinite={true} showDots={true} autoPlaySpeed={4000} autoPlay={true} keyBoardControl={true} className="pb-5">
         {blogs.reverse().map(blog => (
           <Card key={blog.id} style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={blog.blogImage} />
+            <Card.Img variant="top" src={blog.blogImage} style={{ height: '15rem', objectFit: 'cover' }} />
             <Card.Body>
               <Card.Title>{blog.title}</Card.Title>
               <Card.Text>{getFirstWords(blog.description, 9)}</Card.Text>
@@ -127,7 +127,7 @@ export const Blogs = () => {
             <div className="d-flex justify-content-center align-items-center flex-wrap gap-3 mt-5">
               {blogs.map(blog => (
                 <Card key={blog.id} style={{ width: '18rem' }}>
-                  <Card.Img variant="top" src={blog.blogImage} />
+                  <Card.Img variant="top" src={blog.blogImage} style={{ height: '15rem', objectFit: 'cover' }}/>
                   <Card.Body>
                     <Card.Title>{blog.title}</Card.Title>
                     <Card.Text>{getFirstWords(blog.description, 9)}</Card.Text>

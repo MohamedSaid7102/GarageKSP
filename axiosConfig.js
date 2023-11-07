@@ -5,7 +5,7 @@ const VALIDATION_ERRORS_RESPONSE = 422;
 const UNAUTHORIZED = 401;
 
 const instance = axios.create({
-  baseURL: 'https://garage-updated-api.eductor.org',
+  baseURL: 'https://ksb-api.eductor.org',
 });
 
 // Axios Response Interceptor
