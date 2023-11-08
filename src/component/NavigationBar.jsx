@@ -67,7 +67,7 @@ export const NavigationBar = () => {
         Skip to content
       </a>
       <div className={`container-fluid sticky-top`}>
-        <div className={`container`}>
+        <div className={`container p-0`}>
           <nav className={`navbar navbar-expand-lg navbar-light p-lg-0`}>
 
             {/* Mobile Logo */}
@@ -163,7 +163,7 @@ export const NavigationBar = () => {
 
           </nav>
         </div>
-      </div >
-    </div >
+      </div>
+    </div>
   );
 };

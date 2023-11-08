@@ -173,7 +173,7 @@ export const Team = () => {
           {
             shouldPaginate ?
               (
-                <Carousel responsive={responsive} infinite={true} showDots={true} autoPlaySpeed={4000} autoPlay={true} keyBoardControl={true} sliderClass="gap-4">
+                <Carousel responsive={responsive} infinite={true} showDots={true} autoPlaySpeed={4000} autoPlay={true} keyBoardControl={true} sliderClass="gap-4 p-5">
                   {
                     filteredData.map(item => (
                       <TeamMember
@@ -186,7 +186,7 @@ export const Team = () => {
                         whatsApp={item.whatsApp}
                         youtube={item.youtube}
                         tiktok={item.tiktok}
-                        role={null}
+                        role={item.section.title}
                         style={{ width: '100%', maxWidth: '400px' }}
                       />
                     ))
