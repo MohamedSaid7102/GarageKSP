@@ -117,7 +117,7 @@ export const Team = () => {
     setShowModal(false);
   };
 
-  const shouldPaginate = data.length > 8;
+  const shouldPaginate = data.length > 3;
   /* Modal Logic End */
 
 
@@ -171,7 +171,7 @@ export const Team = () => {
 
         <div className="row g-4" style={{ height: '400px' }}>
           {
-            filteredData.length > 8 ?
+            shouldPaginate ?
               (
                 <Carousel responsive={responsive} infinite={true} showDots={true} autoPlaySpeed={4000} autoPlay={true} keyBoardControl={true} sliderClass="gap-4">
                   {
