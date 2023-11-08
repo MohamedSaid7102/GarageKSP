@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import './App.css'
-import { Footer, NavigationBar, Copyright, HeaderCarousel, Features, About, Services, Projects, Quote, Team, Testimonial, ProgressBar, Blogs } from './component'
+import { Footer, NavigationBar, Copyright, HeaderCarousel, Features, About, Services, Projects, Quote, Team, Testimonial, ProgressBar, Blogs, Jobs } from './component'
 import { Outlet, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUpLong, faPhone } from '@fortawesome/free-solid-svg-icons';
@@ -64,7 +64,7 @@ function App() {
 
         {/* To Top Icons Button */}
         <a href="#section-1" className="progress-bar-item circle" style={{ fontSize: '2.5rem', width: '50px', height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontWeight: 'lighter' }}>
-          <FontAwesomeIcon icon={faArrowUpLong} style={{ fontWeight: 'lighter', fontSize: '1.5rem' }}  color={darkMode ? 'white' : '#333'}/>
+          <FontAwesomeIcon icon={faArrowUpLong} style={{ fontWeight: 'lighter', fontSize: '1.5rem' }} color={darkMode ? 'white' : '#333'} />
         </a>
       </div >
 
@@ -110,6 +110,9 @@ function App() {
           <Blogs />
         </div>
 
+        <div className={`snap-section  ${isWideScreen && 'center-content'}`} id="section-10">
+          <Jobs />
+        </div>
 
         <div className={`snap-section`} style={{ height: 'max-content' }}>
           <Footer />

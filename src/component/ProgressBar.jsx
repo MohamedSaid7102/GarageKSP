@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBlog, faHome, faMessage, faPeopleGroup, faProjectDiagram, faShoppingBag, faUserMd } from "@fortawesome/free-solid-svg-icons";
+import { faBlog, faBusinessTime, faHome, faMessage, faPeopleGroup, faProjectDiagram, faShoppingBag, faUserMd } from "@fortawesome/free-solid-svg-icons";
 import { faServicestack, faTeamspeak } from "@fortawesome/free-brands-svg-icons";
 
 export const ProgressBar = () => {
@@ -17,6 +17,7 @@ export const ProgressBar = () => {
     { id: 6, label: '7', sectionID: 'section-7' },
     { id: 7, label: '8', sectionID: 'section-8' },
     { id: 8, label: '9', sectionID: 'section-9' },
+    { id: 9, label: '10', sectionID: 'section-10' },
   ];
 
   useEffect(() => {
@@ -58,6 +59,8 @@ export const ProgressBar = () => {
         return <FontAwesomeIcon icon={faTeamspeak} width={13} />;
       case '9':
         return <FontAwesomeIcon icon={faBlog} width={13} />;
+      case '10':
+        return <FontAwesomeIcon icon={faBusinessTime} width={13} />;
       default:
         return label; // Default to the label itself if no icon is defined.
     }
@@ -83,6 +86,9 @@ export const ProgressBar = () => {
         return 'Testimonial'
       case '9':
         return 'Blogs'
+      case '10':
+        return 'Jobs'
+
       default:
         return label; // Default to the label itself if no icon is defined.
     }

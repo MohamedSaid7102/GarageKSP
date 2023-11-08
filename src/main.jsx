@@ -42,7 +42,7 @@ const router = createBrowserRouter([
         element: <Contacts />
       },
       {
-        path: 'sendcv',
+        path: 'sendcv/:jobId',
         element: <SendCV />
       }
     ],
