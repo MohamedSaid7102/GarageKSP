@@ -125,10 +125,10 @@ export const NavigationBar = () => {
 
                 <NavLink
                   onClick={closeMobileNavigation}
-                  to={'/projects'}
-                  className={`${navLinkStatus('/projects')}`}
+                  to={'/products'}
+                  className={`${navLinkStatus('/products')}`}
                 >
-                  Projects
+                  products
                 </NavLink>
 
                 <NavLink

@@ -11,13 +11,12 @@ export const HeaderCarousel = () => {
     // Fetch data when the component mounts
     instance.get('/users/ads')
       .then(response => {
-        setData(response.data.data);
+        setData(response.data.data)
       })
       .catch(error => {
         console.error('Error fetching data:', error);
       });
   }, []);
-
 
   return (
     <>

@@ -7,7 +7,7 @@ import { Features } from './Features'
 import { Feature } from './Feature'
 import { About } from './About'
 import { Services } from './Services'
-import { Projects } from './Projects'
+import { Products } from './Products'
 import { Quote } from './Quote'
 import { Team } from './Team'
 import { Footer } from './Footer'
@@ -19,4 +19,4 @@ import { DownloadButton } from './common/DownloadButton'
 import { Blogs } from './Blogs'
 import { Jobs } from './Jobs'
 
-export { TopBar, NavigationBar, Spinner, HeaderCarousel, Features, Feature, About, Services, Projects, Quote, Team, Footer, Testimonial, Copyright, LanguageSelector, ProgressBar, DownloadButton, Blogs, Jobs };
+export { TopBar, NavigationBar, Spinner, HeaderCarousel, Features, Feature, About, Services, Products, Quote, Team, Footer, Testimonial, Copyright, LanguageSelector, ProgressBar, DownloadButton, Blogs, Jobs };

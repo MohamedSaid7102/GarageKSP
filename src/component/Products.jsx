@@ -10,7 +10,7 @@ import instance from '../../axiosConfig';
 
 // TODO: Problem in showing off projects in carsoule
 
-const ProjectItem = ({ quantity, sellingPrice, imgSrc, title, description, openModal, style }) => {
+const ProductItem = ({ quantity, sellingPrice, imgSrc, title, description, openModal, style }) => {
   return (
     <div className="project-item card-item-transition-effect m-1 m-sm-3 border" style={{ ...style }}>
       <div className="position-relative">
@@ -38,7 +38,7 @@ const ProjectItem = ({ quantity, sellingPrice, imgSrc, title, description, openM
   );
 }
 
-const ProjectWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsModal, shouldPaginate, setShouldPaginate }) => {
+const ProductWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsModal, shouldPaginate, setShouldPaginate }) => {
 
   /*const myProjects = [
     { id: 1, imgSrc: project1Image, title: 'Marketing Content Strategy', description: 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem' },
@@ -118,7 +118,7 @@ const ProjectWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsMod
               <Carousel responsive={responsive} infinite={true} showDots={true} autoPlaySpeed={4000} autoPlay={true} keyBoardControl={true} sliderClass="gap-4">
                 {
                   projects.map(item => (
-                    <ProjectItem
+                    <ProductItem
                       key={item.id}
                       imgSrc={item.images[0].url}
                       title={item.name}
@@ -134,7 +134,7 @@ const ProjectWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsMod
               </Carousel>
             ) :
             projects.map(item => (
-              <ProjectItem
+              <ProductItem
                 key={item.id}
                 imgSrc={item.images[0].url}
                 title={item.name}
@@ -148,7 +148,7 @@ const ProjectWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsMod
         {/* slice only 3 cards if there is more than 3, and show only what is available if there are no more than 3 cards */}
         {
           projects.reverse().slice(0, projects.length > 3 ? 3 : projects.length).map(item => (
-            <ProjectItem
+            <ProductItem
               key={item.id}
               imgSrc={item.images[0].url}
               title={item.name}
@@ -164,13 +164,13 @@ const ProjectWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsMod
       {/* Projects List view Modal Start */}
       <Modal show={showProjectsModal} onHide={closeProjectsModal} size="xl">
         <Modal.Header closeButton>
-          <Modal.Title>Project List</Modal.Title>
+          <Modal.Title>Product List</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ height: '80vh' }}>
           <div className="d-flex justify-content-center align-items-center flex-wrap gap-3 mt-5">
             {
               projects.map(item => (
-                <ProjectItem
+                <ProductItem
                   key={item.id}
                   imgSrc={item.images[0].url}
                   title={item.name}
@@ -220,7 +220,7 @@ const ProjectWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsMod
   );
 }
 
-export const Projects = () => {
+export const Products = () => {
 
   /* Modal Logic Start */
   const [showProjectsModal, setShowProjectsModal] = useState(false);
@@ -245,7 +245,7 @@ export const Projects = () => {
           {/*shouldPaginate && <button className={`btn btn-outline-info btn-sm rounded border-0 mb-3 fw-light`} onClick={openProjectsModal}>Show More</button>*/}
           <button className={`btn btn-outline-info btn-sm rounded border-0 mb-3 fw-light`} onClick={openProjectsModal}>Show More</button>
         </div>
-        <ProjectWrapper
+        <ProductWrapper
           showProjectsModal={showProjectsModal}
           openProjectsModal={openProjectsModal}
           closeProjectsModal={closeProjectsModal}

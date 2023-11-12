@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import './App.css'
-import { Footer, NavigationBar, Copyright, HeaderCarousel, Features, About, Services, Projects, Quote, Team, Testimonial, ProgressBar, Blogs, Jobs } from './component'
+import { Footer, NavigationBar, Copyright, HeaderCarousel, Features, About, Services, Products, Quote, Team, Testimonial, ProgressBar, Blogs, Jobs } from './component'
 import { Outlet, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUpLong, faPhone } from '@fortawesome/free-solid-svg-icons';
@@ -89,7 +89,7 @@ function App() {
         </div>
 
         <div className={`snap-section  ${isWideScreen && 'center-content'}`} id="section-5">
-          <Projects />
+          <Products />
         </div>
 
 
