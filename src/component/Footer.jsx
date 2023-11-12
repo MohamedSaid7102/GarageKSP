@@ -5,6 +5,7 @@ import { faFacebookF, faInstagram, faLinkedinIn, faTiktok, faTwitter, faWhatsapp
 import { DownloadButton } from './common/DownloadButton';
 import { Button, Modal } from 'react-bootstrap';
 import instance from '../../axiosConfig';
+import { NavLink } from 'react-router-dom';
 
 // Footer component
 export const Footer = () => {
@@ -51,14 +52,6 @@ export const Footer = () => {
               ]}
               openModal={openModal}
             />
-            <FooterSection
-              title="Business Hours"
-              items={[
-                { text: 'Monday - Friday', time: '09:00 am - 07:00 pm' },
-                { text: 'Saturday', time: '09:00 am - 12:00 pm' },
-                { text: 'Sunday', time: 'Closed' },
-              ]}
-            />
             <FooterNewsletter />
           </div>
         </div>
@@ -97,9 +90,9 @@ const FooterSection = ({ title, items, openModal }) => {
           <li key={index} className="mb-2">
             {item.icon && item.icon}
             {item.link ? (
-              <a href={item.link} className="btn btn-link text-decoration-none text-center text-lg-start">
+              <NavLink to={item.link} className="btn btn-link text-decoration-none text-center text-lg-start">
                 {item.text}
-              </a>
+              </NavLink>
             ) : (
               item.text
             )}
