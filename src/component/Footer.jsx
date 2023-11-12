@@ -179,7 +179,7 @@ const FooterNewsletter = () => {
 
       </div>
 
-      <DownloadButton store="android" url="www.google.com" style={{ marginTop: '1rem' }} />
+      <DownloadButton store="android" url="https://play.google.com/store/apps/details?id=com.drcode.ksb&pli=1" style={{ marginTop: '1rem' }} />
 
       <DownloadButton store="ios" url="www.google.com" style={{ marginTop: '1rem' }} />
     </div>
