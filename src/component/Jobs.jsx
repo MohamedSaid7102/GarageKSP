@@ -71,7 +71,6 @@ export const Jobs = () => {
 
   const closeJobModal = () => {
     setShowJobModal(false);
-    setPresentedJob(null);
   }
 
   return (
