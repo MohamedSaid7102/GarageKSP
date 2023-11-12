@@ -28,7 +28,7 @@ export const Jobs = () => {
   }, []);
 
   useEffect(() => {
-    instance.get(`/users/job_announcements/${presentedJobId}`)
+    instance.get(`/users/job_announcements/${presentedJobId || ''}`, { withCredentials: true })
       .then(response => {
         setPresentedJob(response.data.data);
       })
