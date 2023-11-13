@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLocationDot, faPhoneVolume, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faLocationDot, faPhoneVolume, faMailBulk } from '@fortawesome/free-solid-svg-icons'
 import { faFacebookF, faInstagram, faLinkedinIn, faTiktok, faTwitter, faWhatsapp, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { DownloadButton } from './common/DownloadButton';
 import { Button, Modal } from 'react-bootstrap';
@@ -11,8 +11,10 @@ import { NavLink } from 'react-router-dom';
 export const Footer = () => {
   const [showModal, setShowModal] = useState(false);
   const [termsConditions, setTermsConditions] = useState(null);
+  const [settings, setSettings] = useState()
 
   useEffect(() => {
+
     instance.get('/users/terms_and_conditions')
       .then(response => {
         setTermsConditions(response.data.data);
@@ -20,6 +22,15 @@ export const Footer = () => {
       .catch(error => {
         console.error('Error fetching data:', error);
       });
+
+    instance.get('/users/settings')
+      .then(res => {
+        setSettings(res.data.data)
+      })
+      .catch(error => {
+        console.error('Error fetching dta: ', error)
+      })
+
   }, []);
 
   const openModal = () => {
@@ -38,9 +49,8 @@ export const Footer = () => {
             <FooterSection
               title="Our Office"
               items={[
-                { icon: <FontAwesomeIcon icon={faLocationDot} aria-hidden="true" style={{ marginRight: '10px' }} />, text: '123 Street, New York, USA' },
-                { icon: <FontAwesomeIcon icon={faEnvelope} aria-hidden="true" style={{ marginRight: '10px' }} />, text: '+012 345 67890' },
-                { icon: <FontAwesomeIcon icon={faPhoneVolume} aria-hidden="true" style={{ marginRight: '10px' }} />, text: 'info@example.com' },
+                { icon: <FontAwesomeIcon icon={faLocationDot} aria-hidden="true" style={{ marginRight: '10px' }} />, text: settings?.address },
+                { icon: <FontAwesomeIcon icon={faPhoneVolume} aria-hidden="true" style={{ marginRight: '10px' }} />, text: settings?.phones },
               ]}
             />
             <FooterSection
@@ -52,7 +62,7 @@ export const Footer = () => {
               ]}
               openModal={openModal}
             />
-            <FooterNewsletter />
+            <FooterNewsletter data={settings} />
           </div>
         </div>
       </div>
@@ -112,21 +122,7 @@ const FooterSection = ({ title, items, openModal }) => {
 };
 
 // FooterNewsletter component
-const FooterNewsletter = () => {
-  const iOSUrl = 'https://itunes.apple.com/us/app/all-of-the-lights/id959389722?mt=8';
-  const androidUrl = '';
-  const [data, setData] = useState();
-
-  useEffect(() => {
-    instance.get('/users/settings')
-      .then(response => {
-        setData(response.data.data);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-      });
-  }, []);
-
+const FooterNewsletter = ({ data }) => {
   return (
     <div className="col-lg-3 col-md-6">
       <h4 className="text-white mb-4 text-lg-start">Newsletter</h4>
@@ -142,38 +138,44 @@ const FooterNewsletter = () => {
         </a>}
 
         {data?.instagram && (
-          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.instagram} aria-label="Instagram">
+          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.instagram}  target="_blank" aria-label="Instagram">
             <FontAwesomeIcon icon={faInstagram} style={{ color: "#4761ff" }} aria-hidden="true" />
           </a>
         )}
 
         {data?.twitter && (
-          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.twitter} aria-label="Twitter">
+          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.twitter}  target="_blank" aria-label="Twitter">
             <FontAwesomeIcon icon={faTwitter} style={{ color: "#4761ff" }} aria-hidden="true" />
           </a>
         )}
 
         {data?.linkedin && (
-          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.linkedin} aria-label="LinkedIn">
+          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.linkedin}  target="_blank" aria-label="LinkedIn">
             <FontAwesomeIcon icon={faLinkedinIn} style={{ color: "#4761ff" }} aria-hidden="true" />
           </a>
         )}
 
         {data?.whatsapp && (
-          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.whatsapp} aria-label="Whatsapp">
+          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.whatsapp}  target="_blank" aria-label="Whatsapp">
             <FontAwesomeIcon icon={faWhatsapp} style={{ color: "#4761ff" }} aria-hidden="true" />
           </a>
         )}
 
         {data?.tiktok && (
-          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.tiktok} aria-label="TikTok">
+          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.tiktok}  target="_blank" aria-label="TikTok">
             <FontAwesomeIcon icon={faTiktok} style={{ color: "#4761ff" }} aria-hidden="true" />
           </a>
         )}
 
         {data?.youtube && (
-          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.youtube} aria-label="Youtube">
+          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.youtube}  target="_blank" aria-label="Youtube">
             <FontAwesomeIcon icon={faYoutube} style={{ color: "#4761ff" }} aria-hidden="true" />
+          </a>
+        )}
+
+        {data?.gmail && (
+          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.youtube}  target="_blank" aria-label="Youtube">
+            <FontAwesomeIcon icon={faMailBulk} style={{ color: "#4761ff" }} aria-hidden="true" />
           </a>
         )}
 

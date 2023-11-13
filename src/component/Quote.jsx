@@ -59,7 +59,7 @@ export const Quote = () => {
       <div className="container">
         <div className="row g-5">
           <div className="col-lg-6 wow fadeInUp d-flex flex-column justify-content-center justify-content-md-start" data-wow-delay="0.1s">
-            <p className="fs-5 fw-medium text-primary text-md-start">Get A Quote</p>
+            <p className="fs-5 fw-medium text-primary text-md-start">Get A Car</p>
             <h1 className="display-5 mb-4 text-md-start">Need Our Expert Help? We're Here!</h1>
             <p className="text-md-start">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo</p>
             <p className="mb-4 text-md-start">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo</p>
@@ -73,7 +73,7 @@ export const Quote = () => {
             </a>
           </div>
           <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-            <h2 className="mb-4">Get A Free Quote</h2>
+            <h2 className="mb-4">Get A Free Car</h2>
             <form onSubmit={handleSubmit}>
               <div className="row g-3">
                 <div className="col-sm-6">

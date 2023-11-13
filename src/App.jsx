@@ -5,11 +5,25 @@ import { Outlet, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUpLong, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { ThemeContext } from './ThemeContext';
+import instance from '../axiosConfig';
 
 function App() {
+  const location = useLocation().pathname;
+  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
+
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [isWideScreen, setIsWideScreen] = useState(screenWidth > 1400);
-  const location = useLocation().pathname;
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    instance.get('/users/settings')
+      .then(response => {
+        setData(response.data.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
 
   const updateWindowDimensions = () => {
     const newWidth = window.innerWidth;
@@ -37,7 +51,20 @@ function App() {
     </div>
   )
 
-  const { darkMode, toggleDarkMode } = useContext(ThemeContext);
+
+  const sections = [
+    <Jobs />,
+    <Features />,
+    <About />,
+    <Services />,
+    <Products />,
+    <Quote />,
+    <Team />,
+    <Testimonial />,
+    <Blogs />,
+  ]
+
+  console.log(data)
 
   return (
     <>
@@ -47,7 +74,7 @@ function App() {
       {/* To top button & Whatsapp & call*/}
       <div className="to-top-btns">
         {/* Whatsapp Icons Button */}
-        <a href="" className="whatsapp-btn">
+        <a href={`${data.whatsapp}`} className="whatsapp-btn">
           <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 1219.547 1225.016" id="whatsapp">
             <path fill="#E0E0E0" d="M1041.858 178.02C927.206 63.289 774.753.07 612.325 0 277.617 0 5.232 272.298 5.098 606.991c-.039 106.986 27.915 211.42 81.048 303.476L0 1225.016l321.898-84.406c88.689 48.368 188.547 73.855 290.166 73.896h.258.003c334.654 0 607.08-272.346 607.222-607.023.056-162.208-63.052-314.724-177.689-429.463zm-429.533 933.963h-.197c-90.578-.048-179.402-24.366-256.878-70.339l-18.438-10.93-191.021 50.083 51-186.176-12.013-19.087c-50.525-80.336-77.198-173.175-77.16-268.504.111-278.186 226.507-504.503 504.898-504.503 134.812.056 261.519 52.604 356.814 147.965 95.289 95.36 147.728 222.128 147.688 356.948-.118 278.195-226.522 504.543-504.693 504.543z"></path>
             <linearGradient id="a" x1="609.77" x2="609.77" y1="1190.114" y2="21.084" gradientUnits="userSpaceOnUse">
@@ -58,7 +85,7 @@ function App() {
         </a>
 
         {/* To Top Icons Button */}
-        <a href="tel:+201096787085" className="progress-bar-item circle" style={{ fontSize: '2.5rem', width: '50px', height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontWeight: 'lighter' }}>
+        <a href={`tel:{data.phones}`} className="progress-bar-item circle" style={{ fontSize: '2.5rem', width: '50px', height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center', textAlign: 'center', fontWeight: 'lighter' }}>
           <FontAwesomeIcon icon={faPhone} style={{ fontWeight: 'lighter', fontSize: '1.3rem' }} color={darkMode ? 'white' : '#333'} />
         </a>
 
@@ -76,50 +103,20 @@ function App() {
           <HeaderCarousel />
         </div>
 
-        <div className={`snap-section ${isWideScreen && 'center-content'}`} id="section-2" >
-          <Features />
-        </div>
-
-        <div className={`snap-section  ${isWideScreen && 'center-content'}`} id="section-3">
-          <About />
-        </div>
-
-        <div className={`snap-section  ${isWideScreen && 'center-content'}`} id="section-4">
-          <Services />
-        </div>
-
-        <div className={`snap-section  ${isWideScreen && 'center-content'}`} id="section-5">
-          <Products />
-        </div>
-
-
-        <div className={`snap-section  ${isWideScreen && 'center-content'}`} id="section-6">
-          <Quote />
-        </div>
-
-
-        <div className={`snap-section  ${isWideScreen && 'center-content'}`} id="section-7">
-          <Team />
-        </div>
-
-        <div className={`snap-section  ${isWideScreen && 'center-content'}`} id="section-8">
-          <Testimonial />
-        </div>
-
-        <div className={`snap-section  ${isWideScreen && 'center-content'}`} id="section-9">
-          <Blogs />
-        </div>
-
-        <div className={`snap-section  ${isWideScreen && 'center-content'}`} id="section-10">
-          <Jobs />
-        </div>
+        {
+          sections.map((section, index) => (
+            <div className={`snap-section  ${isWideScreen && 'center-content'}`} id={`section-${index + 2}`}>
+              {section}
+            </div>
+          ))
+        }
 
         <div className={`snap-section`} style={{ height: 'max-content' }}>
           <Footer />
           <Copyright />
         </div>
 
-      </div>
+      </div >
 
     </>
   )

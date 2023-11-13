@@ -4,8 +4,10 @@ import { toast } from 'react-toastify';
 const VALIDATION_ERRORS_RESPONSE = 422;
 const UNAUTHORIZED = 401;
 
+// baseURL: 'https://garage-updated-api.eductor.org',
+// baseURL: 'http://garage-be.test',
+
 const instance = axios.create({
-  // baseURL: 'https://garage-updated-api.eductor.org',
   baseURL: 'https://api.ksbgarage.com',
 });
 

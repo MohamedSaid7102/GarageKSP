@@ -44,7 +44,7 @@ export const ProgressBar = () => {
       case '1':
         return <FontAwesomeIcon icon={faHome} width={13} />;
       case '2':
-        return <FontAwesomeIcon icon={faShoppingBag} width={13} />;
+        return <FontAwesomeIcon icon={faBusinessTime} width={13} />;
       case '3':
         return <FontAwesomeIcon icon={faUserMd} width={13} />;
       case '4':
@@ -60,7 +60,7 @@ export const ProgressBar = () => {
       case '9':
         return <FontAwesomeIcon icon={faBlog} width={13} />;
       case '10':
-        return <FontAwesomeIcon icon={faBusinessTime} width={13} />;
+        return <FontAwesomeIcon icon={faShoppingBag} width={13} />;
       default:
         return label; // Default to the label itself if no icon is defined.
     }
@@ -71,23 +71,23 @@ export const ProgressBar = () => {
       case '1':
         return 'Home'
       case '2':
-        return 'Brands'
-      case '3':
-        return 'About Us'
-      case '4':
-        return 'Our Services'
-      case '5':
-        return 'Our Projects'
-      case '6':
-        return 'Get A Quote'
-      case '7':
-        return 'Our Team'
-      case '8':
-        return 'Testimonial'
-      case '9':
-        return 'Blogs'
-      case '10':
         return 'Jobs'
+      case '3':
+        return 'Brands'
+      case '4':
+        return 'About Us'
+      case '5':
+        return 'Our Services'
+      case '6':
+        return 'Our Products'
+      case '7':
+        return 'Get a Car'
+      case '8':
+        return 'Our Team'
+      case '9':
+        return 'Testimonial'
+      case '10':
+        return 'Blogs'
 
       default:
         return label; // Default to the label itself if no icon is defined.
