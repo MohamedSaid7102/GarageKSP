@@ -3,6 +3,8 @@ import { ThemeContext } from '../ThemeContext'
 import instance from '../../axiosConfig'
 import Carousel from 'react-multi-carousel'
 import { Button, Modal } from 'react-bootstrap';
+import { t } from 'i18next';
+import i18n from '../../i18n';
 
 // Service Item Component
 const ServiceItem = ({ iconSrc, title, description, style }) => {
@@ -72,12 +74,12 @@ export const Services = () => {
   };
 
   return (
-    <div className={`container-xxl py-5`}>
+    <div className={`container-xxl py-5`} dir={`${i18n.language == 'ar' ? 'rtl' : 'ltr'}`}>
       <div className={`container`}>
         <div className={`text-center mx-auto wow fadeInUp`} data-wow-delay="0.1s" style={{ maxWidth: '500px' }}>
-          <p className={`fs-5 fw-medium text-primary`}>Our Services</p>
-          <h1 className={`display-5 mb-5`}>Digital Marketing Services that We Offer</h1>
-          {shouldPaginate && <button className={`btn btn-outline-info btn-sm rounded border-0 fw-light`} onClick={openModal}>Show More</button>}
+          <p className={`fs-5 fw-medium text-primary`}>{t('services.title')}</p>
+          <h1 className={`display-5 mb-5`}>{t('services.desc')}</h1>
+          {shouldPaginate && <button className={`btn btn-outline-info btn-sm rounded border-0 fw-light`} onClick={openModal}>{t('showMore')}</button>}
         </div>
         <div className={`row g-4`} style={{ height: '400px' }}>
           {
@@ -115,7 +117,7 @@ export const Services = () => {
       {/* JSX Modal Start */}
       <Modal show={showModal} onHide={closeModal} size="xl">
         <Modal.Header closeButton>
-          <Modal.Title>Our Services</Modal.Title>
+          <Modal.Title>{t('services.title')}</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ height: '80vh' }}>
           {
@@ -138,7 +140,7 @@ export const Services = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={closeModal}>
-            Close
+            {t('close')}
           </Button>
         </Modal.Footer>
       </Modal>
