@@ -3,8 +3,8 @@ import { ThemeContext } from '../ThemeContext'
 import instance from '../../axiosConfig'
 import Carousel from 'react-multi-carousel'
 import { Button, Modal } from 'react-bootstrap';
-import { t } from 'i18next';
 import i18n from '../../i18n';
+import { useTranslation } from 'react-i18next';
 
 // Service Item Component
 const ServiceItem = ({ iconSrc, title, description, style }) => {
@@ -73,6 +73,7 @@ export const Services = () => {
     },
   };
 
+  const {t} = useTranslation();
   return (
     <div className={`container-xxl py-5`} dir={`${i18n.language == 'ar' ? 'rtl' : 'ltr'}`}>
       <div className={`container`}>

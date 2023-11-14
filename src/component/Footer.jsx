@@ -6,6 +6,9 @@ import { DownloadButton } from './common/DownloadButton';
 import { Button, Modal } from 'react-bootstrap';
 import instance from '../../axiosConfig';
 import { NavLink } from 'react-router-dom';
+import i18n from '../../i18n';
+import i18next from 'i18next';
+import {t} from 'i18next'
 
 // Footer component
 export const Footer = () => {
@@ -43,22 +46,22 @@ export const Footer = () => {
 
   return (
     <>
-      <div className="container-fluid  footer mt-5 py-5 wow fadeIn" style={{ backgroundColor: '#222' }} data-wow-delay="0.1s">
+      <div className="container-fluid  footer mt-5 py-5 wow fadeIn" style={{ backgroundColor: '#222' }} data-wow-delay="0.1s" dir={`${i18n.language == 'ar' ? 'rtl' : 'ltr'}`}>
         <div className="container py-5">
           <div className="row g-5">
             <FooterSection
-              title="Our Office"
+              title={t('footer.ourOffice')}
               items={[
-                { icon: <FontAwesomeIcon icon={faLocationDot} aria-hidden="true" style={{ marginRight: '10px' }} />, text: settings?.address },
-                { icon: <FontAwesomeIcon icon={faPhoneVolume} aria-hidden="true" style={{ marginRight: '10px' }} />, text: settings?.phones },
+                { icon: <FontAwesomeIcon icon={faLocationDot} aria-hidden="true" style={{ margin: '0 10px' }} />, text: settings?.address },
+                { icon: <FontAwesomeIcon icon={faPhoneVolume} aria-hidden="true" style={{ margin: '0 10px' }} />, text: settings?.phones },
               ]}
             />
             <FooterSection
-              title="Quick Links"
+              title={t('footer.quickLinks')}
               items={[
-                { text: 'About Us', link: '/about' },
-                { text: 'Contact Us', link: '/contacts' },
-                { text: 'Our Services', link: '/services' },
+                { text: t('about.title'), link: '/about' },
+                { text: t('nav.contactUS'), link: '/contacts' },
+                { text: t('services.title'), link: '/services' },
               ]}
               openModal={openModal}
             />
@@ -69,7 +72,7 @@ export const Footer = () => {
 
       <Modal show={showModal} onHide={closeModal} size="lg">
         <Modal.Header closeButton>
-          <Modal.Title>Terms & Conditions</Modal.Title>
+          <Modal.Title>{t('footer.termsConditions')}</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ height: 'max-content', maxHeight: '80vh' }}>
           {termsConditions && (
@@ -81,7 +84,7 @@ export const Footer = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={closeModal}>
-            Close
+            {t('close')}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -94,13 +97,13 @@ export const Footer = () => {
 const FooterSection = ({ title, items, openModal }) => {
   return (
     <div className="col-lg-3 col-md-6 text-lg-start">
-      <h4 className="text-white mb-4">{title}</h4>
-      <ul className="list-unstyled d-flex flex-column justify-content-center">
+      <h4 className="text-white mb-4" style={{textAlign: i18next.language == 'ar' ?'right':'left'}}>{title}</h4>
+      <ul className="list-unstyled d-flex flex-column justify-content-center" style={{paddingInlineStart: 0}}>
         {items.map((item, index) => (
-          <li key={index} className="mb-2">
+          <li key={index} className="mb-2" style={{textAlign: i18next.language == 'ar' ?'right':'left'}}>
             {item.icon && item.icon}
             {item.link ? (
-              <NavLink to={item.link} className="btn btn-link text-decoration-none text-center text-lg-start">
+              <NavLink to={item.link} className="btn btn-link text-decoration-none" style={{textAlign: i18next.language == 'ar' ?'right':'left'}}>
                 {item.text}
               </NavLink>
             ) : (
@@ -111,9 +114,9 @@ const FooterSection = ({ title, items, openModal }) => {
         ))}
       </ul>
       {
-        title == 'Quick Links' && (
-          <a href={`#`} onClick={openModal} className="btn btn-link text-decoration-none text-center text-lg-start">
-            Terms & Conditions
+        title == t('footer.quickLinks') && (
+          <a href={`#`} onClick={openModal} className="btn btn-link text-decoration-none" style={{textAlign: i18next.language == 'ar' ?'right':'left'}}>
+          {t('footer.termsConditions')}
           </a>
         )
       }
@@ -125,7 +128,7 @@ const FooterSection = ({ title, items, openModal }) => {
 const FooterNewsletter = ({ data }) => {
   return (
     <div className="col-lg-3 col-md-6">
-      <h4 className="text-white mb-4 text-lg-start">Newsletter</h4>
+      <h4 className="text-white mb-4" style={{textAlign: i18next.language == 'ar' ? 'right' : 'left'}}>{t('footer.newsLetter')}</h4>
       <div className="position-relative w-100">
         <input className="text-light form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email" />
         <button type="button" className="btn btn-light py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>

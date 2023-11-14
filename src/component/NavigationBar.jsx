@@ -138,7 +138,7 @@ export const NavigationBar = () => {
                   to={'/contacts'}
                   className={`${navLinkStatus('/contacts')}`}
                 >
-                  {t('nav.contacts')}
+                  {t('nav.contactUS')}
                 </NavLink>
               </div>
 

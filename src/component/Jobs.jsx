@@ -162,7 +162,7 @@ export const Jobs = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={closeJobListModal}>
-            {t('jobs.apply')}
+            {t('close')}
           </Button>
         </Modal.Footer>
       </Modal>
