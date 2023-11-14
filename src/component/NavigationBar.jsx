@@ -6,9 +6,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { LanguageSelector } from "./LanguageSelector";
 import LOGO from '../assets/KSB_LOGO.png';
+import { useTranslation } from "react-i18next";
 
 export const NavigationBar = () => {
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
+  const { t } = useTranslation(); // Access translations
 
   const location = useLocation();
   const currentURL = location.pathname;
@@ -43,7 +45,6 @@ export const NavigationBar = () => {
     return darkMode ? 'nav-item nav-link text-white font-weight-bold' : 'nav-item nav-link text-dark';
   }
 
-
   const [_, setBodyDarkMode] = useState(false);
 
   useEffect(() => {
@@ -72,13 +73,13 @@ export const NavigationBar = () => {
 
             {/* Mobile Logo */}
             <Link to={'/'} className={`navbar-brand d-lg-none text-decoration-none`}>
-              <span className={`sr-only`}>Garag KSB</span>
-              <p className={`fw-bold m-0`}>Garag KSB</p>
+              <span className={`sr-only`}>{t('logoName')}</span>
+              <p className={`fw-bold m-0`}>{t('logoName')}</p>
             </Link>
 
             {/* Desktop Logo */}
             <Link to="/" aria-label="Home Page" className="desktop-logo" style={{ textDecoration: 'none', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <h2 className={`${darkMode ? 'text-white' : 'text-dark'} m-0`} style={{ fontSize: '1.5rem', }}>Garag KSB</h2>
+              <h2 className={`${darkMode ? 'text-white' : 'text-dark'} m-0`} style={{ fontSize: '1.5rem', }}>{t('logoName')}</h2>
               <img className="d-block w-100" src={LOGO} style={{ maxWidth: '60px' }} alt="Image" />
             </Link>
 
@@ -98,13 +99,12 @@ export const NavigationBar = () => {
 
               <div className={`navbar-nav mx-lg-2`}>
 
-
                 <NavLink
                   onClick={closeMobileNavigation}
                   to={'/'}
                   className={`${navLinkStatus('/')}`}
                 >
-                  Home
+                  {t('nav.home')}
                 </NavLink>
 
                 <NavLink
@@ -112,7 +112,7 @@ export const NavigationBar = () => {
                   to={'/about'}
                   className={`${navLinkStatus('/about')}`}
                 >
-                  About
+                  {t('nav.about')}
                 </NavLink>
 
                 <NavLink
@@ -120,7 +120,7 @@ export const NavigationBar = () => {
                   to={'/services'}
                   className={`${navLinkStatus('/services')}`}
                 >
-                  Services
+                  {t('nav.services')}
                 </NavLink>
 
                 <NavLink
@@ -128,7 +128,7 @@ export const NavigationBar = () => {
                   to={'/products'}
                   className={`${navLinkStatus('/products')}`}
                 >
-                  products
+                  {t('nav.products')}
                 </NavLink>
 
                 <NavLink
@@ -136,20 +136,12 @@ export const NavigationBar = () => {
                   to={'/contacts'}
                   className={`${navLinkStatus('/contacts')}`}
                 >
-                  Contacts
+                  {t('nav.contacts')}
                 </NavLink>
-
-                {/*<NavLink
-                  onClick={closeMobileNavigation}
-                  to={'/sendcv'}
-                  className={`${navLinkStatus('/sendcv')}`}
-                >
-                  Send CV
-                </NavLink>*/}
               </div>
 
               <div className={`ms-auto d-none d-lg-block`} style={{ marginRight: '20px' }}>
-                <a href="#section-6" className={`btn btn-primary rounded-pill py-2 px-3`}>Get A Car</a>
+                <a href="#section-6" className={`btn btn-primary rounded-pill py-2 px-3`}>{t('nav.getACar')}</a>
               </div>
 
               {/* Darkmode button */}

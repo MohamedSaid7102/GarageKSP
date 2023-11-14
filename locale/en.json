@@ -1,5 +1,5 @@
 {
-  "showMore": "Show More"
+  "showMore": "Show More",
   "exploreMore": "Explore More",
   "logoName": "Garag KSB",
   "close": "Close",
@@ -32,27 +32,27 @@
   },
 
   "headerCarousel": {
-    "discount": "Discount",
+    "discount": "Discount"
   },
 
   "jobs": {
     "title": "Jobs",
     "experience": "Experience",
     "apply": "Apply",
-    "jobNotAvailable": "This Job is Not Available",
+    "jobNotAvailable": "This Job is Not Available"
   },
 
   "brands": {
-    "title": "Brands",
+    "title": "Brands"
   },
 
   "about": {
-    "title": "About Us",
+    "title": "About Us"
   },
 
   "services": {
     "title": "Our Services",
-    "desc": "Digital Marketing Services that We Offer",
+    "desc": "Digital Marketing Services that We Offer"
   },
 
   "ourProducts": {
@@ -60,12 +60,12 @@
     "desc": "We've Done Lot's of Awesome Products",
     "quantity": "Quantity",
     "sellingPrice": "Selling Price",
-    "productList": "Product List",
+    "productList": "Product List"
   },
 
   "getACar": {
     "title": "Get A Car",
-    "dec": "Need Our Expert Help? We're Here!",
+    "dec": "Need Our Expert Help? We're Here!"
   },
 
   "team": {

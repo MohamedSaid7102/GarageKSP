@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBlog, faBusinessTime, faHome, faMessage, faPeopleGroup, faProjectDiagram, faShoppingBag, faUserMd } from "@fortawesome/free-solid-svg-icons";
 import { faServicestack, faTeamspeak } from "@fortawesome/free-brands-svg-icons";
+import { useTranslation } from "react-i18next";
 
 export const ProgressBar = () => {
   const [activeSection, setActiveSection] = useState(0);
@@ -66,28 +67,30 @@ export const ProgressBar = () => {
     }
   };
 
+  const { t } = useTranslation(); // Access translations
+
   const labelToTitle = (label) => {
     switch (label) {
       case '1':
-        return 'Home'
+        return t('nav.home')
       case '2':
-        return 'Jobs'
+        return t('jobs.title')
       case '3':
-        return 'Brands'
+        return t('brands.title')
       case '4':
-        return 'About Us'
+        return t('about.title')
       case '5':
-        return 'Our Services'
+        return t('services.title')
       case '6':
-        return 'Our Products'
+        return t('ourProducts.title')
       case '7':
-        return 'Get a Car'
+        return t('getACar.title')
       case '8':
-        return 'Our Team'
+        return t('team.title')
       case '9':
-        return 'Testimonial'
+        return t('testimonial.title')
       case '10':
-        return 'Blogs'
+        return t('blogs.title')
 
       default:
         return label; // Default to the label itself if no icon is defined.

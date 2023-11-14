@@ -1,9 +1,10 @@
 import React, { createContext, useState } from 'react';
 import enFlag from './assets/img/icon/en.png';
+import i18n from '../i18n';
 
 export const LanguageContext = createContext({
   selectedLanguage: { code: 'en', name: 'English', flag: enFlag },
-  changeLanguage: () => { },
+  changeLanguage: () => {},
 });
 
 export const LanguageProvider = ({ children }) => {
@@ -11,6 +12,7 @@ export const LanguageProvider = ({ children }) => {
 
   const changeLanguage = (newLanguage) => {
     setSelectedLanguage(newLanguage);
+    i18n.changeLanguage(newLanguage.code); // Set the language using i18n
   };
 
   return (

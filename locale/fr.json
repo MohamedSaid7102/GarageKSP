@@ -1,0 +1,96 @@
+{
+  "showMore": "Voir plus",
+  "exploreMore": "Explorer davantage",
+  "logoName": "Garag KSB",
+  "close": "Fermer",
+  "more": "Plus",
+  "submit": "Soumettre",
+
+  "form": {
+    "name": "Nom",
+    "email": "E-mail",
+    "skills": "Compétences",
+    "contactInfo": "Coordonnées",
+    "mobile": "Votre téléphone portable",
+    "message": "Message",
+    "signup": "S'inscrire",
+    "signin": "Se connecter"
+  },
+
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "services": "Services",
+    "products": "Produits",
+    "contacts": "Contacts",
+    "getACar": "Obtenir une voiture",
+    "lang": {
+      "en": "en",
+      "ar": "ar",
+      "fr": "fr"
+    }
+  },
+
+  "headerCarousel": {
+    "discount": "Remise"
+  },
+
+  "jobs": {
+    "title": "Emplois",
+    "experience": "Expérience",
+    "apply": "Postuler",
+    "jobNotAvailable": "Cet emploi n'est pas disponible"
+  },
+
+  "brands": {
+    "title": "Marques"
+  },
+
+  "about": {
+    "title": "À propos de nous"
+  },
+
+  "services": {
+    "title": "Nos services",
+    "desc": "Services de marketing numérique que nous proposons"
+  },
+
+  "ourProducts": {
+    "title": "Nos produits",
+    "desc": "Nous avons réalisé beaucoup de produits impressionnants",
+    "quantity": "Quantité",
+    "sellingPrice": "Prix de vente",
+    "productList": "Liste de produits"
+  },
+
+  "getACar": {
+    "title": "Obtenir une voiture",
+    "dec": "Besoin de notre aide d'experts ? Nous sommes là !"
+  },
+
+  "team": {
+    "title": "Notre équipe",
+    "desc": "Nos experts sont prêts à vous aider"
+  },
+
+  "testimonial": {
+    "title": "Témoignage",
+    "desc": "Ce que disent les clients de nos services !"
+  },
+
+  "blogs": {
+    "title": "Blogs",
+    "allBlogs": "Tous les blogs"
+  },
+
+  "footer": {
+    "ourOffice": "Notre bureau",
+    "quickLinks": "Liens rapides",
+    "newsLetter": "Lettre d'information",
+    "termsConditions": "Conditions générales"
+  },
+
+  "copyRight": {
+    "title": "© Conçu par Dr. Code, tous droits réservés."
+  }
+}
