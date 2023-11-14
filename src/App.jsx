@@ -43,7 +43,7 @@ function App() {
 
 
   if (location !== '/') return (
-    <div className="content-wrapper" dir={`${i18n.language == 'ar' ? 'rtl' : 'ltr'}`}>
+    <div className="content-wrapper">
       {/*< TopBar />*/}
       <NavigationBar />
       <hr />
@@ -67,7 +67,7 @@ function App() {
   ]
 
   return (
-    <div dir={`${i18n.language == 'ar' ? 'rtl' : 'ltr'}`}>
+    <div>
 
       <ProgressBar />
 

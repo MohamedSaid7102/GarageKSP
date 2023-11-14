@@ -8,6 +8,7 @@ import 'swiper/css/effect-cards';
 import { useContext, useEffect, useState } from 'react';
 import { ThemeContext } from '../ThemeContext';
 import instance from '../../axiosConfig';
+import { t } from 'i18next';
 
 // TestimonialItem component
 const TestimonialItem = ({ imageSrc, altText, content, clientName, profession }) => {
@@ -48,8 +49,8 @@ export const Testimonial = () => {
         data-wow-delay="0.1s"
         style={{ maxWidth: '500px' }}
       >
-        <p className="fs-5 fw-medium text-primary">Testimonial</p>
-        <h1 className="display-5 mb-5">What Clients Say About Our Services!</h1>
+        <p className="fs-5 fw-medium text-primary">{t('testimonial.title')}</p>
+        <h1 className="display-5 mb-5">{t('testimonial.desc')}</h1>
       </div>
 
       {/* Testimonial Cards */}

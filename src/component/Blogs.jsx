@@ -4,6 +4,7 @@ import instance from '../../axiosConfig';
 import { getFirstWords } from '../../utils';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { t } from 'i18next';
 
 export const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -77,8 +78,8 @@ export const Blogs = () => {
   return (
     <Container>
       <div className={`text-center mx-auto wow fadeInUp d-flex ${shouldPaginate ? 'justify-content-between' : 'justify-content-center'}`} data-wow-delay="0.1s" style={{ marginBottom: '3rem' }}>
-        <p className={`fs-2 fw-medium text-primary`}>Blogs</p>
-        {shouldPaginate && <button className={`btn btn-outline-info btn-sm rounded border-0 fw-light`} onClick={openBlogListModal}>Show More</button>}
+        <p className={`fs-2 fw-medium text-primary`}>{t('blogs.title')}</p>
+        {shouldPaginate && <button className={`btn btn-outline-info btn-sm rounded border-0 fw-light`} onClick={openBlogListModal}>{t('showMore')}</button>}
       </div>
 
 
@@ -89,7 +90,7 @@ export const Blogs = () => {
             <Card.Body>
               <Card.Title>{blog.title}</Card.Title>
               <Card.Text>{getFirstWords(blog.description, 9)}</Card.Text>
-              <Button variant="primary" onClick={() => openModal(blog.id)} style={{ width: '100%' }}>Read More</Button>
+              <Button variant="primary" onClick={() => openModal(blog.id)} style={{ width: '100%' }}>{t('showMore')}</Button>
             </Card.Body>
           </Card>
         ))}
@@ -112,7 +113,7 @@ export const Blogs = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={closeModal}>
-            Close
+            {t('close')}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -120,7 +121,6 @@ export const Blogs = () => {
       {/* Blog list modal */}
       <Modal show={showBloglistModal} onHide={closeBlogListModal} size="xl">
         <Modal.Header closeButton>
-          <Modal.Title>All Blogs</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ height: '80vh' }}>
           {blogs && (
@@ -131,7 +131,7 @@ export const Blogs = () => {
                   <Card.Body>
                     <Card.Title>{blog.title}</Card.Title>
                     <Card.Text>{getFirstWords(blog.description, 9)}</Card.Text>
-                    <Button variant="primary" onClick={() => openModal(blog.id)} style={{ width: '100%' }}>Read More</Button>
+                    <Button variant="primary" onClick={() => openModal(blog.id)} style={{ width: '100%' }}>{t('showMore')}</Button>
                   </Card.Body>
                 </Card>
               ))}
@@ -140,7 +140,7 @@ export const Blogs = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={closeBlogListModal}>
-            Close
+            {t('close')}
           </Button>
         </Modal.Footer>
       </Modal>
