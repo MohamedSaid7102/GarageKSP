@@ -4,9 +4,10 @@ import instance from '../../axiosConfig';
 import { getFirstWords } from '../../utils';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 export const Blogs = () => {
+  const {t} = useTranslation();
   const [blogs, setBlogs] = useState([]);
   const [selectedBlog, setSelectedBlog] = useState(null);
   const [selectedBlogData, setSelectedBlogData] = useState(null);

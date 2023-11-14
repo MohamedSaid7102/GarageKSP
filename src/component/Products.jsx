@@ -6,13 +6,15 @@ import project4Image from '../assets/img/project-4.jpg'
 import Carousel from 'react-multi-carousel';
 import { useEffect, useState } from 'react';
 import instance from '../../axiosConfig';
-import { t } from 'i18next';
 import i18n from '../../i18n';
+import { useTranslation } from 'react-i18next';
 
 
 // TODO: Problem in showing off projects in carsoule
 
 const ProductItem = ({ quantity, sellingPrice, imgSrc, title, description, openModal, style }) => {
+  const {t} = useTranslation();
+
   return (
     <div className="project-item card-item-transition-effect m-1 m-sm-3 border" style={{ ...style }} dir={`${i18n.language == 'ar' ? 'rtl' : 'ltr'}`}>
       <div className="position-relative">
@@ -41,7 +43,7 @@ const ProductItem = ({ quantity, sellingPrice, imgSrc, title, description, openM
 }
 
 const ProductWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsModal, shouldPaginate, setShouldPaginate }) => {
-
+  const {t} = useTranslation();
   const [showModal, setShowModal] = useState(false);
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -200,7 +202,7 @@ const ProductWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsMod
 }
 
 export const Products = () => {
-
+  const {t} = useTranslation();
   /* Modal Logic Start */
   const [showProjectsModal, setShowProjectsModal] = useState(false);
 

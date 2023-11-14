@@ -8,11 +8,11 @@ import 'swiper/css/effect-cards';
 import { useContext, useEffect, useState } from 'react';
 import { ThemeContext } from '../ThemeContext';
 import instance from '../../axiosConfig';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 // TestimonialItem component
 const TestimonialItem = ({ imageSrc, altText, content, clientName, profession }) => {
-
+    const {t} = useTranslation();
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
   return (
     <div className={`testimonial-item rounded p-4 p-lg-5 mb-5 d-flex flex-column justify-content-center justify-content-lg-start bg-white ${darkMode && 'bg-secondary'}`}>
@@ -27,6 +27,7 @@ const TestimonialItem = ({ imageSrc, altText, content, clientName, profession })
 // Testimonial section component
 export const Testimonial = () => {
 
+    const {t} = useTranslation();
   const [data, setData] = useState([]);
 
   useEffect(() => {

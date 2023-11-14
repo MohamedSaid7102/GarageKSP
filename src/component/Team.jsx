@@ -4,12 +4,12 @@ import { faFacebookF, faInstagram, faLinkedinIn, faTiktok, faWhatsapp, faYoutube
 import instance from '../../axiosConfig'
 import Carousel from 'react-multi-carousel';
 import { Button, Modal } from 'react-bootstrap';
-import { t } from 'i18next';
 import i18n from '../../i18n';
+import { useTranslation } from 'react-i18next';
 
 
 const FilterSection = ({ selectedFilters, setSelectedFilters }) => {
-
+  const {t} = useTranslation();
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -48,6 +48,8 @@ const FilterSection = ({ selectedFilters, setSelectedFilters }) => {
 
 // TeamMember component
 const TeamMember = ({ imgSrc, name, role, facebook, instagram, linkedin, whatsApp, youtube, tiktok, style }) => {
+
+  const {t} = useTranslation();
   return (
     <div className="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s" style={{ ...style }}>
       <div className="card-item-transition-effect team-item rounded overflow-hidden pb-4">
@@ -106,6 +108,7 @@ const TeamMember = ({ imgSrc, name, role, facebook, instagram, linkedin, whatsAp
 // Team component
 export const Team = () => {
 
+  const {t} = useTranslation();
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [selectedFilters, setSelectedFilters] = useState([]);

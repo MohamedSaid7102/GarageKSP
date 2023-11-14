@@ -8,10 +8,11 @@ import instance from '../../axiosConfig';
 import { NavLink } from 'react-router-dom';
 import i18n from '../../i18n';
 import i18next from 'i18next';
-import {t} from 'i18next'
+import { useTranslation } from 'react-i18next';
 
 // Footer component
 export const Footer = () => {
+  const {t} = useTranslation();
   const [showModal, setShowModal] = useState(false);
   const [termsConditions, setTermsConditions] = useState(null);
   const [settings, setSettings] = useState()
@@ -95,6 +96,8 @@ export const Footer = () => {
 
 // FooterSection component
 const FooterSection = ({ title, items, openModal }) => {
+
+  const {t} = useTranslation();
   return (
     <div className="col-lg-3 col-md-6 text-lg-start">
       <h4 className="text-white mb-4" style={{textAlign: i18next.language == 'ar' ?'right':'left'}}>{title}</h4>
@@ -126,6 +129,8 @@ const FooterSection = ({ title, items, openModal }) => {
 
 // FooterNewsletter component
 const FooterNewsletter = ({ data }) => {
+
+  const {t} = useTranslation();
   return (
     <div className="col-lg-3 col-md-6">
       <h4 className="text-white mb-4" style={{textAlign: i18next.language == 'ar' ? 'right' : 'left'}}>{t('footer.newsLetter')}</h4>

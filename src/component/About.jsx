@@ -2,11 +2,11 @@ import { useContext, useEffect, useState } from 'react';
 import { ThemeContext } from '../ThemeContext';
 import instance from '../../axiosConfig';
 import i18n from '../../i18n';
-import { t } from 'i18next';
+import { useTranslation } from 'react-i18next';
 
 export const About = () => {
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
-
+  const {t} = useTranslation();
   let [data, setData] = useState([]);
 
   useEffect(() => {

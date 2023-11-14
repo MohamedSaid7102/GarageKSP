@@ -4,12 +4,12 @@ import { ThemeContext } from '../ThemeContext'
 import instance from '../../axiosConfig'
 import Carousel from 'react-multi-carousel'
 import { Button, Modal } from 'react-bootstrap'
-import { t } from 'i18next'
 import i18n from '../../i18n'
+import { useTranslation } from 'react-i18next'
 
 export const Features = () => {
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
-
+  const {t} = useTranslation();
   const [data, setData] = useState([]);
 
   /* Modal Logic Start */

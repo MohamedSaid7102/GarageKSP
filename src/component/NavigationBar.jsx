@@ -147,7 +147,7 @@ export const NavigationBar = () => {
               </div>
 
               {/* Darkmode button */}
-              <button onClick={toggleTheme} style={{ borderRadius: '100%', border: '1px solid #eee', width: '40px', height: '40px' }}>
+              <button onClick={toggleTheme} style={{ borderRadius: '100%', border: '1px solid #eee', width: '40px', height: '40px', margin: '0 15px' }}>
                 {darkMode ? <FontAwesomeIcon icon={faSun} size="lg" /> : <FontAwesomeIcon icon={faMoon} />}
               </button>
 

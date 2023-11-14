@@ -3,12 +3,12 @@ import { faPhoneVolume } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import instance from '../../axiosConfig';
 import { toast } from 'react-toastify';
-import { t } from 'i18next';
 import i18n from '../../i18n';
+import { useTranslation } from 'react-i18next';
 
 export const Quote = () => {
   const [settings, setSettings] = useState()
-
+  const {t} = useTranslation();
   useEffect(() => {
     instance.get('/users/settings')
       .then(res => {

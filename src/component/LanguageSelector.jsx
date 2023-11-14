@@ -24,7 +24,7 @@ export const LanguageSelector = () => {
 
   return (
     <div className="collapse navbar-collapse shadow-lg" id="navbarNavDarkDropdown" style={{ flexGrow: 0, marginLeft: '20px' }}>
-      <ul className="navbar-nav">
+      <ul className="navbar-nav" style={{padding: '0'}}>
         <li className="nav-item dropdown">
           <button className={`btn ${darkMode ? 'btn-dark' : ''} dropdown-toggle`} data-bs-toggle="dropdown" aria-expanded="false">
             < img src={selectedLanguage.flag} alt={`${selectedLanguage.name} flag`} style={{ maxWidth: '20px' }} />
