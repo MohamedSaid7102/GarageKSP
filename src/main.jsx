@@ -1,19 +1,26 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { About, Contacts, Home, NotFound, Products, SendCV, Services } from './routes';
-import App from './App.jsx'
-
+import React from "react";
+import ReactDOM from "react-dom/client";
 import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+  About,
+  Contacts,
+  Home,
+  NotFound,
+  Products,
+  SendCV,
+  Services,
+} from "./routes";
+import App from "./App.jsx";
 
-import { ThemeProvider } from './ThemeContext'; // Import your ThemeProvider
-import { LanguageProvider } from './LanguageContext';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { ThemeProvider } from "./ThemeContext"; // Import your ThemeProvider
+import { LanguageProvider } from "./LanguageContext";
+
+import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import 'font-awesome/css/font-awesome.min.css';
+import "font-awesome/css/font-awesome.min.css";
+import { axiosInterceptor } from "../axiosInterceptor.js";
+import { Toaster } from "react-hot-toast";
 
 const router = createBrowserRouter([
   {
@@ -23,38 +30,39 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <Home />
+        element: <Home />,
       },
       {
         path: "about",
-        element: <About />
+        element: <About />,
       },
       {
         path: "services",
-        element: <Services />
+        element: <Services />,
       },
       {
         path: "products",
-        element: <Products />
+        element: <Products />,
       },
       {
         path: "contacts",
-        element: <Contacts />
+        element: <Contacts />,
       },
       {
-        path: 'sendcv/:jobId',
-        element: <SendCV />
-      }
+        path: "sendcv/:jobId",
+        element: <SendCV />,
+      },
     ],
   },
 ]);
-
-ReactDOM.createRoot(document.getElementById('root')).render(
+axiosInterceptor();
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ThemeProvider>
       <LanguageProvider>
+        <Toaster position="top-center" />
         <RouterProvider router={router} />
       </LanguageProvider>
     </ThemeProvider>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Modal, Button, Card, Container } from 'react-bootstrap';
-import instance from '../../axiosConfig';
-import { getFirstWords } from '../../utils';
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+import React, { useState, useEffect, useRef } from "react";
+import { Modal, Button, Card, Container } from "react-bootstrap";
+import instance from "../../axiosConfig";
+import { getFirstWords } from "../../utils";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 
 export const Blogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -11,27 +11,29 @@ export const Blogs = () => {
   const [selectedBlogData, setSelectedBlogData] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [showBloglistModal, setShowBloglistModal] = useState(false);
-
+  const blogsRef = useRef(true);
   useEffect(() => {
-    instance.get('/users/blogs')
-      .then(response => {
+    instance
+      .get("/users/blogs")
+      .then((response) => {
         setBlogs(response.data.data);
       })
-      .catch(error => {
-        console.error('Error fetching data:', error);
+      .catch((error) => {
+        console.error("Error fetching data:", error);
       });
-  }, []);
+  }, [blogsRef]);
 
   const shouldPaginate = blogs.length > 3;
 
   useEffect(() => {
     if (selectedBlog !== null) {
-      instance.get(`/users/blogs/${selectedBlog}`)
-        .then(response => {
+      instance
+        .get(`/users/blogs/${selectedBlog}`)
+        .then((response) => {
           setSelectedBlogData(response.data.data);
         })
-        .catch(error => {
-          console.error('Error fetching data:', error);
+        .catch((error) => {
+          console.error("Error fetching data:", error);
         });
     }
   }, [selectedBlog]);
@@ -54,7 +56,6 @@ export const Blogs = () => {
     setShowBloglistModal(false);
   };
 
-
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -76,20 +77,50 @@ export const Blogs = () => {
 
   return (
     <Container>
-      <div className={`text-center mx-auto wow fadeInUp d-flex ${shouldPaginate ? 'justify-content-between' : 'justify-content-center'}`} data-wow-delay="0.1s" style={{ marginBottom: '3rem' }}>
+      <div
+        className={`text-center mx-auto wow fadeInUp d-flex ${
+          shouldPaginate ? "justify-content-between" : "justify-content-center"
+        }`}
+        data-wow-delay="0.1s"
+        style={{ marginBottom: "3rem" }}
+      >
         <p className={`fs-2 fw-medium text-primary`}>Blogs</p>
-        {shouldPaginate && <button className={`btn btn-outline-info btn-sm rounded border-0 fw-light`} onClick={openBlogListModal}>Show More</button>}
+        {shouldPaginate && (
+          <button
+            className={`btn btn-outline-info btn-sm rounded border-0 fw-light`}
+            onClick={openBlogListModal}
+          >
+            Show More
+          </button>
+        )}
       </div>
 
-
-      <Carousel responsive={responsive} infinite={true} showDots={true} autoPlaySpeed={4000} autoPlay={true} keyBoardControl={true} className="pb-5">
-        {blogs.reverse().map(blog => (
-          <Card key={blog.id} style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={blog.blogImage} style={{ height: '15rem', objectFit: 'cover' }} />
+      <Carousel
+        responsive={responsive}
+        infinite={true}
+        showDots={true}
+        autoPlaySpeed={4000}
+        autoPlay={true}
+        keyBoardControl={true}
+        className="pb-5"
+      >
+        {blogs.reverse().map((blog) => (
+          <Card key={blog.id} style={{ width: "18rem" }}>
+            <Card.Img
+              variant="top"
+              src={blog.blogImage}
+              style={{ height: "15rem", objectFit: "cover" }}
+            />
             <Card.Body>
               <Card.Title>{blog.title}</Card.Title>
               <Card.Text>{getFirstWords(blog.description, 9)}</Card.Text>
-              <Button variant="primary" onClick={() => openModal(blog.id)} style={{ width: '100%' }}>Read More</Button>
+              <Button
+                variant="primary"
+                onClick={() => openModal(blog.id)}
+                style={{ width: "100%" }}
+              >
+                Read More
+              </Button>
             </Card.Body>
           </Card>
         ))}
@@ -100,10 +131,14 @@ export const Blogs = () => {
         <Modal.Header closeButton>
           <Modal.Title>{selectedBlogData?.title}</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{ height: '80vh' }}>
+        <Modal.Body style={{ height: "80vh" }}>
           {selectedBlogData && (
             <>
-              <img src={selectedBlogData.blogImage} alt={selectedBlogData.title} style={{ width: '100%', height: '70%', objectFit: 'contain' }} />
+              <img
+                src={selectedBlogData.blogImage}
+                alt={selectedBlogData.title}
+                style={{ width: "100%", height: "70%", objectFit: "contain" }}
+              />
               <h1>{selectedBlogData.title}</h1>
               <p>{selectedBlogData.created_at}</p>
               <p>{selectedBlogData.description}</p>
@@ -122,16 +157,26 @@ export const Blogs = () => {
         <Modal.Header closeButton>
           <Modal.Title>All Blogs</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{ height: '80vh' }}>
+        <Modal.Body style={{ height: "80vh" }}>
           {blogs && (
             <div className="d-flex justify-content-center align-items-center flex-wrap gap-3 mt-5">
-              {blogs.map(blog => (
-                <Card key={blog.id} style={{ width: '18rem' }}>
-                  <Card.Img variant="top" src={blog.blogImage} style={{ height: '15rem', objectFit: 'cover' }} />
+              {blogs.map((blog) => (
+                <Card key={blog.id} style={{ width: "18rem" }}>
+                  <Card.Img
+                    variant="top"
+                    src={blog.blogImage}
+                    style={{ height: "15rem", objectFit: "cover" }}
+                  />
                   <Card.Body>
                     <Card.Title>{blog.title}</Card.Title>
                     <Card.Text>{getFirstWords(blog.description, 9)}</Card.Text>
-                    <Button variant="primary" onClick={() => openModal(blog.id)} style={{ width: '100%' }}>Read More</Button>
+                    <Button
+                      variant="primary"
+                      onClick={() => openModal(blog.id)}
+                      style={{ width: "100%" }}
+                    >
+                      Read More
+                    </Button>
                   </Card.Body>
                 </Card>
               ))}
@@ -144,8 +189,6 @@ export const Blogs = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-
-
     </Container>
   );
 };

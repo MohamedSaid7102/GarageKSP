@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import instance from "../../axiosConfig";
 import { TagsInput } from "react-tag-input-component";
 
 export const SendCV = () => {
   const { jobId } = useParams();
-
+  const navigate = useNavigate();
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [contactInfo, setContactInfo] = useState([]);
 
@@ -18,7 +18,7 @@ export const SendCV = () => {
     cv: null,
   });
 
-  const resetFormDta = () => {
+  const resetFormData = () => {
     setFormData({
       job_announcement_id: jobId,
       name: "",
@@ -85,7 +85,8 @@ export const SendCV = () => {
 
       await instance.post("/users/applicants", formDataToSend);
       // console.log("Message submitted:", response.data);
-      resetFormDta();
+      resetFormData();
+      navigate(-1, { replace: true });
     } catch (error) {
       console.error("Error sending data:", error);
     }
@@ -130,6 +131,7 @@ export const SendCV = () => {
         <div className="mb-3">
           <input
             type="number"
+            min={0}
             className="form-control"
             name="experience_years"
             value={formData.experience_years}

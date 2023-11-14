@@ -1,46 +1,47 @@
-import React, { useEffect, useState } from 'react';
-import { faPhoneVolume } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import instance from '../../axiosConfig';
-import { toast } from 'react-toastify';
+import React, { useEffect, useRef, useState } from "react";
+import { faPhoneVolume } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import instance from "../../axiosConfig";
+import { toast } from "react-toastify";
 
 export const Quote = () => {
-  const [settings, setSettings] = useState()
-
+  const [settings, setSettings] = useState();
+  const settingsRef = useRef(true);
   useEffect(() => {
-    instance.get('/users/settings')
-      .then(res => {
-        setSettings(res.data.data)
+    instance
+      .get("/users/settings")
+      .then((res) => {
+        setSettings(res.data.data);
       })
-      .catch(error => {
-        console.error('Error fetching dta: ', error)
-      })
-  }, []);
+      .catch((error) => {
+        console.error("Error fetching dta: ", error);
+      });
+  }, [settingsRef]);
 
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    mobile: '',
-    service_id: 'Digital Marketing',
-    message: '',
+    name: "",
+    email: "",
+    mobile: "",
+    service_id: "Digital Marketing",
+    message: "",
   });
 
   const services = [
-    { id: '1', name: 'Digital Marketing' },
-    { id: '2', name: 'Social Marketing' },
-    { id: '3', name: 'Content Marketing' },
-    { id: '4', name: 'E-mail Marketing' },
+    { id: "1", name: "Digital Marketing" },
+    { id: "2", name: "Social Marketing" },
+    { id: "3", name: "Content Marketing" },
+    { id: "4", name: "E-mail Marketing" },
   ];
 
   const resetFormData = () => {
     setFormData({
-      name: '',
-      email: '',
-      mobile: '',
-      service_id: 'Digital Marketing',
-      message: '',
-    })
-  }
+      name: "",
+      email: "",
+      mobile: "",
+      service_id: "Digital Marketing",
+      message: "",
+    });
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,31 +54,52 @@ export const Quote = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (formData.name == '' || formData.email == '' || formData.mobile == '' || formData.message == '')
+    if (
+      formData.name == "" ||
+      formData.email == "" ||
+      formData.mobile == "" ||
+      formData.message == ""
+    )
       return;
 
     try {
-      const response = await instance.post('/users/quotes', formData);
-      console.log('Quote submitted:', response.data);
+      const response = await instance.post("/users/quotes", formData);
+      console.log("Quote submitted:", response.data);
       resetFormData();
     } catch (error) {
-      console.error('Error submitting quote:', error);
+      console.error("Error submitting quote:", error);
     }
-
   };
 
   return (
     <div className="container-xxl py-5">
       <div className="container">
         <div className="row g-5">
-          <div className="col-lg-6 wow fadeInUp d-flex flex-column justify-content-center justify-content-md-start" data-wow-delay="0.1s">
-            <p className="fs-5 fw-medium text-primary text-md-start">Get A Car</p>
-            <h1 className="display-5 mb-4 text-md-start">Need Our Expert Help? We're Here!</h1>
+          <div
+            className="col-lg-6 wow fadeInUp d-flex flex-column justify-content-center justify-content-md-start"
+            data-wow-delay="0.1s"
+          >
+            <p className="fs-5 fw-medium text-primary text-md-start">
+              Get A Car
+            </p>
+            <h1 className="display-5 mb-4 text-md-start">
+              Need Our Expert Help? We're Here!
+            </h1>
 
             {/* Phone Call Button */}
-            <a className="phone-call-btn d-flex align-items-center rounded overflow-hidden border border-primary text-decoration-none" href={`tel:${settings?.phones}`}>
-              <span className="btn-lg-square bg-primary" style={{ width: '55px', height: '55px' }}>
-                <FontAwesomeIcon icon={faPhoneVolume} style={{ color: '#fff' }} aria-hidden="true" />
+            <a
+              className="phone-call-btn d-flex align-items-center rounded overflow-hidden border border-primary text-decoration-none"
+              href={`tel:${settings?.phones}`}
+            >
+              <span
+                className="btn-lg-square bg-primary"
+                style={{ width: "55px", height: "55px" }}
+              >
+                <FontAwesomeIcon
+                  icon={faPhoneVolume}
+                  style={{ color: "#fff" }}
+                  aria-hidden="true"
+                />
               </span>
               <span className="fs-5 fw-medium mx-4">{settings?.phones}</span>
             </a>
@@ -130,7 +152,6 @@ export const Quote = () => {
                 </div>
                 <div className="col-sm-6">
                   <div className="form-floating">
-
                     <select
                       className="form-select"
                       id="service"
@@ -156,7 +177,7 @@ export const Quote = () => {
                       placeholder="Leave a message here"
                       id="message"
                       name="message"
-                      style={{ height: '130px' }}
+                      style={{ height: "130px" }}
                       value={formData.message}
                       onChange={handleChange}
                     ></textarea>
@@ -164,13 +185,15 @@ export const Quote = () => {
                   </div>
                 </div>
                 <div className="col-12 text-center">
-                  <button className="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                  <button className="btn btn-primary w-100 py-3" type="submit">
+                    Submit
+                  </button>
                 </div>
               </div>
             </form>
           </div>
         </div>
-      </div >
-    </div >
+      </div>
+    </div>
   );
 };
