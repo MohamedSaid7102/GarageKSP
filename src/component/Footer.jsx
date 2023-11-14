@@ -83,7 +83,12 @@ export const Footer = () => {
                       style={{ marginRight: "10px" }}
                     />
                   ),
-                  text: settings?.phones,
+                  text: settings?.phones.map((item, index) => (
+                    <span key={index}>
+                      {item}
+                      <br />
+                    </span>
+                  )),
                 },
               ]}
             />
@@ -309,6 +314,7 @@ const FooterNewsletter = ({ data }) => {
           <a
             className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center"
             href={data.youtube}
+            rel="noreferrer"
             target="_blank"
             aria-label="Youtube"
           >

@@ -4,7 +4,6 @@ import { ThemeContext } from "../ThemeContext";
 import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
-import { LanguageSelector } from "./LanguageSelector";
 import LOGO from "../assets/KSB_LOGO.png";
 
 export const NavigationBar = () => {
