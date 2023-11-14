@@ -4,6 +4,8 @@ import { ThemeContext } from '../ThemeContext'
 import instance from '../../axiosConfig'
 import Carousel from 'react-multi-carousel'
 import { Button, Modal } from 'react-bootstrap'
+import { t } from 'i18next'
+import i18n from '../../i18n'
 
 export const Features = () => {
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
@@ -56,11 +58,11 @@ export const Features = () => {
   };
 
   return (
-    <div className="container-xxl py-5">
+    <div className="container-xxl py-5"  dir={`${i18n.language == 'ar' ? 'rtl' : 'ltr'}`}>
       <div className="container">
         <div className={`text-center mx-auto wow fadeInUp d-flex ${shouldPaginate ? 'justify-content-between' : 'justify-content-center'}`} data-wow-delay="0.1s" style={{ marginBottom: '3rem' }}>
-          <p className={`fs-2 fw-medium text-primary`}>Brands</p>
-          {shouldPaginate && <button className={`btn btn-outline-info btn-sm rounded border-0 fw-light`} onClick={openModal}>Show More</button>}
+          <p className={`fs-2 fw-medium text-primary`}>{t('brands.title')}</p>
+          {shouldPaginate && <button className={`btn btn-outline-info btn-sm rounded border-0 fw-light`} onClick={openModal}>{t('showMore')}</button>}
         </div>
 
         <div className={`${darkMode && 'bg-dark'} row g-0 d-flex gap-4 justify-content-center`} style={{ height: '400px' }}>
@@ -93,7 +95,7 @@ export const Features = () => {
         {/* JSX Modal Start */}
         <Modal show={showModal} onHide={closeModal} size="xl">
           <Modal.Header closeButton>
-            <Modal.Title>Brands</Modal.Title>
+            <Modal.Title>{t('brands.title')}</Modal.Title>
           </Modal.Header>
           <Modal.Body style={{ height: '80vh' }}>
             {data && (
@@ -113,7 +115,7 @@ export const Features = () => {
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={closeModal}>
-              Close
+              {t('close')}
             </Button>
           </Modal.Footer>
         </Modal>
