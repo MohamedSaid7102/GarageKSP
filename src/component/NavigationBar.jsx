@@ -7,6 +7,7 @@ import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
 import { LanguageSelector } from "./LanguageSelector";
 import LOGO from '../assets/KSB_LOGO.png';
 import { useTranslation } from "react-i18next";
+import i18n from "../../i18n";
 
 export const NavigationBar = () => {
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
@@ -63,7 +64,7 @@ export const NavigationBar = () => {
   }
 
   return (
-    <div className={`sticky-top navigation-bar ${darkMode && 'bg-secondary'}`} style={{ marginBottom: '4rem' }}>
+    <div className={`sticky-top navigation-bar ${darkMode && 'bg-secondary'}`} style={{ marginBottom: '4rem' }}  dir={`${i18n.language == 'ar' ? 'rtl' : 'ltr'}`}>
       <a href="#main-content" className={`sr-only sr-only-focusable`}>
         Skip to content
       </a>
@@ -91,6 +92,7 @@ export const NavigationBar = () => {
               data-bs-target="#navbarCollapse"
               onClick={toggleNavbar}
               ref={burgerButton}
+              style={{margin: '0 20px'}}
             >
               <span>☰</span>
             </button>

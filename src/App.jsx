@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUpLong, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { ThemeContext } from './ThemeContext';
 import instance from '../axiosConfig';
+import { t } from 'i18next';
+import i18n from '../i18n';
 
 function App() {
   const location = useLocation().pathname;
@@ -41,7 +43,7 @@ function App() {
 
 
   if (location !== '/') return (
-    <div className="content-wrapper">
+    <div className="content-wrapper" dir={`${i18n.language == 'ar' ? 'rtl' : 'ltr'}`}>
       {/*< TopBar />*/}
       <NavigationBar />
       <hr />
@@ -65,7 +67,7 @@ function App() {
   ]
 
   return (
-    <>
+    <div  dir={`${i18n.language == 'ar' ? 'rtl' : 'ltr'}`}>
 
       <ProgressBar />
 
@@ -116,7 +118,7 @@ function App() {
 
       </div >
 
-    </>
+    </div>
   )
 }
 
