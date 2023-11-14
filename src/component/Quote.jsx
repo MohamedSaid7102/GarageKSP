@@ -3,6 +3,8 @@ import { faPhoneVolume } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import instance from '../../axiosConfig';
 import { toast } from 'react-toastify';
+import { t } from 'i18next';
+import i18n from '../../i18n';
 
 export const Quote = () => {
   const [settings, setSettings] = useState()
@@ -67,12 +69,12 @@ export const Quote = () => {
   };
 
   return (
-    <div className="container-xxl py-5">
+    <div className="container-xxl py-5" dir={`${i18n.language == 'ar' ? 'rtl' : 'ltr'}`}>
       <div className="container">
         <div className="row g-5">
           <div className="col-lg-6 wow fadeInUp d-flex flex-column justify-content-center justify-content-md-start" data-wow-delay="0.1s">
-            <p className="fs-5 fw-medium text-primary text-md-start">Get A Car</p>
-            <h1 className="display-5 mb-4 text-md-start">Need Our Expert Help? We're Here!</h1>
+            <p className="fs-5 fw-medium text-primary text-md-start">{t('getACar.title')}</p>
+            <h1 className="display-5 mb-4 text-md-start">{t('getACar.desc')}</h1>
 
             {/* Phone Call Button */}
             <a className="phone-call-btn d-flex align-items-center rounded overflow-hidden border border-primary text-decoration-none" href={`tel:${settings?.phones}`}>
@@ -83,7 +85,7 @@ export const Quote = () => {
             </a>
           </div>
           <div className="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
-            <h2 className="mb-4">Get A Car</h2>
+            <h2 className="mb-4">{t('getACar.title')}</h2>
             <form onSubmit={handleSubmit}>
               <div className="row g-3">
                 <div className="col-sm-6">
@@ -97,7 +99,7 @@ export const Quote = () => {
                       value={formData.name}
                       onChange={handleChange}
                     />
-                    <label htmlFor="name">Your Name</label>
+                    <label htmlFor="name">{t('form.name')}</label>
                   </div>
                 </div>
                 <div className="col-sm-6">
@@ -111,7 +113,7 @@ export const Quote = () => {
                       value={formData.email}
                       onChange={handleChange}
                     />
-                    <label htmlFor="mail">Your Email</label>
+                    <label htmlFor="mail">{t('form.email')}</label>
                   </div>
                 </div>
                 <div className="col-sm-6">
@@ -125,7 +127,7 @@ export const Quote = () => {
                       value={formData.mobile}
                       onChange={handleChange}
                     />
-                    <label htmlFor="mobile">Your Mobile</label>
+                    <label htmlFor="mobile">{t('form.mobile')}</label>
                   </div>
                 </div>
                 <div className="col-sm-6">
@@ -160,17 +162,17 @@ export const Quote = () => {
                       value={formData.message}
                       onChange={handleChange}
                     ></textarea>
-                    <label htmlFor="message">Message</label>
+                    <label htmlFor="message">{t('form.message')}</label>
                   </div>
                 </div>
                 <div className="col-12 text-center">
-                  <button className="btn btn-primary w-100 py-3" type="submit">Submit</button>
+                  <button className="btn btn-primary w-100 py-3" type="submit">{t('submit')}</button>
                 </div>
               </div>
             </form>
           </div>
         </div>
-      </div >
-    </div >
+      </div>
+    </div>
   );
 };

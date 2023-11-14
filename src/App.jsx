@@ -67,7 +67,7 @@ function App() {
   ]
 
   return (
-    <div  dir={`${i18n.language == 'ar' ? 'rtl' : 'ltr'}`}>
+    <div dir={`${i18n.language == 'ar' ? 'rtl' : 'ltr'}`}>
 
       <ProgressBar />
 

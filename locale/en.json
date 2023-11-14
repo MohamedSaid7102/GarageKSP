@@ -65,7 +65,7 @@
 
   "getACar": {
     "title": "Get A Car",
-    "dec": "Need Our Expert Help? We're Here!"
+    "desc": "Need Our Expert Help? We're Here!"
   },
 
   "team": {

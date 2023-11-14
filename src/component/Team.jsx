@@ -4,6 +4,8 @@ import { faFacebookF, faInstagram, faLinkedinIn, faTiktok, faWhatsapp, faYoutube
 import instance from '../../axiosConfig'
 import Carousel from 'react-multi-carousel';
 import { Button, Modal } from 'react-bootstrap';
+import { t } from 'i18next';
+import i18n from '../../i18n';
 
 
 const FilterSection = ({ selectedFilters, setSelectedFilters }) => {
@@ -159,12 +161,12 @@ export const Team = () => {
   };
 
   return (
-    <div className="container-xxl py-5">
+    <div className="container-xxl py-5"  dir={`${i18n.language == 'ar' ? 'rtl' : 'ltr'}`}>
       <div className="container">
         <div className="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style={{ maxWidth: '500px' }}>
-          <p className="fs-5 fw-medium text-primary">Our Team</p>
-          <p className="fs-1 mb-5">Our Expert People Ready to Help You</p>
-          {shouldPaginate && <button className={`btn btn-outline-info btn-sm rounded border-0 fw-light`} onClick={openModal}>Show More</button>}
+          <p className="fs-5 fw-medium text-primary">{t('team.title')}</p>
+          <p className="fs-1 mb-5">{t('team.desc')}</p>
+          {shouldPaginate && <button className={`btn btn-outline-info btn-sm rounded border-0 fw-light`} onClick={openModal}>{t('showMore')}</button>}
         </div>
 
         <FilterSection selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} />
@@ -215,7 +217,6 @@ export const Team = () => {
         {/* JSX Modal Start */}
         <Modal show={showModal} onHide={closeModal} size="xl">
           <Modal.Header closeButton>
-            <Modal.Title>Our Team</Modal.Title>
           </Modal.Header>
           <Modal.Body style={{ height: '80vh' }}>
             {
@@ -242,7 +243,7 @@ export const Team = () => {
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={closeModal}>
-              Close
+              {t('close')}
             </Button>
           </Modal.Footer>
         </Modal>

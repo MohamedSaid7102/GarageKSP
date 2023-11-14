@@ -65,7 +65,7 @@
 
   "getACar": {
     "title": "Obtenir une voiture",
-    "dec": "Besoin de notre aide d'experts ? Nous sommes là !"
+    "desc": "Besoin de notre aide d'experts ? Nous sommes là !"
   },
 
   "team": {
