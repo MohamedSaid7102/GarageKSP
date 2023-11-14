@@ -6,13 +6,15 @@ import project4Image from '../assets/img/project-4.jpg'
 import Carousel from 'react-multi-carousel';
 import { useEffect, useState } from 'react';
 import instance from '../../axiosConfig';
+import { t } from 'i18next';
+import i18n from '../../i18n';
 
 
 // TODO: Problem in showing off projects in carsoule
 
 const ProductItem = ({ quantity, sellingPrice, imgSrc, title, description, openModal, style }) => {
   return (
-    <div className="project-item card-item-transition-effect m-1 m-sm-3 border" style={{ ...style }}>
+    <div className="project-item card-item-transition-effect m-1 m-sm-3 border" style={{ ...style }} dir={`${i18n.language == 'ar' ? 'rtl' : 'ltr'}`}>
       <div className="position-relative">
         <div className="project-item__img">
           <img className="img-fluid" src={imgSrc} alt={title} />
@@ -31,8 +33,8 @@ const ProductItem = ({ quantity, sellingPrice, imgSrc, title, description, openM
           {title}
         </a>
         {description && <span className="d-block text-sm-start mb-3">{description}</span>}
-        {quantity && <span className="d-block text-sm-start mb-3" style={{ fontSize: '20px', fontWeight: 'lighter' }}><span style={{ fontSize: '25px', fontWeight: 'normal' }}>Quantity: </span>{quantity}</span>}
-        {sellingPrice && <span className="d-block text-sm-start mb-3" style={{ fontSize: '20px', fontWeight: 'lighter' }}><span style={{ fontSize: '25px', fontWeight: 'normal' }}>Selling Price: </span>{sellingPrice}</span>}
+        {quantity && <span className="d-block text-sm-start mb-3" style={{ fontSize: '20px', fontWeight: 'lighter' }}><span style={{ fontSize: '25px', fontWeight: 'normal' }}>{t('ourProducts.quantity')}: </span>{quantity}</span>}
+        {sellingPrice && <span className="d-block text-sm-start mb-3" style={{ fontSize: '20px', fontWeight: 'lighter' }}><span style={{ fontSize: '25px', fontWeight: 'normal' }}>{t('ourProducts.sellingPrice')}: </span>{sellingPrice}</span>}
       </div>
     </div>
   );
@@ -102,7 +104,7 @@ const ProductWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsMod
 
   return (
     <>
-      <div className="projects-wrapper d-flex flex-row flex-wrap justify-content-md-start justify-content-center" style={{ height: '550px' }}>
+      <div className="projects-wrapper d-flex flex-row flex-wrap justify-content-md-start justify-content-center" style={{ height: '550px', textAlign: i18n.language == 'ar'? 'right':'left' }} dir={`${i18n.language == 'ar' ? 'rtl' : 'ltr'}`}>
         <div style={{ display: 'flex', height: '550px' }}>
           {
             shouldPaginate ?
@@ -136,27 +138,12 @@ const ProductWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsMod
               ))
           }
         </div>
-
-        {/* slice only 3 cards if there is more than 3, and show only what is available if there are no more than 3 cards */}
-        {/*
-          projects.reverse().slice(0, projects.length > 3 ? 3 : projects.length).map(item => (
-            <ProductItem
-              key={item.id}
-              imgSrc={item.images[0].url}
-              title={item.name}
-              quantity={item.quantity}
-              sellingPrice={item.selling_price}
-              openModal={() => openModal(item.id)}
-            />
-          ))
-        */}
       </div>
 
 
       {/* Projects List view Modal Start */}
       <Modal show={showProjectsModal} onHide={closeProjectsModal} size="xl">
         <Modal.Header closeButton>
-          <Modal.Title>Product List</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ height: '80vh' }}>
           <div className="d-flex justify-content-center align-items-center flex-wrap gap-3 mt-5">
@@ -177,7 +164,7 @@ const ProductWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsMod
 
         <Modal.Footer>
           <Button variant="secondary" onClick={closeProjectsModal}>
-            Close
+            {t('close')}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -193,8 +180,8 @@ const ProductWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsMod
             <>
               <img src={selectedProjectData.images[0].url} alt={selectedProjectData.title} style={{ width: '100%', height: '70%', objectFit: 'cover' }} />
               <h1>{selectedProjectData.name}</h1>
-              <span className="d-block text-center mb-3" style={{ fontSize: '15px', fontWeight: 'lighter' }}><span style={{ fontSize: '20px', fontWeight: 'normal' }}>Quantity: </span>{selectedProjectData.quantity}</span>
-              <span className="d-block text-center mb-3" style={{ fontSize: '15px', fontWeight: 'lighter' }}><span style={{ fontSize: '20px', fontWeight: 'normal' }}>Selling Price: </span>{selectedProjectData.selling_price}</span>
+              <span className="d-block text-center mb-3" style={{ fontSize: '15px', fontWeight: 'lighter' }}><span style={{ fontSize: '20px', fontWeight: 'normal' }}>{t('ourProducts.quantity')}: </span>{selectedProjectData.quantity}</span>
+              <span className="d-block text-center mb-3" style={{ fontSize: '15px', fontWeight: 'lighter' }}><span style={{ fontSize: '20px', fontWeight: 'normal' }}>{t('ourProducts.sellingPrice')}: </span>{selectedProjectData.selling_price}</span>
               <p>{selectedProjectData.description}</p>
             </>
           )}
@@ -202,7 +189,7 @@ const ProductWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsMod
 
         <Modal.Footer>
           <Button variant="secondary" onClick={closeModal}>
-            Close
+            {t('close')}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -232,10 +219,10 @@ export const Products = () => {
     <div className="container-xxl  p-0" style={{ marginTop: '5rem' }}>
       <div className="container">
         <div className="text-center text-md-start pb-5 pb-md-0 wow fadeInUp" data-wow-delay="0.1s" style={{ maxWidth: '500px' }}>
-          <p className="fs-5 fw-medium text-primary">Our Products</p>
-          <h1 className="display-5 mb-5">We've Done Lot's of Awesome Products</h1>
+          <p className="fs-5 fw-medium text-primary">{t('ourProducts.title')}</p>
+          <h1 className="display-5 mb-5">{t('ourProducts.desc')}</h1>
           {/*shouldPaginate && <button className={`btn btn-outline-info btn-sm rounded border-0 mb-3 fw-light`} onClick={openProjectsModal}>Show More</button>*/}
-          <button className={`btn btn-outline-info btn-sm rounded border-0 mb-3 fw-light`} onClick={openProjectsModal}>Show More</button>
+          <button className={`btn btn-outline-info btn-sm rounded border-0 mb-3 fw-light`} onClick={openProjectsModal}>{t('showMore')}</button>
         </div>
         <ProductWrapper
           showProjectsModal={showProjectsModal}
