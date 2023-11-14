@@ -6,9 +6,13 @@ import { ThemeContext } from "../ThemeContext";
 import Carousel from "react-multi-carousel";
 import 'react-multi-carousel/lib/styles.css';
 import { NavLink } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import i18n from "../../i18n";
+import { t } from "i18next";
 
 export const Jobs = () => {
-
+  const {t} = useTranslation();
+  
   const [jobs, setJobs] = useState();
   const [showJobModal, setShowJobModal] = useState(false);
   const [showJobListModal, setShowJobListModal] = useState(false);
@@ -74,10 +78,10 @@ export const Jobs = () => {
   }
 
   return (
-    <Container>
+    <Container  dir={`${i18n.language == 'ar' ? 'rtl' : 'ltr'}`}>
       <div className={`text-center mx-auto wow fadeInUp d-flex ${shouldPaginate ? 'justify-content-between' : 'justify-content-center'}`} data-wow-delay="0.1s" style={{ marginBottom: '3rem' }}>
-        <p className={`fs-2 fw-medium text-primary`}>Jobs</p>
-        {shouldPaginate && <button className={`btn btn-outline-info btn-sm rounded border-0 fw-light`} onClick={openJobListModal}>Show More</button>}
+        <p className={`fs-2 fw-medium text-primary`}>{t('jobs.title')}</p>
+        {shouldPaginate && <button className={`btn btn-outline-info btn-sm rounded border-0 fw-light`} onClick={openJobListModal}>{t('showMore')}</button>}
       </div>
 
       <div className="d-flex" style={{ gap: '10px' }}>
@@ -122,17 +126,17 @@ export const Jobs = () => {
             <>
               <span style={{ position: 'absolute', top: '5px', right: '5px', width: '10px', height: '10px', opacity: '0.5', borderRadius: '100%', boxShadow: '0 0 10px #555', backgroundColor: presentedJob.status ? 'lightgreen' : 'red' }}></span>
               <h3>{presentedJob?.name}</h3>
-              <p>Experience: {presentedJob.experience_years}</p>
+              <p>{t('jobs.experience')}: {presentedJob.experience_years}</p>
               <p>{presentedJob.requirements}</p>
               <button disabled={!presentedJob.status} className={`btn ${presentedJob.status ? 'btn-outline-info' : 'btn-outline-danger'} btn-block`} onClick={() => { }}>
-                <NavLink to={`sendcv/${presentedJob.id}`} style={{ textDecoration: 'none', color: !presentedJob.status && 'red' }}>{presentedJob.status ? 'Apply' : 'This Job is Not Available'}</NavLink>
+                <NavLink to={`sendcv/${presentedJob.id}`} style={{ textDecoration: 'none', color: !presentedJob.status && 'red' }}>{presentedJob.status ? t('jobs.apply') :t('jobs.jobNotAvailable')}</NavLink>
               </button>
             </>
           )}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={closeJobModal}>
-            Close
+            {t('close')}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -140,7 +144,6 @@ export const Jobs = () => {
       {/* Job List Modal, This will be show if the user click on show more */}
       <Modal show={showJobListModal} onHide={closeJobListModal} size="lg">
         <Modal.Header closeButton>
-          <Modal.Title>Job List</Modal.Title>
         </Modal.Header>
         <Modal.Body className="d-flex justify-content-center align-items-center flex-wrap" style={{ height: 'max-content', gap: '20px' }}>
           {jobs?.map(item => (
@@ -159,7 +162,7 @@ export const Jobs = () => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={closeJobListModal}>
-            Close
+            {t('jobs.apply')}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -178,9 +181,9 @@ const JobPost = ({ name, status, startAt, endAt, experience, requirements, openJ
     <div className={`position-relative ${darkMode ? 'bg-dark' : 'bg-light'} border rounded p-4 d-flex flex-column`} style={{ maxWidth: '300px' }}>
       <span style={{ position: 'absolute', top: '5px', right: '5px', width: '10px', height: '10px', opacity: '0.5', borderRadius: '100%', boxShadow: '0 0 10px #555', backgroundColor: status ? 'lightgreen' : 'red' }}></span>
       <h3>{name}</h3>
-      <p>Experience: {experience}</p>
+      <p>{t('jobs.experience')}: {experience}</p>
       <p style={{ flexGrow: 1 }}>{getFirstWords(requirements)}</p>
-      <button className="btn btn-outline-info btn-block" onClick={openJobModal}>More</button>
+      <button className="btn btn-outline-info btn-block" onClick={openJobModal}>{t('more')}</button>
     </div >
   )
 }
