@@ -1,41 +1,42 @@
-import { useContext, useEffect, useState } from "react";
-import { Button, Card, Container, Modal } from "react-bootstrap";
+import { useContext, useEffect, useRef, useState } from "react";
+import { Button, Container, Modal } from "react-bootstrap";
 import instance from "../../axiosConfig";
 import { getFirstWords } from "../../utils";
 import { ThemeContext } from "../ThemeContext";
 import Carousel from "react-multi-carousel";
-import 'react-multi-carousel/lib/styles.css';
+import "react-multi-carousel/lib/styles.css";
 import { NavLink } from "react-router-dom";
 
 export const Jobs = () => {
-
   const [jobs, setJobs] = useState();
   const [showJobModal, setShowJobModal] = useState(false);
   const [showJobListModal, setShowJobListModal] = useState(false);
   const [presentedJob, setPresentedJob] = useState(null);
-  const [presentedJobId, setPresentedJobId] = useState(null);
 
   const shouldPaginate = jobs?.length > 3;
 
+  const joprRef = useRef(true);
   useEffect(() => {
-    instance.get('/users/job_announcements?handle=')
-      .then(response => {
+    instance
+      .get("/users/job_announcements?handle=")
+      .then((response) => {
         setJobs(response.data.data);
       })
-      .catch(error => {
-        console.error('Error fetching data:', error);
+      .catch((error) => {
+        console.error("Error fetching data:", error);
       });
-  }, []);
+  }, [joprRef]);
 
-  useEffect(() => {
-    instance.get(`/users/job_announcements/${presentedJobId || ''}`)
-      .then(response => {
+  const showOneJop = async (id) => {
+    await instance
+      .get(`/users/job_announcements/${id || ""}`)
+      .then((response) => {
         setPresentedJob(response.data.data);
       })
-      .catch(error => {
-        console.error('Error fetching data:', error);
+      .catch((error) => {
+        console.error("Error fetching data:", error);
       });
-  }, [presentedJobId])
+  };
 
   const responsive = {
     superLargeDesktop: {
@@ -58,32 +59,55 @@ export const Jobs = () => {
 
   const openJobListModal = () => {
     setShowJobListModal(true);
-  }
+  };
 
   const closeJobListModal = () => {
     setShowJobListModal(false);
-  }
+  };
 
-  const openJobModal = (jobId) => {
-    setPresentedJobId(jobId) /* This will trigger useEffect to fetch and setPresentedJob to the job with this jobId */
+  const openJobModal = (id) => {
+    showOneJop(
+      id
+    ); /* This will trigger useEffect to fetch and setPresentedJob to the job with this jobId */
     setShowJobModal(true); /* After this show the modal */
-  }
+  };
 
   const closeJobModal = () => {
     setShowJobModal(false);
-  }
+  };
 
   return (
     <Container>
-      <div className={`text-center mx-auto wow fadeInUp d-flex ${shouldPaginate ? 'justify-content-between' : 'justify-content-center'}`} data-wow-delay="0.1s" style={{ marginBottom: '3rem' }}>
+      <div
+        className={`text-center mx-auto wow fadeInUp d-flex ${
+          shouldPaginate ? "justify-content-between" : "justify-content-center"
+        }`}
+        data-wow-delay="0.1s"
+        style={{ marginBottom: "3rem" }}
+      >
         <p className={`fs-2 fw-medium text-primary`}>Jobs</p>
-        {shouldPaginate && <button className={`btn btn-outline-info btn-sm rounded border-0 fw-light`} onClick={openJobListModal}>Show More</button>}
+        {shouldPaginate && (
+          <button
+            className={`btn btn-outline-info btn-sm rounded border-0 fw-light`}
+            onClick={openJobListModal}
+          >
+            Show More
+          </button>
+        )}
       </div>
 
-      <div className="d-flex" style={{ gap: '10px' }}>
+      <div className="d-flex" style={{ gap: "10px" }}>
         {shouldPaginate ? (
-          <Carousel responsive={responsive} infinite={true} showDots={true} autoPlaySpeed={4000} autoPlay={true} keyBoardControl={true} className="pb-5 w-100">
-            {jobs?.map(item => (
+          <Carousel
+            responsive={responsive}
+            infinite={true}
+            showDots={true}
+            autoPlaySpeed={4000}
+            autoPlay={true}
+            keyBoardControl={true}
+            className="pb-5 w-100"
+          >
+            {jobs?.map((item) => (
               <JobPost
                 key={item.id}
                 name={item.name}
@@ -96,8 +120,8 @@ export const Jobs = () => {
               />
             ))}
           </Carousel>
-        ) :
-          jobs?.map(item => (
+        ) : (
+          jobs?.map((item) => (
             <JobPost
               key={item.id}
               name={item.name}
@@ -109,7 +133,7 @@ export const Jobs = () => {
               openJobModal={() => openJobModal(item.id)}
             />
           ))
-        }
+        )}
       </div>
 
       {/* Single Job Modal, This will be show if the user click on More button */}
@@ -117,15 +141,43 @@ export const Jobs = () => {
         <Modal.Header closeButton>
           <Modal.Title>{presentedJob?.name}</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{ height: 'max-content' }}>
+        <Modal.Body style={{ height: "max-content" }}>
           {presentedJob && (
             <>
-              <span style={{ position: 'absolute', top: '5px', right: '5px', width: '10px', height: '10px', opacity: '0.5', borderRadius: '100%', boxShadow: '0 0 10px #555', backgroundColor: presentedJob.status ? 'lightgreen' : 'red' }}></span>
+              <span
+                style={{
+                  position: "absolute",
+                  top: "5px",
+                  right: "5px",
+                  width: "10px",
+                  height: "10px",
+                  opacity: "0.5",
+                  borderRadius: "100%",
+                  boxShadow: "0 0 10px #555",
+                  backgroundColor: presentedJob.status ? "lightgreen" : "red",
+                }}
+              ></span>
               <h3>{presentedJob?.name}</h3>
               <p>Experience: {presentedJob.experience_years}</p>
               <p>{presentedJob.requirements}</p>
-              <button disabled={!presentedJob.status} className={`btn ${presentedJob.status ? 'btn-outline-info' : 'btn-outline-danger'} btn-block`} onClick={() => { }}>
-                <NavLink to={`sendcv/${presentedJob.id}`} style={{ textDecoration: 'none', color: !presentedJob.status && 'red' }}>{presentedJob.status ? 'Apply' : 'This Job is Not Available'}</NavLink>
+              <button
+                disabled={!presentedJob.status}
+                className={`btn ${
+                  presentedJob.status
+                    ? "btn-outline-info"
+                    : "btn-outline-danger"
+                } btn-block`}
+                onClick={() => {}}
+              >
+                <NavLink
+                  to={`sendcv/${presentedJob.id}`}
+                  style={{
+                    textDecoration: "none",
+                    color: !presentedJob.status && "red",
+                  }}
+                >
+                  {presentedJob.status ? "Apply" : "This Job is Not Available"}
+                </NavLink>
               </button>
             </>
           )}
@@ -142,8 +194,11 @@ export const Jobs = () => {
         <Modal.Header closeButton>
           <Modal.Title>Job List</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="d-flex justify-content-center align-items-center flex-wrap" style={{ height: 'max-content', gap: '20px' }}>
-          {jobs?.map(item => (
+        <Modal.Body
+          className="d-flex justify-content-center align-items-center flex-wrap"
+          style={{ height: "max-content", gap: "20px" }}
+        >
+          {jobs?.map((item) => (
             <JobPost
               key={item.id}
               name={item.name}
@@ -154,8 +209,7 @@ export const Jobs = () => {
               requirements={item.requirements}
               openJobModal={() => openJobModal(item.id)}
             />
-          ))
-          }
+          ))}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={closeJobListModal}>
@@ -163,24 +217,47 @@ export const Jobs = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-
-
-    </Container >
+    </Container>
   );
 };
 
-
-const JobPost = ({ name, status, startAt, endAt, experience, requirements, openJobModal }) => {
-
+const JobPost = ({
+  name,
+  status,
+  startAt,
+  endAt,
+  experience,
+  requirements,
+  openJobModal,
+}) => {
   const { darkMode, toggleDarkMode } = useContext(ThemeContext);
 
   return (
-    <div className={`position-relative ${darkMode ? 'bg-dark' : 'bg-light'} border rounded p-4 d-flex flex-column`} style={{ maxWidth: '300px' }}>
-      <span style={{ position: 'absolute', top: '5px', right: '5px', width: '10px', height: '10px', opacity: '0.5', borderRadius: '100%', boxShadow: '0 0 10px #555', backgroundColor: status ? 'lightgreen' : 'red' }}></span>
+    <div
+      className={`position-relative ${
+        darkMode ? "bg-dark" : "bg-light"
+      } border rounded p-4 d-flex flex-column`}
+      style={{ maxWidth: "300px" }}
+    >
+      <span
+        style={{
+          position: "absolute",
+          top: "5px",
+          right: "5px",
+          width: "10px",
+          height: "10px",
+          opacity: "0.5",
+          borderRadius: "100%",
+          boxShadow: "0 0 10px #555",
+          backgroundColor: status ? "lightgreen" : "red",
+        }}
+      ></span>
       <h3>{name}</h3>
       <p>Experience: {experience}</p>
       <p style={{ flexGrow: 1 }}>{getFirstWords(requirements)}</p>
-      <button className="btn btn-outline-info btn-block" onClick={openJobModal}>More</button>
-    </div >
-  )
-}
+      <button className="btn btn-outline-info btn-block" onClick={openJobModal}>
+        More
+      </button>
+    </div>
+  );
+};
