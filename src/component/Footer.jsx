@@ -126,7 +126,6 @@ const FooterNewsletter = ({ data }) => {
   return (
     <div className="col-lg-3 col-md-6">
       <h4 className="text-white mb-4 text-lg-start">Newsletter</h4>
-      <p className="text-lg-start">Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
       <div className="position-relative w-100">
         <input className="text-light form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email" />
         <button type="button" className="btn btn-light py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
@@ -138,43 +137,43 @@ const FooterNewsletter = ({ data }) => {
         </a>}
 
         {data?.instagram && (
-          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.instagram}  target="_blank" aria-label="Instagram">
+          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.instagram} target="_blank" aria-label="Instagram">
             <FontAwesomeIcon icon={faInstagram} style={{ color: "#4761ff" }} aria-hidden="true" />
           </a>
         )}
 
         {data?.twitter && (
-          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.twitter}  target="_blank" aria-label="Twitter">
+          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.twitter} target="_blank" aria-label="Twitter">
             <FontAwesomeIcon icon={faTwitter} style={{ color: "#4761ff" }} aria-hidden="true" />
           </a>
         )}
 
         {data?.linkedin && (
-          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.linkedin}  target="_blank" aria-label="LinkedIn">
+          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.linkedin} target="_blank" aria-label="LinkedIn">
             <FontAwesomeIcon icon={faLinkedinIn} style={{ color: "#4761ff" }} aria-hidden="true" />
           </a>
         )}
 
         {data?.whatsapp && (
-          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.whatsapp}  target="_blank" aria-label="Whatsapp">
+          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.whatsapp} target="_blank" aria-label="Whatsapp">
             <FontAwesomeIcon icon={faWhatsapp} style={{ color: "#4761ff" }} aria-hidden="true" />
           </a>
         )}
 
         {data?.tiktok && (
-          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.tiktok}  target="_blank" aria-label="TikTok">
+          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.tiktok} target="_blank" aria-label="TikTok">
             <FontAwesomeIcon icon={faTiktok} style={{ color: "#4761ff" }} aria-hidden="true" />
           </a>
         )}
 
         {data?.youtube && (
-          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.youtube}  target="_blank" aria-label="Youtube">
+          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.youtube} target="_blank" aria-label="Youtube">
             <FontAwesomeIcon icon={faYoutube} style={{ color: "#4761ff" }} aria-hidden="true" />
           </a>
         )}
 
         {data?.gmail && (
-          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.youtube}  target="_blank" aria-label="Youtube">
+          <a className="btn btn-sm-square btn-light text-primary rounded-circle ms-2 d-flex align-items-center justify-content-center" href={data.youtube} target="_blank" aria-label="Youtube">
             <FontAwesomeIcon icon={faMailBulk} style={{ color: "#4761ff" }} aria-hidden="true" />
           </a>
         )}

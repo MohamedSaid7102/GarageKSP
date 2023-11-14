@@ -98,7 +98,7 @@ export const Blogs = () => {
       {/* Single Blog Modal */}
       <Modal show={showModal} onHide={closeModal} size="lg">
         <Modal.Header closeButton>
-          <Modal.Title>Blog Content</Modal.Title>
+          <Modal.Title>{selectedBlogData?.title}</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ height: '80vh' }}>
           {selectedBlogData && (

@@ -40,13 +40,6 @@ const ProductItem = ({ quantity, sellingPrice, imgSrc, title, description, openM
 
 const ProductWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsModal, shouldPaginate, setShouldPaginate }) => {
 
-  /*const myProjects = [
-    { id: 1, imgSrc: project1Image, title: 'Marketing Content Strategy', description: 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem' },
-    { id: 2, imgSrc: project2Image, title: 'Marketing Content Strategy', description: 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem' },
-    { id: 3, imgSrc: project3Image, title: 'Business Target Market', description: 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem' },
-    { id: 4, imgSrc: project4Image, title: 'Hello world', description: 'Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem' },
-  ];*/
-
   const [showModal, setShowModal] = useState(false);
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -56,9 +49,8 @@ const ProductWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsMod
     instance.get('/mobile/client/products')
       .then(response => {
         setProjects(response.data.data);
-        // For testing the pagination
         // setProjects(Array(5).fill(response.data.data[0]));
-        if (response.data.data.length > 3) setShouldPaginate(true);
+        if (response.data.data.length > 1) setShouldPaginate(true);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
@@ -110,11 +102,10 @@ const ProductWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsMod
 
   return (
     <>
-      <div className="projects-wrapper d-flex flex-row flex-wrap justify-content-md-start justify-content-center" style={{ height: '400px' }}>
-        {/* TODO: We have a problem showing a Carousel, So we only reverse and show last 3 items from projects and see all by clicking show more */}
-        {/*
-          shouldPaginate ?
-            (
+      <div className="projects-wrapper d-flex flex-row flex-wrap justify-content-md-start justify-content-center" style={{ height: '550px' }}>
+        <div style={{ display: 'flex', height: '550px' }}>
+          {
+            shouldPaginate ?
               <Carousel responsive={responsive} infinite={true} showDots={true} autoPlaySpeed={4000} autoPlay={true} keyBoardControl={true} sliderClass="gap-4">
                 {
                   projects.map(item => (
@@ -132,21 +123,22 @@ const ProductWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsMod
                   ))
                 }
               </Carousel>
-            ) :
-            projects.map(item => (
-              <ProductItem
-                key={item.id}
-                imgSrc={item.images[0].url}
-                title={item.name}
-                quantity={item.quantity}
-                sellingPrice={item.selling_price}
-                openModal={() => openModal(item.id)}
-              />
-            ))
-        */}
+              :
+              projects.map(item => (
+                <ProductItem
+                  key={item.id}
+                  imgSrc={item.images[0].url}
+                  title={item.name}
+                  quantity={item.quantity}
+                  sellingPrice={item.selling_price}
+                  openModal={() => openModal(item.id)}
+                />
+              ))
+          }
+        </div>
 
         {/* slice only 3 cards if there is more than 3, and show only what is available if there are no more than 3 cards */}
-        {
+        {/*
           projects.reverse().slice(0, projects.length > 3 ? 3 : projects.length).map(item => (
             <ProductItem
               key={item.id}
@@ -157,7 +149,7 @@ const ProductWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsMod
               openModal={() => openModal(item.id)}
             />
           ))
-        }
+        */}
       </div>
 
 
@@ -194,7 +186,7 @@ const ProductWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsMod
       {/* Single project view Modal Start */}
       <Modal show={showModal} onHide={closeModal} size="lg">
         <Modal.Header closeButton>
-          <Modal.Title>Project Details</Modal.Title>
+          <Modal.Title>{selectedProjectData?.name}</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ height: '80vh' }}>
           {selectedProjectData && (
@@ -224,17 +216,17 @@ export const Products = () => {
 
   /* Modal Logic Start */
   const [showProjectsModal, setShowProjectsModal] = useState(false);
+
   const openProjectsModal = () => {
     setShowProjectsModal(true);
   };
+
   const closeProjectsModal = () => {
     setShowProjectsModal(false);
   };
 
   const [shouldPaginate, setShouldPaginate] = useState(false);
   /* Modal Logic End */
-
-
 
   return (
     <div className="container-xxl  p-0" style={{ marginTop: '5rem' }}>

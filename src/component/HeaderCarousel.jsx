@@ -38,8 +38,7 @@ export const HeaderCarousel = () => {
                         <p className="fs-4 text-white animated slideInRight" aria-label="Welcome to Garag KSP">Discount: {item.discount}</p>
                         <h1 className="display-1 text-white mb-4 animated slideInRight" aria-label="Unlock Your Business Growth">{item.title}</h1>
                         <p className="fs-4 text-white animated slideInRight" aria-label="Welcome to Garag KSP">{item.description}</p>
-                        <a href="" className="btn btn-primary rounded-pill py-3 px-5 animated slideInRight" aria-label="Explore More">Explore
-                          More</a>
+                        <a href="" className="btn btn-primary rounded-pill py-3 px-5 animated slideInRight" aria-label="Explore More">Explore More</a>
                       </div>
                     </div>
                   </div>

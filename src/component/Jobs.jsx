@@ -115,13 +115,13 @@ export const Jobs = () => {
       {/* Single Job Modal, This will be show if the user click on More button */}
       <Modal show={showJobModal} onHide={closeJobModal} size="lg">
         <Modal.Header closeButton>
-          <Modal.Title>Job Description</Modal.Title>
+          <Modal.Title>{presentedJob?.name}</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ height: 'max-content' }}>
           {presentedJob && (
             <>
               <span style={{ position: 'absolute', top: '5px', right: '5px', width: '10px', height: '10px', opacity: '0.5', borderRadius: '100%', boxShadow: '0 0 10px #555', backgroundColor: presentedJob.status ? 'lightgreen' : 'red' }}></span>
-              <h3>{presentedJob.name}</h3>
+              <h3>{presentedJob?.name}</h3>
               <p>Experience: {presentedJob.experience_years}</p>
               <p>{presentedJob.requirements}</p>
               <button disabled={!presentedJob.status} className={`btn ${presentedJob.status ? 'btn-outline-info' : 'btn-outline-danger'} btn-block`} onClick={() => { }}>

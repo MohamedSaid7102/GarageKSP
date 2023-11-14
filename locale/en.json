@@ -1,0 +1,96 @@
+{
+  "showMore": "Show More"
+  "exploreMore": "Explore More",
+  "logoName": "Garag KSB",
+  "close": "Close",
+  "more": "More",
+  "submit": "Submit",
+
+  "form": {
+    "name": "Name",
+    "email": "Email",
+    "skills": "Skills",
+    "contactInfo": "Contact Info",
+    "mobile": "Your Mobile",
+    "message": "Message",
+    "signup": "SignUp",
+    "signin": "SignIn"
+  },
+
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "products": "Products",
+    "contacts": "Contacts",
+    "getACar": "Get A Car",
+    "lang": {
+      "en": "en",
+      "ar": "ar",
+      "fr": "fr"
+    }
+  },
+
+  "headerCarousel": {
+    "discount": "Discount",
+  },
+
+  "jobs": {
+    "title": "Jobs",
+    "experience": "Experience",
+    "apply": "Apply",
+    "jobNotAvailable": "This Job is Not Available",
+  },
+
+  "brands": {
+    "title": "Brands",
+  },
+
+  "about": {
+    "title": "About Us",
+  },
+
+  "services": {
+    "title": "Our Services",
+    "desc": "Digital Marketing Services that We Offer",
+  },
+
+  "ourProducts": {
+    "title": "Our Products",
+    "desc": "We've Done Lot's of Awesome Products",
+    "quantity": "Quantity",
+    "sellingPrice": "Selling Price",
+    "productList": "Product List",
+  },
+
+  "getACar": {
+    "title": "Get A Car",
+    "dec": "Need Our Expert Help? We're Here!",
+  },
+
+  "team": {
+    "title": "Our Team",
+    "desc": "Our Expert People Ready to Help You"
+  },
+
+  "testimonial": {
+    "title": "Testimonial",
+    "desc": "What Clients Say About Our Services!"
+  },
+
+  "blogs": {
+    "title": "Blogs",
+    "allBlogs": "All Blogs"
+  },
+
+  "footer": {
+    "ourOffice": "Our Office",
+    "quickLinks": "Quick Links",
+    "newsLetter": "NewsLetter",
+    "termsConditions": "Terms & Conditions"
+  },
+
+  "copyRight": {
+    "title": "© Designed by Dr. Code, All Rights Reserved."
+  }
+}
