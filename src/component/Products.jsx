@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import instance from '../../axiosConfig';
 import i18n from '../../i18n';
 import { useTranslation } from 'react-i18next';
+import i18next from 'i18next';
 
 
 // TODO: Problem in showing off projects in carsoule
@@ -106,11 +107,11 @@ const ProductWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsMod
 
   return (
     <>
-      <div className="projects-wrapper d-flex flex-row flex-wrap justify-content-md-start justify-content-center" style={{ height: '550px', textAlign: i18n.language == 'ar'? 'right':'left' }} dir={`${i18n.language == 'ar' ? 'rtl' : 'ltr'}`}>
-        <div style={{ display: 'flex', height: '550px' }}>
+      <div className="projects-wrapper">
+        <div style={{ width: '100%', height: '550px' }}>
           {
             shouldPaginate ?
-              <Carousel responsive={responsive} infinite={true} showDots={true} autoPlaySpeed={4000} autoPlay={true} keyBoardControl={true} sliderClass="gap-4">
+              <Carousel responsive={responsive} infinite={true} showDots={true} autoPlaySpeed={4000} autoPlay={true} keyBoardControl={true} sliderClass="gap-4" className='p-3'>
                 {
                   projects.map(item => (
                     <ProductItem
@@ -136,6 +137,9 @@ const ProductWrapper = ({ showProjectsModal, openProjectsModal, closeProjectsMod
                   quantity={item.quantity}
                   sellingPrice={item.selling_price}
                   openModal={() => openModal(item.id)}
+                  style={{
+                    width: '100%', maxWidth: '500px', marginRight: '1.5rem'
+                  }}
                 />
               ))
           }
@@ -220,9 +224,9 @@ export const Products = () => {
   return (
     <div className="container-xxl  p-0" style={{ marginTop: '5rem' }}>
       <div className="container">
-        <div className="text-center text-md-start pb-5 pb-md-0 wow fadeInUp" data-wow-delay="0.1s" style={{ maxWidth: '500px' }}>
+        <div className=" pb-5 pb-md-0 wow fadeInUp" data-wow-delay="0.1s" style={{ maxWidth: '500px', marginInlineStart: i18next.language == 'ar' && 'auto', textAlign: i18next.language == 'ar' ? 'right' : 'left' }}>
           <p className="fs-5 fw-medium text-primary">{t('ourProducts.title')}</p>
-          <h1 className="display-5 mb-5">{t('ourProducts.desc')}</h1>
+          <h1 className="display-6 mb-5">{t('ourProducts.desc')}</h1>
           {/*shouldPaginate && <button className={`btn btn-outline-info btn-sm rounded border-0 mb-3 fw-light`} onClick={openProjectsModal}>Show More</button>*/}
           <button className={`btn btn-outline-info btn-sm rounded border-0 mb-3 fw-light`} onClick={openProjectsModal}>{t('showMore')}</button>
         </div>
