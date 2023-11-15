@@ -20,6 +20,12 @@ export const About = () => {
       });
   }, []);
 
+  const getVideoId = (url) => {
+    const videoIdRegex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = url?.match(videoIdRegex);
+    return match ? match[1] : null;
+  };
+  
   return (
     <>
       <div className={`container-xxl my-5`} style={{ position: 'relative' }}  dir={`${i18n.language == 'ar' ? 'rtl' : 'ltr'}`}>
@@ -62,8 +68,7 @@ export const About = () => {
             <div className={`modal-body`}>
               {/* 16:9 aspect ratio */}
               <div className={`ratio ratio-16x9`}>
-                <iframe className={`embed-responsive-item`} id="video"
-                  width="1550" height="696" src={data.youtube_video_url} title={data.name} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
+              <iframe className={`embed-responsive-item`} id="video" width="1550" height="696" src={`https://www.youtube.com/embed/${getVideoId(data?.youtube_video_url)}`} title={data.name} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></iframe>
               </div>
             </div>
           </div>
