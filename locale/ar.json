@@ -87,7 +87,9 @@
     "ourOffice": "مكتبنا",
     "quickLinks": "روابط سريعة",
     "newsLetter": "النشرة الإخبارية",
-    "termsConditions": "الشروط والأحكام"
+    "termsConditions": "الشروط والأحكام",
+    "employeeTerms": "شروط الموظف",
+    "clientsTerms": "شروط العملاء"
   },
 
   "copyRight": {

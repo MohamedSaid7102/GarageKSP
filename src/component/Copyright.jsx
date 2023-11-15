@@ -1,8 +1,10 @@
+import { useTranslation } from "react-i18next"
 
 export const Copyright = () => {
+  const {t} = useTranslation();
   return (
     <div className="container-fluid copyright py-3">
-      <p>&copy; Designed by <a className="fw-medium text-light text-center" target="_blank" href="https://doctor-code.net/en">Dr. Code</a>, All Rights Reserved.</p>
+      <a className="fw-medium text-light text-center" target="_blank" href="https://doctor-code.net/en">{t('copyRight.title')}</a>
     </div>
   )
 }

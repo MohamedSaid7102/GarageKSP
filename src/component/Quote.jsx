@@ -73,11 +73,11 @@ export const Quote = () => {
       <div className="container">
         <div className="row g-5">
           <div className="col-lg-6 wow fadeInUp d-flex flex-column justify-content-center justify-content-md-start" data-wow-delay="0.1s">
-            <p className="fs-5 fw-medium text-primary text-md-start">{t('getACar.title')}</p>
-            <h1 className="display-5 mb-4 text-md-start">{t('getACar.desc')}</h1>
+            <p className="fs-5 fw-medium text-primary">{t('getACar.title')}</p>
+            <h1 className="display-6 mb-4">{t('getACar.desc')}</h1>
 
             {/* Phone Call Button */}
-            <a className="phone-call-btn d-flex align-items-center rounded overflow-hidden border border-primary text-decoration-none" href={`tel:${settings?.phones}`}>
+            <a className="phone-call-btn d-flex align-items-center rounded overflow-hidden border border-primary text-decoration-none" href={`tel:${settings?.phones}`} style={{margin: '1rem auto'}}>
               <span className="btn-lg-square bg-primary" style={{ width: '55px', height: '55px' }}>
                 <FontAwesomeIcon icon={faPhoneVolume} style={{ color: '#fff' }} aria-hidden="true" />
               </span>

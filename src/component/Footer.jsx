@@ -75,11 +75,11 @@ export const Footer = () => {
         <Modal.Header closeButton>
           <Modal.Title>{t('footer.termsConditions')}</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{ height: 'max-content', maxHeight: '80vh' }}>
+        <Modal.Body style={{ height: 'max-content', maxHeight: '80vh' }}  dir={`${i18n.language == 'ar' ? 'rtl' : 'ltr'}`}>
           {termsConditions && (
             <>
-              <p style={{ fontWeight: 'lighter', fontSize: '17px', textAlign: 'start' }}><span style={{ fontWeight: 'bold', fontSize: '25px' }}>Employee Terms: </span>{termsConditions.employee_terms}</p>
-              <p style={{ fontWeight: 'lighter', fontSize: '17px', textAlign: 'start' }}><span style={{ fontWeight: 'bold', fontSize: '25px' }}>Clients Terms: </span>{termsConditions.client_terms}</p>
+              <p style={{ fontWeight: 'lighter', fontSize: '17px', textAlign: 'start' }}><span style={{ fontWeight: 'bold', fontSize: '25px' }}>{t('footer.employeeTerms')}: </span>{termsConditions.employee_terms}</p>
+              <p style={{ fontWeight: 'lighter', fontSize: '17px', textAlign: 'start' }}><span style={{ fontWeight: 'bold', fontSize: '25px' }}>{t('footer.clientsTerms')}: </span>{termsConditions.client_terms}</p>
             </>
           )}
         </Modal.Body>
@@ -135,8 +135,8 @@ const FooterNewsletter = ({ data }) => {
     <div className="col-lg-3 col-md-6">
       <h4 className="text-white mb-4" style={{textAlign: i18next.language == 'ar' ? 'right' : 'left'}}>{t('footer.newsLetter')}</h4>
       <div className="position-relative w-100">
-        <input className="text-light form-control bg-transparent w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email" />
-        <button type="button" className="btn btn-light py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+        <input className="text-light form-control bg-transparent w-100 py-3  pe-5" type="text" placeholder={t('form.email')}/>
+        <button type="button" className={`btn btn-light position-absolute top-0 ${i18next.language == 'ar' ? 'start-0' : 'end-0'}`} style={{margin: '10px'}}>{t('form.signup')}</button>
       </div>
       <div className="mt-4 d-flex flex-wrap gap-3">
 
